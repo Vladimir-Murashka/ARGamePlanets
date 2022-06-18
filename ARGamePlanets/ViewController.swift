@@ -13,38 +13,97 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     
+    let planets = [
+        UIImage(named: "earth.jpg")!,
+        UIImage(named: "jupiter.jpg")!,
+        UIImage(named: "mars.jpg")!,
+        UIImage(named: "mercury.jpg")!,
+        UIImage(named: "moon.jpg")!,
+        UIImage(named: "neptune.jpg")!,
+    ]
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Set the view's delegate
         sceneView.delegate = self
-        
-        // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
+    
         
-        // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
-        
-        // Set the scene to the view
-        sceneView.scene = scene
+        //let scene = SCNScene()
+        addPlanets()
+        //sceneView.scene = scene
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        // Create a session configuration
+    
         let configuration = ARWorldTrackingConfiguration()
 
-        // Run the view's session
         sceneView.session.run(configuration)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        // Pause the view's session
+    
         sceneView.session.pause()
+        
     }
+        //Создание планеты
+        func addPlanet(planet: UIImage, xPos: Float, yPos: Float, zPos: Float) {
+            
+            let sphere = SCNSphere(radius: 0.1)
+            let planetNode = SCNNode()
+            
+            planetNode.geometry = sphere
+            planetNode.position = SCNVector3(xPos, yPos, -1.5)
+            
+            switch planet {
+            case planets[0]:
+                planetNode.name = "earth"
+            case planets[1]:
+                planetNode.name = "jupiter"
+            case planets[2]:
+                planetNode.name = "mars"
+            case planets[3]:
+                planetNode.name = "mercury"
+            case planets[4]:
+                planetNode.name = "moon"
+            default:
+                planetNode.name = "neptune"
+            }
+            
+            let material = SCNMaterial()
+            material.diffuse.contents = planet
+            material.locksAmbientWithDiffuse = true
+            planetNode.geometry?.materials = [material]
+            
+            sceneView.scene.rootNode.addChildNode(planetNode)
+        }
+        
+        //Рандомайзер
+        func randomPosition(from: Float, to: Float) -> Float{
+            return Float(arc4random()) / Float(UInt32.max) * (from - to) + to
+        }
+        
+        //Рандомное размещение планет (мешеней)
+        
+        func addRandomPisitionPlanet(number: Int, planet: UIImage) {
+            for _ in 1...number {
+                let xPos = randomPosition(from: -1.5, to: 1.5)
+                let yPos = randomPosition(from: -1.5, to: 1.5)
+                let zPos = randomPosition(from: -4, to: 0)
+                
+                addPlanet(planet: planet, xPos: xPos, yPos: yPos, zPos: zPos)
+            }
+    }
+        // Добавление по 16 планет каждого типа.
+            
+            func addPlanets() {
+                for i in planets {
+                    addRandomPisitionPlanet(number: 16, planet: i)
+                }
+            }
+
 
     // MARK: - ARSCNViewDelegate
     
