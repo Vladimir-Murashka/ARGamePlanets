@@ -233,6 +233,20 @@
                                     <constraint firstItem="EC3-vW-MDQ" firstAttribute="width" secondItem="D7t-bU-6KX" secondAttribute="width" id="zy4-E3-Gfg"/>
                                 </constraints>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oph-lD-bhO" userLabel="Aim Vert">
+                                <rect key="frame" x="204.5" y="387.5" width="5" height="121"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="5" id="2QA-a7-YjR"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CyP-Q4-IwL" userLabel="Aim Hor">
+                                <rect key="frame" x="146.5" y="445.5" width="121" height="5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="5" id="qeE-Kn-YOE"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fQZ-KI-GVf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -241,16 +255,21 @@
                             <constraint firstItem="QpJ-Kh-pIs" firstAttribute="centerX" secondItem="U0K-SW-4ec" secondAttribute="centerX" id="CEP-Qv-sd8"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="CmT-Ot-ua1"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="trailing" secondItem="QpJ-Kh-pIs" secondAttribute="trailing" constant="7" id="FPs-Gk-bbe"/>
+                            <constraint firstItem="CyP-Q4-IwL" firstAttribute="height" secondItem="oph-lD-bhO" secondAttribute="height" multiplier="0.0413223" id="L9S-5s-rBd"/>
+                            <constraint firstItem="oph-lD-bhO" firstAttribute="centerY" secondItem="U0K-SW-4ec" secondAttribute="centerY" id="LxQ-Ta-LuW"/>
+                            <constraint firstItem="oph-lD-bhO" firstAttribute="centerX" secondItem="U0K-SW-4ec" secondAttribute="centerX" id="U3P-Ai-TyY"/>
                             <constraint firstItem="QpJ-Kh-pIs" firstAttribute="bottom" secondItem="fQZ-KI-GVf" secondAttribute="bottom" id="YiZ-87-dfG"/>
+                            <constraint firstItem="oph-lD-bhO" firstAttribute="width" secondItem="CyP-Q4-IwL" secondAttribute="width" multiplier="0.0413223" id="bdp-rb-1Tk"/>
                             <constraint firstAttribute="bottom" secondItem="BrB-h1-WRS" secondAttribute="bottom" id="be5-WO-Fge"/>
                             <constraint firstItem="QpJ-Kh-pIs" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="7" id="f09-uu-WCd"/>
+                            <constraint firstItem="CyP-Q4-IwL" firstAttribute="centerY" secondItem="U0K-SW-4ec" secondAttribute="centerY" id="jF1-0R-vsh"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="nY8-O9-Oe7"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="top" secondItem="U0K-SW-4ec" secondAttribute="top" id="q3l-je-vV5"/>
+                            <constraint firstItem="CyP-Q4-IwL" firstAttribute="centerX" secondItem="U0K-SW-4ec" secondAttribute="centerX" id="yzv-Ij-LLP"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="W9R-Ko-x11"/>
                     <connections>
-                        <outlet property="earthUIImage" destination="BKU-n1-GLE" id="GQS-vn-T44"/>
                         <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
                     </connections>
                 </viewController>

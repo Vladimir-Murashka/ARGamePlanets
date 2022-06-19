@@ -12,7 +12,7 @@ import ARKit
 class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
-    @IBOutlet weak var earthUIImage: UIImageView!
+
     
     
     let planets = [
@@ -27,20 +27,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
-//        earthUIImage.layer.borderWidth = 1
-//        earthUIImage.layer.masksToBounds = false
-//        earthUIImage.layer.borderColor = UIColor.blue.cgColor
-//        earthUIImage.layer.cornerRadius = earthUIImage.frame.height / 2
-//        earthUIImage.clipsToBounds = true
-        
-        
-        
-    
+
         sceneView.delegate = self
-        //sceneView.showsStatistics = true
+        
     
         
         //let scene = SCNScene()
