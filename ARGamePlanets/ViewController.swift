@@ -12,6 +12,8 @@ import ARKit
 class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
+    @IBOutlet weak var earthUIImage: UIImageView!
+    
     
     let planets = [
         UIImage(named: "earth.jpg")!,
@@ -25,8 +27,20 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
+//        earthUIImage.layer.borderWidth = 1
+//        earthUIImage.layer.masksToBounds = false
+//        earthUIImage.layer.borderColor = UIColor.blue.cgColor
+//        earthUIImage.layer.cornerRadius = earthUIImage.frame.height / 2
+//        earthUIImage.clipsToBounds = true
+        
+        
+        
+    
         sceneView.delegate = self
-        sceneView.showsStatistics = true
+        //sceneView.showsStatistics = true
     
         
         //let scene = SCNScene()
@@ -57,20 +71,20 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             planetNode.geometry = sphere
             planetNode.position = SCNVector3(xPos, yPos, -1.5)
             
-            switch planet {
-            case planets[0]:
-                planetNode.name = "earth"
-            case planets[1]:
-                planetNode.name = "jupiter"
-            case planets[2]:
-                planetNode.name = "mars"
-            case planets[3]:
-                planetNode.name = "mercury"
-            case planets[4]:
-                planetNode.name = "moon"
-            default:
-                planetNode.name = "neptune"
-            }
+//            switch planet {
+//            case planets[0]:
+//                planetNode.name = "earth"
+//            case planets[1]:
+//                planetNode.name = "jupiter"
+//            case planets[2]:
+//                planetNode.name = "mars"
+//            case planets[3]:
+//                planetNode.name = "mercury"
+//            case planets[4]:
+//                planetNode.name = "moon"
+//            default:
+//                planetNode.name = "neptune"
+//            }
             
             let material = SCNMaterial()
             material.diffuse.contents = planet
@@ -100,7 +114,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             
             func addPlanets() {
                 for i in planets {
-                    addRandomPisitionPlanet(number: 16, planet: i)
+                    addRandomPisitionPlanet(number: 5, planet: i)
                 }
             }
 

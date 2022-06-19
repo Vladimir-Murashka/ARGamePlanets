@@ -11,8 +11,10 @@
 		221CF148285E6385003A7329 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 221CF147285E6385003A7329 /* art.scnassets */; };
 		221CF14A285E6385003A7329 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221CF149285E6385003A7329 /* ViewController.swift */; };
 		221CF14D285E6385003A7329 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 221CF14B285E6385003A7329 /* Main.storyboard */; };
-		221CF14F285E6389003A7329 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 221CF14E285E6389003A7329 /* Assets.xcassets */; };
 		221CF152285E6389003A7329 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 221CF150285E6389003A7329 /* LaunchScreen.storyboard */; };
+		221CF15F285F4E84003A7329 /* Earth.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 221CF15E285F4CCB003A7329 /* Earth.mp4 */; };
+		221CF161285F4EDF003A7329 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221CF160285F4EDF003A7329 /* FirstViewController.swift */; };
+		221CF169285F6A6A003A7329 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 221CF168285F6A6A003A7329 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,8 +23,10 @@
 		221CF147285E6385003A7329 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		221CF149285E6385003A7329 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		221CF14C285E6385003A7329 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		221CF14E285E6389003A7329 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		221CF151285E6389003A7329 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		221CF15E285F4CCB003A7329 /* Earth.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = Earth.mp4; path = ../../../Earth.mp4; sourceTree = "<group>"; };
+		221CF160285F4EDF003A7329 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		221CF168285F6A6A003A7329 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,9 +62,11 @@
 				221CF145285E6385003A7329 /* AppDelegate.swift */,
 				221CF147285E6385003A7329 /* art.scnassets */,
 				221CF149285E6385003A7329 /* ViewController.swift */,
+				221CF160285F4EDF003A7329 /* FirstViewController.swift */,
 				221CF14B285E6385003A7329 /* Main.storyboard */,
-				221CF14E285E6389003A7329 /* Assets.xcassets */,
 				221CF150285E6389003A7329 /* LaunchScreen.storyboard */,
+				221CF15E285F4CCB003A7329 /* Earth.mp4 */,
+				221CF168285F6A6A003A7329 /* Assets.xcassets */,
 			);
 			path = ARGamePlanets;
 			sourceTree = "<group>";
@@ -124,9 +130,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				221CF148285E6385003A7329 /* art.scnassets in Resources */,
+				221CF15F285F4E84003A7329 /* Earth.mp4 in Resources */,
 				221CF152285E6389003A7329 /* LaunchScreen.storyboard in Resources */,
-				221CF14F285E6389003A7329 /* Assets.xcassets in Resources */,
 				221CF14D285E6385003A7329 /* Main.storyboard in Resources */,
+				221CF169285F6A6A003A7329 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,6 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				221CF161285F4EDF003A7329 /* FirstViewController.swift in Sources */,
 				221CF14A285E6385003A7329 /* ViewController.swift in Sources */,
 				221CF146285E6385003A7329 /* AppDelegate.swift in Sources */,
 			);
