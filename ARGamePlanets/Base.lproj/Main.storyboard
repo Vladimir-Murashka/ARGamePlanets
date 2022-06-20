@@ -63,7 +63,6 @@
         <!--View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
                 <viewController modalPresentationStyle="fullScreen" id="BV1-FR-VrT" customClass="ViewController" customModule="ARGamePlanets" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U0K-SW-4ec">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -75,18 +74,21 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="QpJ-Kh-pIs">
                                 <rect key="frame" x="7" y="792" width="400" height="70"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="-69" translatesAutoresizingMaskIntoConstraints="NO" id="3RP-VA-Lf3">
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="-69" translatesAutoresizingMaskIntoConstraints="NO" id="3RP-VA-Lf3" userLabel="earth Stack View">
                                         <rect key="frame" x="0.0" y="0.0" width="63.5" height="70"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fsj-DD-N7J">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fsj-DD-N7J" userLabel="earth Button">
                                                 <rect key="frame" x="0.0" y="0.0" width="66" height="70"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="70" id="u35-q2-gkb"/>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain"/>
+                                                <connections>
+                                                    <action selector="earthButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Zd6-xJ-7zx"/>
+                                                </connections>
                                             </button>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="earthUIImage" translatesAutoresizingMaskIntoConstraints="NO" id="CbL-ez-1Sz" userLabel="EarthUIImage">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="earthUIImage" translatesAutoresizingMaskIntoConstraints="NO" id="CbL-ez-1Sz">
                                                 <rect key="frame" x="-3" y="0.0" width="66.5" height="70"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="67" id="52e-d9-iFR"/>
@@ -99,18 +101,21 @@
                                             <constraint firstItem="fsj-DD-N7J" firstAttribute="width" secondItem="CbL-ez-1Sz" secondAttribute="width" id="mqp-ZZ-679"/>
                                         </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="-69" translatesAutoresizingMaskIntoConstraints="NO" id="EC3-vW-MDQ">
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="-69" translatesAutoresizingMaskIntoConstraints="NO" id="EC3-vW-MDQ" userLabel="jupiter Stack View">
                                         <rect key="frame" x="67.5" y="0.0" width="63" height="70"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="605-ci-53E">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="605-ci-53E" userLabel="jupiter Button">
                                                 <rect key="frame" x="0.0" y="0.0" width="66" height="70"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="70" id="ssA-Pt-ao4"/>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain"/>
+                                                <connections>
+                                                    <action selector="jupiterButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="xNK-l9-jAL"/>
+                                                </connections>
                                             </button>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jupiterUIImage" translatesAutoresizingMaskIntoConstraints="NO" id="BKU-n1-GLE" userLabel="EarthUIImage">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jupiterUIImage" translatesAutoresizingMaskIntoConstraints="NO" id="BKU-n1-GLE">
                                                 <rect key="frame" x="-3" y="0.0" width="66" height="70"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="70" id="MeO-hT-4Vx"/>
@@ -123,18 +128,21 @@
                                             <constraint firstItem="605-ci-53E" firstAttribute="width" secondItem="BKU-n1-GLE" secondAttribute="width" id="KwK-Tz-hX0"/>
                                         </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="-69" translatesAutoresizingMaskIntoConstraints="NO" id="D7t-bU-6KX">
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="-69" translatesAutoresizingMaskIntoConstraints="NO" id="D7t-bU-6KX" userLabel="mars Stack View">
                                         <rect key="frame" x="134.5" y="0.0" width="63.5" height="70"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uQA-xq-dhO">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uQA-xq-dhO" userLabel="mars Button">
                                                 <rect key="frame" x="0.0" y="0.0" width="66.5" height="70"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="70" id="MkO-zN-w79"/>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain"/>
+                                                <connections>
+                                                    <action selector="marsButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="erN-wA-Z3K"/>
+                                                </connections>
                                             </button>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="marsUIImage" translatesAutoresizingMaskIntoConstraints="NO" id="8MU-C4-9RI" userLabel="EarthUIImage">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="marsUIImage" translatesAutoresizingMaskIntoConstraints="NO" id="8MU-C4-9RI">
                                                 <rect key="frame" x="-2.5" y="0.0" width="66" height="70"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="67" id="TaO-jN-9Ba"/>
@@ -147,18 +155,21 @@
                                             <constraint firstItem="uQA-xq-dhO" firstAttribute="width" secondItem="8MU-C4-9RI" secondAttribute="width" id="um6-kL-DZE"/>
                                         </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="-69" translatesAutoresizingMaskIntoConstraints="NO" id="ymk-7R-TWp">
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="-69" translatesAutoresizingMaskIntoConstraints="NO" id="ymk-7R-TWp" userLabel="mercury Stack View">
                                         <rect key="frame" x="202" y="0.0" width="63.5" height="70"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yDL-WL-HLW">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yDL-WL-HLW" userLabel="mercury Button">
                                                 <rect key="frame" x="0.0" y="0.0" width="66" height="70"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="70" id="eeZ-jn-i0Q"/>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain"/>
+                                                <connections>
+                                                    <action selector="merceryButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="B8I-Z7-3tD"/>
+                                                </connections>
                                             </button>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mercuryUIImage" translatesAutoresizingMaskIntoConstraints="NO" id="3qG-Lo-IKR" userLabel="EarthUIImage">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mercuryUIImage" translatesAutoresizingMaskIntoConstraints="NO" id="3qG-Lo-IKR">
                                                 <rect key="frame" x="-3" y="0.0" width="66.5" height="70"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="70" id="wvp-5x-ylB"/>
@@ -171,18 +182,21 @@
                                             <constraint firstItem="yDL-WL-HLW" firstAttribute="width" secondItem="3qG-Lo-IKR" secondAttribute="width" id="eL4-gp-OSc"/>
                                         </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="-69" translatesAutoresizingMaskIntoConstraints="NO" id="z7e-aH-iGb">
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="-69" translatesAutoresizingMaskIntoConstraints="NO" id="z7e-aH-iGb" userLabel="moon Stack View">
                                         <rect key="frame" x="269.5" y="0.0" width="63" height="70"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7bD-Fw-RI3">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7bD-Fw-RI3" userLabel="moon Button">
                                                 <rect key="frame" x="0.0" y="0.0" width="66" height="70"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="70" id="vWj-aa-DY1"/>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain"/>
+                                                <connections>
+                                                    <action selector="moonButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="uAL-TJ-xv9"/>
+                                                </connections>
                                             </button>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="moonUIImage" translatesAutoresizingMaskIntoConstraints="NO" id="vw7-h7-DZt" userLabel="EarthUIImage">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="moonUIImage" translatesAutoresizingMaskIntoConstraints="NO" id="vw7-h7-DZt">
                                                 <rect key="frame" x="-3" y="0.0" width="66" height="70"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="67" id="All-Ce-9vG"/>
@@ -195,18 +209,21 @@
                                             <constraint firstItem="7bD-Fw-RI3" firstAttribute="height" secondItem="vw7-h7-DZt" secondAttribute="height" id="Ydj-h1-9fc"/>
                                         </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="-69" translatesAutoresizingMaskIntoConstraints="NO" id="D8g-7K-Uuq">
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="-69" translatesAutoresizingMaskIntoConstraints="NO" id="D8g-7K-Uuq" userLabel="neptune Stack View">
                                         <rect key="frame" x="336.5" y="0.0" width="63.5" height="70"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P4Q-EA-PeG">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P4Q-EA-PeG" userLabel="neptune Button">
                                                 <rect key="frame" x="0.0" y="0.0" width="66.5" height="70"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="70" id="khb-JE-g9m"/>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain"/>
+                                                <connections>
+                                                    <action selector="neptuneButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="FfH-Ml-TFV"/>
+                                                </connections>
                                             </button>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="neptuneUIImage" translatesAutoresizingMaskIntoConstraints="NO" id="q5a-QS-2aN" userLabel="EarthUIImage">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="neptuneUIImage" translatesAutoresizingMaskIntoConstraints="NO" id="q5a-QS-2aN">
                                                 <rect key="frame" x="-2.5" y="0.0" width="66" height="70"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="67" id="OXE-YX-Wqb"/>
@@ -234,19 +251,26 @@
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oph-lD-bhO" userLabel="Aim Vert">
-                                <rect key="frame" x="204.5" y="387.5" width="5" height="121"/>
+                                <rect key="frame" x="204.5" y="387.5" width="1" height="121"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="5" id="2QA-a7-YjR"/>
+                                    <constraint firstAttribute="width" constant="1" id="2QA-a7-YjR"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CyP-Q4-IwL" userLabel="Aim Hor">
-                                <rect key="frame" x="146.5" y="445.5" width="121" height="5"/>
+                                <rect key="frame" x="146.5" y="445.5" width="121" height="1"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="5" id="qeE-Kn-YOE"/>
+                                    <constraint firstAttribute="height" constant="1" id="qeE-Kn-YOE"/>
                                 </constraints>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="earth" translatesAutoresizingMaskIntoConstraints="NO" id="TRs-fj-8PQ" userLabel="changeFlag">
+                                <rect key="frame" x="374" y="44" width="1" height="1"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="1" id="E2X-Kx-mRX"/>
+                                    <constraint firstAttribute="height" constant="1" id="nM2-th-lhx"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fQZ-KI-GVf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -255,29 +279,36 @@
                             <constraint firstItem="QpJ-Kh-pIs" firstAttribute="centerX" secondItem="U0K-SW-4ec" secondAttribute="centerX" id="CEP-Qv-sd8"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="CmT-Ot-ua1"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="trailing" secondItem="QpJ-Kh-pIs" secondAttribute="trailing" constant="7" id="FPs-Gk-bbe"/>
-                            <constraint firstItem="CyP-Q4-IwL" firstAttribute="height" secondItem="oph-lD-bhO" secondAttribute="height" multiplier="0.0413223" id="L9S-5s-rBd"/>
+                            <constraint firstItem="CyP-Q4-IwL" firstAttribute="height" secondItem="oph-lD-bhO" secondAttribute="height" multiplier="0.0413223" constant="-3.9999982999999997" id="L9S-5s-rBd"/>
                             <constraint firstItem="oph-lD-bhO" firstAttribute="centerY" secondItem="U0K-SW-4ec" secondAttribute="centerY" id="LxQ-Ta-LuW"/>
-                            <constraint firstItem="oph-lD-bhO" firstAttribute="centerX" secondItem="U0K-SW-4ec" secondAttribute="centerX" id="U3P-Ai-TyY"/>
+                            <constraint firstItem="oph-lD-bhO" firstAttribute="centerX" secondItem="U0K-SW-4ec" secondAttribute="centerX" constant="-2" id="U3P-Ai-TyY"/>
                             <constraint firstItem="QpJ-Kh-pIs" firstAttribute="bottom" secondItem="fQZ-KI-GVf" secondAttribute="bottom" id="YiZ-87-dfG"/>
-                            <constraint firstItem="oph-lD-bhO" firstAttribute="width" secondItem="CyP-Q4-IwL" secondAttribute="width" multiplier="0.0413223" id="bdp-rb-1Tk"/>
+                            <constraint firstItem="oph-lD-bhO" firstAttribute="width" secondItem="CyP-Q4-IwL" secondAttribute="width" multiplier="0.0413223" constant="-3.9999982999999997" id="bdp-rb-1Tk"/>
                             <constraint firstAttribute="bottom" secondItem="BrB-h1-WRS" secondAttribute="bottom" id="be5-WO-Fge"/>
                             <constraint firstItem="QpJ-Kh-pIs" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="7" id="f09-uu-WCd"/>
-                            <constraint firstItem="CyP-Q4-IwL" firstAttribute="centerY" secondItem="U0K-SW-4ec" secondAttribute="centerY" id="jF1-0R-vsh"/>
+                            <constraint firstItem="CyP-Q4-IwL" firstAttribute="centerY" secondItem="U0K-SW-4ec" secondAttribute="centerY" constant="-2" id="jF1-0R-vsh"/>
+                            <constraint firstItem="fQZ-KI-GVf" firstAttribute="trailing" secondItem="TRs-fj-8PQ" secondAttribute="trailing" constant="39" id="kcW-lm-gWV"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="nY8-O9-Oe7"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="top" secondItem="U0K-SW-4ec" secondAttribute="top" id="q3l-je-vV5"/>
+                            <constraint firstItem="TRs-fj-8PQ" firstAttribute="top" secondItem="fQZ-KI-GVf" secondAttribute="top" id="xXh-LX-rYn"/>
                             <constraint firstItem="CyP-Q4-IwL" firstAttribute="centerX" secondItem="U0K-SW-4ec" secondAttribute="centerX" id="yzv-Ij-LLP"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="W9R-Ko-x11"/>
                     <connections>
+                        <outlet property="aimHor" destination="CyP-Q4-IwL" id="Ziq-nH-O2C"/>
+                        <outlet property="aimVert" destination="oph-lD-bhO" id="K11-YL-e6h"/>
+                        <outlet property="changeFlag" destination="TRs-fj-8PQ" id="i0A-Qr-fVa"/>
                         <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="131.8840579710145" y="116.51785714285714"/>
         </scene>
     </scenes>
     <resources>
+        <image name="earth" width="1000" height="500"/>
         <image name="earthUIImage" width="785" height="785"/>
         <image name="jupiterUIImage" width="589" height="589"/>
         <image name="marsUIImage" width="1257" height="1257"/>
