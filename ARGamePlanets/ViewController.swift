@@ -11,19 +11,17 @@ import ARKit
 
 struct CollisionCategory: OptionSet{
     let rawValue: Int
-
+    
     static let missleCategory = CollisionCategory(rawValue: 1 << 0)
     static let targetCategory = CollisionCategory(rawValue: 1 << 1)
-
 }
 
 class ViewController: UIViewController, ARSCNViewDelegate {
-
+    
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet weak var aimVert: UIView!
     @IBOutlet weak var aimHor: UIView!
     @IBOutlet weak var changeFlag: UIImageView!
-    
     
     let planets = [
         UIImage(named: "earth.jpg")!,
@@ -45,7 +43,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         changeFlag.image = planets[1]
         currentPlanetName = "jupiter"
     }
-
+    
     @IBAction func marsButtonPressed(_ sender: UIButton) {
         changeFlag.image = planets[2]
         currentPlanetName = "mars"
@@ -60,7 +58,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         changeFlag.image = planets[4]
         currentPlanetName = "moon"
     }
-
+    
     @IBAction func neptuneButtonPressed(_ sender: UIButton) {
         changeFlag.image = planets[5]
         currentPlanetName = "neptune"
@@ -78,7 +76,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.delegate = self
         sceneView.scene.physicsWorld.contactDelegate = self
         addPlanets()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -90,45 +87,44 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         sceneView.session.pause()
-        
     }
-        //Создание планеты
-        func addPlanet(planet: UIImage, xPos: Float, yPos: Float, zPos: Float) {
-            
-            let sphere = SCNSphere(radius: 0.1)
-            let planetNode = SCNNode()
-            
-            planetNode.geometry = sphere
-            planetNode.position = SCNVector3(xPos, yPos, -1.5)
-            
-            switch planet {
-            case planets[0]:
-                planetNode.name = "earth"
-            case planets[1]:
-                planetNode.name = "jupiter"
-            case planets[2]:
-                planetNode.name = "mars"
-            case planets[3]:
-                planetNode.name = "mercury"
-            case planets[4]:
-                planetNode.name = "moon"
-            default:
-                planetNode.name = "neptune"
-            }
-            
-            let material = SCNMaterial()
-            material.diffuse.contents = planet
-            material.locksAmbientWithDiffuse = true
-            planetNode.geometry?.materials = [material]
-            
-            planetNode.physicsBody = SCNPhysicsBody(type: .static, shape: nil)
-            planetNode.physicsBody?.isAffectedByGravity = false
-            planetNode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
-            planetNode.physicsBody?.contactTestBitMask = CollisionCategory.missleCategory.rawValue
-            
-            sceneView.scene.rootNode.addChildNode(planetNode)
+    //Создание планеты
+    func addPlanet(planet: UIImage, xPos: Float, yPos: Float, zPos: Float) {
+        
+        let sphere = SCNSphere(radius: 0.1)
+        let planetNode = SCNNode()
+        
+        planetNode.geometry = sphere
+        planetNode.position = SCNVector3(xPos, yPos, -1.5)
+        
+        switch planet {
+        case planets[0]:
+            planetNode.name = "earth"
+        case planets[1]:
+            planetNode.name = "jupiter"
+        case planets[2]:
+            planetNode.name = "mars"
+        case planets[3]:
+            planetNode.name = "mercury"
+        case planets[4]:
+            planetNode.name = "moon"
+        default:
+            planetNode.name = "neptune"
         }
         
+        let material = SCNMaterial()
+        material.diffuse.contents = planet
+        material.locksAmbientWithDiffuse = true
+        planetNode.geometry?.materials = [material]
+        
+        planetNode.physicsBody = SCNPhysicsBody(type: .static, shape: nil)
+        planetNode.physicsBody?.isAffectedByGravity = false
+        planetNode.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
+        planetNode.physicsBody?.contactTestBitMask = CollisionCategory.missleCategory.rawValue
+        
+        sceneView.scene.rootNode.addChildNode(planetNode)
+    }
+    
     //Рандомайзер
     func randomPosition(from: Float, to: Float) -> Float{
         return Float(arc4random()) / Float(UInt32.max) * (from - to) + to
@@ -145,16 +141,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             addPlanet(planet: planet, xPos: xPos, yPos: yPos, zPos: zPos)
         }
     }
-    // Добавление по 16 планет каждого типа.
+    // Добавление планет каждого типа.
     
     func addPlanets() {
         for i in planets {
             addRandomPisitionPlanet(number: 5, planet: i)
         }
     }
-    
-    
-    
     
     // Создание снаряда/пули
     
@@ -185,10 +178,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             shotNode.name = "neptune"
         }
         
-        
         shotNode.physicsBody?.categoryBitMask = CollisionCategory.missleCategory.rawValue
         shotNode.physicsBody?.contactTestBitMask = CollisionCategory.targetCategory.rawValue
-        
         
         return shotNode
     }
@@ -216,12 +207,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     // запуск при косании к экрану
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         fire(materalShot: changeFlag.image!)
-
     }
-
 }
 
-//MARK: - обработка столкновений
+// обработка столкновений
 extension ViewController: SCNPhysicsContactDelegate{
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
         
