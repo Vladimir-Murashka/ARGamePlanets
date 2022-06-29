@@ -17,7 +17,7 @@ class FirstViewController: UIViewController {
         playVideo()
       
     }
-    
+
     func playVideo() {
         
         guard let path = Bundle.main.path(forResource: "Earth", ofType: "mp4") else { return }
@@ -31,8 +31,6 @@ class FirstViewController: UIViewController {
         player.play()
         
         videoLayer.bringSubviewToFront(startButton)
-        
-    }
-   
 
+    }
 }
