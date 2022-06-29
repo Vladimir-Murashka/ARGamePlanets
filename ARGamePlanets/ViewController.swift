@@ -9,19 +9,19 @@ import UIKit
 import SceneKit
 import ARKit
 
-struct CollisionCategory: OptionSet{
-    let rawValue: Int
-    
-    static let missleCategory = CollisionCategory(rawValue: 1 << 0)
-    static let targetCategory = CollisionCategory(rawValue: 1 << 1)
-}
-
 class ViewController: UIViewController, ARSCNViewDelegate {
     
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet weak var aimVert: UIView!
     @IBOutlet weak var aimHor: UIView!
     @IBOutlet weak var changeFlag: UIImageView!
+    
+    @IBOutlet weak var earthButton: UIButton!
+    @IBOutlet weak var jupiterButton: UIButton!
+    @IBOutlet weak var marsButton: UIButton!
+    @IBOutlet weak var mercuryButton: UIButton!
+    @IBOutlet weak var moonButton: UIButton!
+    @IBOutlet weak var neptuneButton: UIButton!
     
     let planets = [
         UIImage(named: "earth.jpg")!,
@@ -37,43 +37,67 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     @IBAction func earthButtonPressed(_ sender: UIButton) {
         changeFlag.image = planets[0]
         currentPlanetName = "earth"
+//        earthButton.layer.cornerRadius = earthButton.frame.height / 2
+//        earthButton.layer.borderWidth = 1
+//        earthButton.layer.borderColor = UIColor.white.cgColor
+        earthButton.alpha = 1
     }
     
     @IBAction func jupiterButtonPressed(_ sender: UIButton) {
+//        jupiterButton.layer.cornerRadius = earthButton.frame.height / 2
+//        jupiterButton.layer.borderWidth = 1
+//        jupiterButton.layer.borderColor = UIColor.white.cgColor
+        jupiterButton.alpha = 1
         changeFlag.image = planets[1]
         currentPlanetName = "jupiter"
     }
     
     @IBAction func marsButtonPressed(_ sender: UIButton) {
+//        marsButton.layer.cornerRadius = earthButton.frame.height / 2
+//        marsButton.layer.borderWidth = 1
+//        marsButton.layer.borderColor = UIColor.white.cgColor
+        marsButton.alpha = 1
         changeFlag.image = planets[2]
         currentPlanetName = "mars"
     }
     
     @IBAction func merceryButtonPressed(_ sender: UIButton) {
+//        mercuryButton.layer.cornerRadius = earthButton.frame.height / 2
+//        mercuryButton.layer.borderWidth = 1
+//        mercuryButton.layer.borderColor = UIColor.white.cgColor
+        mercuryButton.alpha = 1
         changeFlag.image = planets[3]
         currentPlanetName = "mercury"
     }
     
     @IBAction func moonButtonPressed(_ sender: UIButton) {
+//        moonButton.layer.cornerRadius = earthButton.frame.height / 2
+//        moonButton.layer.borderWidth = 1
+//        moonButton.layer.borderColor = UIColor.white.cgColor
+        moonButton.alpha = 1
         changeFlag.image = planets[4]
         currentPlanetName = "moon"
     }
     
     @IBAction func neptuneButtonPressed(_ sender: UIButton) {
+//        neptuneButton.layer.cornerRadius = earthButton.frame.height / 2
+//        neptuneButton.layer.borderWidth = 1
+//        neptuneButton.layer.borderColor = UIColor.white.cgColor
+        neptuneButton.alpha = 1
         changeFlag.image = planets[5]
         currentPlanetName = "neptune"
-    }
-    
-    
-    
-    func aimSettings(colour: UIColor) {
-        
     }
     
     // Базовые функции
     override func viewDidLoad() {
         super.viewDidLoad()
         sceneView.delegate = self
+        earthButton.alpha = 0.5
+        jupiterButton.alpha = 0.5
+        marsButton.alpha = 0.5
+        mercuryButton.alpha = 0.5
+        moonButton.alpha = 0.5
+        neptuneButton.alpha = 0.5
         sceneView.scene.physicsWorld.contactDelegate = self
         addPlanets()
     }
@@ -216,6 +240,7 @@ extension ViewController: SCNPhysicsContactDelegate{
         
         if contact.nodeA.name == contact.nodeB.name{
             DispatchQueue.main.async {
+                AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) { }
                 contact.nodeA.removeFromParentNode()
                 contact.nodeB.removeFromParentNode()
             }

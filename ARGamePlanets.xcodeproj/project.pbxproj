@@ -15,6 +15,7 @@
 		221CF15F285F4E84003A7329 /* Earth.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 221CF15E285F4CCB003A7329 /* Earth.mp4 */; };
 		221CF161285F4EDF003A7329 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221CF160285F4EDF003A7329 /* FirstViewController.swift */; };
 		221CF169285F6A6A003A7329 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 221CF168285F6A6A003A7329 /* Assets.xcassets */; };
+		223C8E33286CE48E00A2782A /* CollisionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C8E32286CE48E00A2782A /* CollisionCategory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		221CF15E285F4CCB003A7329 /* Earth.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = Earth.mp4; path = ../../../Earth.mp4; sourceTree = "<group>"; };
 		221CF160285F4EDF003A7329 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		221CF168285F6A6A003A7329 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		223C8E32286CE48E00A2782A /* CollisionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionCategory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				221CF145285E6385003A7329 /* AppDelegate.swift */,
 				221CF147285E6385003A7329 /* art.scnassets */,
 				221CF149285E6385003A7329 /* ViewController.swift */,
+				223C8E32286CE48E00A2782A /* CollisionCategory.swift */,
 				221CF160285F4EDF003A7329 /* FirstViewController.swift */,
 				221CF14B285E6385003A7329 /* Main.storyboard */,
 				221CF150285E6389003A7329 /* LaunchScreen.storyboard */,
@@ -144,6 +147,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				223C8E33286CE48E00A2782A /* CollisionCategory.swift in Sources */,
 				221CF161285F4EDF003A7329 /* FirstViewController.swift in Sources */,
 				221CF14A285E6385003A7329 /* ViewController.swift in Sources */,
 				221CF146285E6385003A7329 /* AppDelegate.swift in Sources */,

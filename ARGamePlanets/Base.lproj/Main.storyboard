@@ -186,6 +186,12 @@
                         <outlet property="aimHor" destination="CyP-Q4-IwL" id="Ziq-nH-O2C"/>
                         <outlet property="aimVert" destination="oph-lD-bhO" id="K11-YL-e6h"/>
                         <outlet property="changeFlag" destination="TRs-fj-8PQ" id="i0A-Qr-fVa"/>
+                        <outlet property="earthButton" destination="fsj-DD-N7J" id="yA7-j1-W45"/>
+                        <outlet property="jupiterButton" destination="605-ci-53E" id="fiN-my-jgH"/>
+                        <outlet property="marsButton" destination="uQA-xq-dhO" id="a4D-3Y-NwX"/>
+                        <outlet property="mercuryButton" destination="yDL-WL-HLW" id="kbz-Oe-MlG"/>
+                        <outlet property="moonButton" destination="7bD-Fw-RI3" id="M1p-iq-Rm9"/>
+                        <outlet property="neptuneButton" destination="P4Q-EA-PeG" id="xyc-TX-6l5"/>
                         <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
                     </connections>
                 </viewController>

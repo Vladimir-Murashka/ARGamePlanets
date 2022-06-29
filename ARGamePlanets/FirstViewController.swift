@@ -15,7 +15,6 @@ class FirstViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         playVideo()
-      
     }
 
     func playVideo() {
@@ -31,6 +30,5 @@ class FirstViewController: UIViewController {
         player.play()
         
         videoLayer.bringSubviewToFront(startButton)
-
     }
 }
