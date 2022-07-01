@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Cwt-mk-Z3t">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,32 +13,12 @@
             <objects>
                 <viewController id="Cwt-mk-Z3t" customClass="FirstViewController" customModule="ARGamePlanets" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TzK-HT-vBg">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QpH-ov-u7R">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QSM-pO-sq9">
-                                        <rect key="frame" x="154.5" y="807.5" width="105" height="46.5"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="105" id="YHO-vC-Ah0"/>
-                                        </constraints>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Start">
-                                            <fontDescription key="titleFontDescription" type="system" pointSize="27"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <segue destination="BV1-FR-VrT" kind="show" id="WU4-ja-art"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <color key="backgroundColor" systemColor="systemGrayColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="QSM-pO-sq9" secondAttribute="bottom" constant="42" id="Qn8-dm-tl7"/>
-                                    <constraint firstItem="QSM-pO-sq9" firstAttribute="centerX" secondItem="QpH-ov-u7R" secondAttribute="centerX" id="lxB-jL-wbv"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rgX-Cc-4ca"/>
@@ -52,51 +32,68 @@
                     </view>
                     <navigationItem key="navigationItem" id="HUQ-ys-ZlQ"/>
                     <connections>
-                        <outlet property="startButton" destination="QSM-pO-sq9" id="GQY-N3-30O"/>
                         <outlet property="videoLayer" destination="QpH-ov-u7R" id="bKj-9d-5e1"/>
+                        <segue destination="BV1-FR-VrT" kind="show" identifier="startARGame" id="u0B-tM-mAE"/>
+                        <segue destination="JOn-KW-DG8" kind="show" identifier="settings" id="cTr-ka-evL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YHB-yk-XBI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-610.14492753623188" y="116.51785714285714"/>
         </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="zw3-lh-bsv">
+            <objects>
+                <viewController id="JOn-KW-DG8" customClass="SettingsViewController" customModule="ARGamePlanets" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="euf-nX-Dzj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="HqG-Gk-tq0"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="jvD-w9-5Cv"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xlu-fA-4JB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="178" y="-540"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="BV1-FR-VrT" customClass="ViewController" customModule="ARGamePlanets" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U0K-SW-4ec">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BrB-h1-WRS">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </arscnView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oph-lD-bhO" userLabel="Aim Vert">
-                                <rect key="frame" x="204.5" y="387.5" width="1" height="121"/>
+                                <rect key="frame" x="185" y="345.66666666666669" width="1" height="121"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="1" id="2QA-a7-YjR"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CyP-Q4-IwL" userLabel="Aim Hor">
-                                <rect key="frame" x="146.5" y="445.5" width="121" height="1"/>
+                                <rect key="frame" x="127" y="403.66666666666669" width="121" height="1"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="qeE-Kn-YOE"/>
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="earth" translatesAutoresizingMaskIntoConstraints="NO" id="TRs-fj-8PQ" userLabel="changeFlag">
-                                <rect key="frame" x="374" y="44" width="1" height="1"/>
+                                <rect key="frame" x="335" y="44" width="1" height="1"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="1" id="E2X-Kx-mRX"/>
                                     <constraint firstAttribute="height" constant="1" id="nM2-th-lhx"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="MFH-4V-VNn">
-                                <rect key="frame" x="16" y="805" width="382" height="57"/>
+                                <rect key="frame" x="16" y="727.66666666666663" width="343" height="50.333333333333371"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fsj-DD-N7J" userLabel="earth Button">
-                                        <rect key="frame" x="0.0" y="0.0" width="57" height="57"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="50.666666666666664" height="50.333333333333336"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="fsj-DD-N7J" secondAttribute="height" multiplier="1:1" id="QcA-8k-HwB"/>
                                         </constraints>
@@ -109,7 +106,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="605-ci-53E" userLabel="jupiter Button">
-                                        <rect key="frame" x="65" y="0.0" width="57" height="57"/>
+                                        <rect key="frame" x="58.666666666666671" y="0.0" width="50.333333333333329" height="50.333333333333336"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain">
                                             <backgroundConfiguration key="background" image="jupiterUIImage"/>
@@ -119,7 +116,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uQA-xq-dhO" userLabel="mars Button">
-                                        <rect key="frame" x="130" y="0.0" width="57" height="57"/>
+                                        <rect key="frame" x="117.00000000000001" y="0.0" width="50.666666666666671" height="50.333333333333336"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain">
                                             <backgroundConfiguration key="background" image="marsUIImage"/>
@@ -129,7 +126,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yDL-WL-HLW" userLabel="mercury Button">
-                                        <rect key="frame" x="195" y="0.0" width="57" height="57"/>
+                                        <rect key="frame" x="175.66666666666666" y="0.0" width="50.333333333333343" height="50.333333333333336"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain">
                                             <backgroundConfiguration key="background" image="mercuryUIImage"/>
@@ -139,7 +136,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7bD-Fw-RI3" userLabel="moon Button">
-                                        <rect key="frame" x="260" y="0.0" width="57" height="57"/>
+                                        <rect key="frame" x="233.99999999999997" y="0.0" width="50.666666666666657" height="50.333333333333336"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain">
                                             <backgroundConfiguration key="background" image="moonUIImage"/>
@@ -149,7 +146,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P4Q-EA-PeG" userLabel="neptune Button">
-                                        <rect key="frame" x="325" y="0.0" width="57" height="57"/>
+                                        <rect key="frame" x="292.66666666666669" y="0.0" width="50.333333333333314" height="50.333333333333336"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain">
                                             <backgroundConfiguration key="background" image="neptuneUIImage"/>
@@ -197,7 +194,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="131.8840579710145" y="116.51785714285714"/>
+            <point key="canvasLocation" x="178" y="116"/>
         </scene>
     </scenes>
     <resources>
@@ -213,6 +210,9 @@
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

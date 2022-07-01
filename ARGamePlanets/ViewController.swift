@@ -11,6 +11,30 @@ import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate {
     
+    private lazy var quitGameButton: UIButton = {
+        let button = UIButton()
+        let imageQuitGameButton = UIImage.init(systemName: "arrowshape.turn.up.left.circle.fill")
+        button.setBackgroundImage(imageQuitGameButton, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(quitGameButtonPressed), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc func quitGameButtonPressed(_ sender: UIButton) {
+        let quitAlert = MyAlert()
+        let alert = quitAlert.showAlert(with: "Внимание", message: "Вы уверены")
+        alert.addAction(UIAlertAction(title: "Continue", style: UIAlertAction.Style.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Cansel", style: .cancel, handler: { (Action) in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
+        
+        
+        
+        
+        
+    }
+    
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet weak var aimVert: UIView!
     @IBOutlet weak var aimHor: UIView!
@@ -22,6 +46,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var mercuryButton: UIButton!
     @IBOutlet weak var moonButton: UIButton!
     @IBOutlet weak var neptuneButton: UIButton!
+    
     
     let planets = [
         UIImage(named: "earth.jpg")!,
@@ -37,55 +62,74 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     @IBAction func earthButtonPressed(_ sender: UIButton) {
         changeFlag.image = planets[0]
         currentPlanetName = "earth"
-//        earthButton.layer.cornerRadius = earthButton.frame.height / 2
-//        earthButton.layer.borderWidth = 1
-//        earthButton.layer.borderColor = UIColor.white.cgColor
         earthButton.alpha = 1
+        jupiterButton.alpha = 0.5
+        marsButton.alpha = 0.5
+        mercuryButton.alpha = 0.5
+        moonButton.alpha = 0.5
+        neptuneButton.alpha = 0.5
+        
     }
     
     @IBAction func jupiterButtonPressed(_ sender: UIButton) {
-//        jupiterButton.layer.cornerRadius = earthButton.frame.height / 2
-//        jupiterButton.layer.borderWidth = 1
-//        jupiterButton.layer.borderColor = UIColor.white.cgColor
         jupiterButton.alpha = 1
         changeFlag.image = planets[1]
         currentPlanetName = "jupiter"
+        earthButton.alpha = 0.5
+        jupiterButton.alpha = 1
+        marsButton.alpha = 0.5
+        mercuryButton.alpha = 0.5
+        moonButton.alpha = 0.5
+        neptuneButton.alpha = 0.5
     }
     
     @IBAction func marsButtonPressed(_ sender: UIButton) {
-//        marsButton.layer.cornerRadius = earthButton.frame.height / 2
-//        marsButton.layer.borderWidth = 1
-//        marsButton.layer.borderColor = UIColor.white.cgColor
         marsButton.alpha = 1
         changeFlag.image = planets[2]
         currentPlanetName = "mars"
+        earthButton.alpha = 0.5
+        jupiterButton.alpha = 0.5
+        marsButton.alpha = 1
+        mercuryButton.alpha = 0.5
+        moonButton.alpha = 0.5
+        neptuneButton.alpha = 0.5
+        
     }
     
     @IBAction func merceryButtonPressed(_ sender: UIButton) {
-//        mercuryButton.layer.cornerRadius = earthButton.frame.height / 2
-//        mercuryButton.layer.borderWidth = 1
-//        mercuryButton.layer.borderColor = UIColor.white.cgColor
         mercuryButton.alpha = 1
         changeFlag.image = planets[3]
         currentPlanetName = "mercury"
+        earthButton.alpha = 0.5
+        jupiterButton.alpha = 0.5
+        marsButton.alpha = 0.5
+        mercuryButton.alpha = 1
+        moonButton.alpha = 0.5
+        neptuneButton.alpha = 0.5
     }
     
     @IBAction func moonButtonPressed(_ sender: UIButton) {
-//        moonButton.layer.cornerRadius = earthButton.frame.height / 2
-//        moonButton.layer.borderWidth = 1
-//        moonButton.layer.borderColor = UIColor.white.cgColor
         moonButton.alpha = 1
         changeFlag.image = planets[4]
         currentPlanetName = "moon"
+        earthButton.alpha = 0.5
+        jupiterButton.alpha = 0.5
+        marsButton.alpha = 0.5
+        mercuryButton.alpha = 0.5
+        moonButton.alpha = 1
+        neptuneButton.alpha = 0.5
     }
     
     @IBAction func neptuneButtonPressed(_ sender: UIButton) {
-//        neptuneButton.layer.cornerRadius = earthButton.frame.height / 2
-//        neptuneButton.layer.borderWidth = 1
-//        neptuneButton.layer.borderColor = UIColor.white.cgColor
         neptuneButton.alpha = 1
         changeFlag.image = planets[5]
         currentPlanetName = "neptune"
+        earthButton.alpha = 0.5
+        jupiterButton.alpha = 0.5
+        marsButton.alpha = 0.5
+        mercuryButton.alpha = 0.5
+        moonButton.alpha = 0.5
+        neptuneButton.alpha = 1
     }
     
     // Базовые функции
@@ -100,6 +144,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         neptuneButton.alpha = 0.5
         sceneView.scene.physicsWorld.contactDelegate = self
         addPlanets()
+        setupViewController()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -111,6 +156,19 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         sceneView.session.pause()
+    }
+    
+    private func setupViewController() {
+        view.addSubview(quitGameButton)
+        
+        
+        NSLayoutConstraint.activate([
+            quitGameButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            quitGameButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            quitGameButton.heightAnchor.constraint(equalToConstant: 40),
+            quitGameButton.widthAnchor.constraint(equalToConstant: 40)
+            
+        ])
     }
     //Создание планеты
     func addPlanet(planet: UIImage, xPos: Float, yPos: Float, zPos: Float) {
@@ -247,3 +305,4 @@ extension ViewController: SCNPhysicsContactDelegate{
         }
     }
 }
+

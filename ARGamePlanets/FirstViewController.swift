@@ -10,12 +10,59 @@ import AVFoundation
 
 class FirstViewController: UIViewController {
 
-    @IBOutlet weak var startButton: UIButton!
+    private lazy var startButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = UIColor.clear
+        button.setTitle("Start", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 30)
+        button.setTitleColor(.red, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(startButtonPressed), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var settingsButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .clear
+        button.setTitle("Settings", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 30)
+        button.setTitleColor(.red, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(settingsButtonPressed), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc func settingsButtonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "settings", sender: nil)
+    }
+    
     @IBOutlet weak var videoLayer: UIView!
+    
+    @objc func startButtonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "startARGame", sender: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         playVideo()
+        setupViewController()
     }
+    
+    private func setupViewController() {
+        view.addSubview(startButton)
+        view.addSubview(settingsButton)
+        
+        NSLayoutConstraint.activate([
+            startButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            startButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            startButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
+            
+            settingsButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            settingsButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -16)
+        ])
+    }
+    
+    
 
     func playVideo() {
         
