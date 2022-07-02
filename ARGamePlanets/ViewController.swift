@@ -21,18 +21,16 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }()
     
     @objc func quitGameButtonPressed(_ sender: UIButton) {
-        let quitAlert = MyAlert()
-        let alert = quitAlert.showAlert(with: "Внимание", message: "Вы уверены")
-        alert.addAction(UIAlertAction(title: "Continue", style: UIAlertAction.Style.default, handler: nil))
-        alert.addAction(UIAlertAction(title: "Cansel", style: .cancel, handler: { (Action) in
+        sceneView.session.pause()
+        let quitAlert = UIAlertController(title: "Вы хотите выйти?", message: "Прогресс не будет сохранен!", preferredStyle: .alert)
+        quitAlert.addAction(UIAlertAction(title: "Покинуть игру", style: .cancel, handler: { (Action) in
             self.dismiss(animated: true, completion: nil)
         }))
-        self.present(alert, animated: true, completion: nil)
-        
-        
-        
-        
-        
+        quitAlert.addAction(UIAlertAction(title: "Продолжить", style: .default, handler: { (Action) in
+            let configuration = ARWorldTrackingConfiguration()
+            self.sceneView.session.run(configuration)
+        }))
+        self.present(quitAlert, animated: true, completion: nil)
     }
     
     @IBOutlet var sceneView: ARSCNView!
@@ -48,7 +46,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var neptuneButton: UIButton!
     
     
-    let planets = [
+    private let planets = [
         UIImage(named: "earth.jpg")!,
         UIImage(named: "jupiter.jpg")!,
         UIImage(named: "mars.jpg")!,
@@ -57,7 +55,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         UIImage(named: "neptune.jpg")!,
     ]
     
-    var currentPlanetName = "earth"
+    private var currentPlanetName = "earth"
     
     @IBAction func earthButtonPressed(_ sender: UIButton) {
         changeFlag.image = planets[0]
@@ -161,7 +159,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     private func setupViewController() {
         view.addSubview(quitGameButton)
         
-        
         NSLayoutConstraint.activate([
             quitGameButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             quitGameButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
@@ -213,7 +210,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     //Рандомное размещение планет (мешеней)
-    
     func addRandomPisitionPlanet(number: Int, planet: UIImage) {
         for _ in 1...number {
             let xPos = randomPosition(from: -1.5, to: 1.5)
@@ -224,7 +220,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
     }
     // Добавление планет каждого типа.
-    
     func addPlanets() {
         for i in planets {
             addRandomPisitionPlanet(number: 5, planet: i)
@@ -232,7 +227,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     // Создание снаряда/пули
-    
     func createShot(materialShot: UIImage) -> SCNNode {
         let shot = SCNSphere(radius: 0.03)
         let shotNode = SCNNode()
@@ -267,7 +261,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     // Огонь батарея, Огонь батальон)
-    
     func fire(materalShot: UIImage) {
         let node = createShot(materialShot: materalShot)
         let (direction, position) = getUserVector()
