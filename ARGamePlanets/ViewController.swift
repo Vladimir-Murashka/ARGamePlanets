@@ -21,14 +21,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }()
     
     @objc func quitGameButtonPressed(_ sender: UIButton) {
-        sceneView.session.pause()
+        //sceneView.session.pause()
         let quitAlert = UIAlertController(title: "Вы хотите выйти?", message: "Прогресс не будет сохранен!", preferredStyle: .alert)
         quitAlert.addAction(UIAlertAction(title: "Покинуть игру", style: .cancel, handler: { (Action) in
             self.dismiss(animated: true, completion: nil)
         }))
         quitAlert.addAction(UIAlertAction(title: "Продолжить", style: .default, handler: { (Action) in
-            let configuration = ARWorldTrackingConfiguration()
-            self.sceneView.session.run(configuration)
+            //let configuration = ARWorldTrackingConfiguration()
+            //self.sceneView.session.run(configuration)
         }))
         self.present(quitAlert, animated: true, completion: nil)
     }
@@ -55,79 +55,38 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         UIImage(named: "neptune.jpg")!,
     ]
     
-    private var currentPlanetName = "earth"
+    private lazy var planetButtonsArray = [
+        earthButton,
+        jupiterButton,
+        marsButton,
+        mercuryButton,
+        moonButton,
+        neptuneButton
+    ]
+
     
     @IBAction func earthButtonPressed(_ sender: UIButton) {
-        changeFlag.image = planets[0]
-        currentPlanetName = "earth"
-        earthButton.alpha = 1
-        jupiterButton.alpha = 0.5
-        marsButton.alpha = 0.5
-        mercuryButton.alpha = 0.5
-        moonButton.alpha = 0.5
-        neptuneButton.alpha = 0.5
-        
+        method(sender)
     }
     
     @IBAction func jupiterButtonPressed(_ sender: UIButton) {
-        jupiterButton.alpha = 1
-        changeFlag.image = planets[1]
-        currentPlanetName = "jupiter"
-        earthButton.alpha = 0.5
-        jupiterButton.alpha = 1
-        marsButton.alpha = 0.5
-        mercuryButton.alpha = 0.5
-        moonButton.alpha = 0.5
-        neptuneButton.alpha = 0.5
+        method(sender)
     }
     
     @IBAction func marsButtonPressed(_ sender: UIButton) {
-        marsButton.alpha = 1
-        changeFlag.image = planets[2]
-        currentPlanetName = "mars"
-        earthButton.alpha = 0.5
-        jupiterButton.alpha = 0.5
-        marsButton.alpha = 1
-        mercuryButton.alpha = 0.5
-        moonButton.alpha = 0.5
-        neptuneButton.alpha = 0.5
-        
+        method(sender)
     }
     
     @IBAction func merceryButtonPressed(_ sender: UIButton) {
-        mercuryButton.alpha = 1
-        changeFlag.image = planets[3]
-        currentPlanetName = "mercury"
-        earthButton.alpha = 0.5
-        jupiterButton.alpha = 0.5
-        marsButton.alpha = 0.5
-        mercuryButton.alpha = 1
-        moonButton.alpha = 0.5
-        neptuneButton.alpha = 0.5
+        method(sender)
     }
     
     @IBAction func moonButtonPressed(_ sender: UIButton) {
-        moonButton.alpha = 1
-        changeFlag.image = planets[4]
-        currentPlanetName = "moon"
-        earthButton.alpha = 0.5
-        jupiterButton.alpha = 0.5
-        marsButton.alpha = 0.5
-        mercuryButton.alpha = 0.5
-        moonButton.alpha = 1
-        neptuneButton.alpha = 0.5
+        method(sender)
     }
     
     @IBAction func neptuneButtonPressed(_ sender: UIButton) {
-        neptuneButton.alpha = 1
-        changeFlag.image = planets[5]
-        currentPlanetName = "neptune"
-        earthButton.alpha = 0.5
-        jupiterButton.alpha = 0.5
-        marsButton.alpha = 0.5
-        mercuryButton.alpha = 0.5
-        moonButton.alpha = 0.5
-        neptuneButton.alpha = 1
+        method(sender)
     }
     
     // Базовые функции
@@ -143,6 +102,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.scene.physicsWorld.contactDelegate = self
         addPlanets()
         setupViewController()
+    }
+    
+    private func method(_ sender: UIButton) {
+        for planetButton in planetButtonsArray {
+            planetButton?.alpha = 0.5
+        }
+        sender.alpha = 1
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -168,7 +134,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         ])
     }
     //Создание планеты
-    func addPlanet(planet: UIImage, xPos: Float, yPos: Float, zPos: Float) {
+    private func addPlanet(planet: UIImage, xPos: Float, yPos: Float, zPos: Float) {
         
         let sphere = SCNSphere(radius: 0.1)
         let planetNode = SCNNode()
@@ -205,7 +171,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     //Рандомайзер
-    func randomPosition(from: Float, to: Float) -> Float{
+    private func randomPosition(from: Float, to: Float) -> Float{
         return Float(arc4random()) / Float(UInt32.max) * (from - to) + to
     }
     
@@ -220,14 +186,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
     }
     // Добавление планет каждого типа.
-    func addPlanets() {
+    private func addPlanets() {
         for i in planets {
             addRandomPisitionPlanet(number: 5, planet: i)
         }
     }
     
     // Создание снаряда/пули
-    func createShot(materialShot: UIImage) -> SCNNode {
+    private func createShot(materialShot: UIImage) -> SCNNode {
         let shot = SCNSphere(radius: 0.03)
         let shotNode = SCNNode()
         shotNode.geometry = shot
@@ -260,8 +226,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         return shotNode
     }
     
-    // Огонь батарея, Огонь батальон)
-    func fire(materalShot: UIImage) {
+    // Огонь
+    private func fire(materalShot: UIImage) {
         let node = createShot(materialShot: materalShot)
         let (direction, position) = getUserVector()
         node.position = position
@@ -270,7 +236,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.scene.rootNode.addChildNode(node)
     }
     // поиск позиции и вектора устройства в прострвнстве
-    func getUserVector() -> (SCNVector3, SCNVector3){
+    private func getUserVector() -> (SCNVector3, SCNVector3){
         if let frame = self.sceneView.session.currentFrame{
             let mat = SCNMatrix4(frame.camera.transform)
             let dir = SCNVector3(-1 * mat.m31, -1 * mat.m32, -1 * mat.m33)

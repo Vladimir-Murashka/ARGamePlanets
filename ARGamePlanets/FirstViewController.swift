@@ -8,7 +8,7 @@
 import UIKit
 import AVFoundation
 
-class FirstViewController: UIViewController {
+final class FirstViewController: UIViewController {
 
     private lazy var startButton: UIButton = {
         let button = UIButton()
@@ -31,11 +31,7 @@ class FirstViewController: UIViewController {
         button.addTarget(self, action: #selector(settingsButtonPressed), for: .touchUpInside)
         return button
     }()
-    
-    @objc func settingsButtonPressed(_ sender: UIButton) {
-        performSegue(withIdentifier: "settings", sender: nil)
-    }
-    
+
     @IBOutlet weak var videoLayer: UIView!
     
     @objc func startButtonPressed(_ sender: UIButton) {
@@ -63,6 +59,14 @@ class FirstViewController: UIViewController {
     }
     
     
+    @objc func settingsButtonPressed(_ sender: UIButton) {
+        //performSegue(withIdentifier: "settings", sender: nil)
+        let settingsViewController = SettingsViewController()
+
+        navigationController?.pushViewController(settingsViewController, animated: true)
+        //navigationController?.popViewController(animated: true)
+        
+    }
 
     func playVideo() {
         
