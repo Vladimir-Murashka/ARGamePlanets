@@ -93,12 +93,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         sceneView.delegate = self
-        earthButton.alpha = 0.5
-        jupiterButton.alpha = 0.5
-        marsButton.alpha = 0.5
-        mercuryButton.alpha = 0.5
-        moonButton.alpha = 0.5
-        neptuneButton.alpha = 0.5
         sceneView.scene.physicsWorld.contactDelegate = self
         addPlanets()
         setupViewController()
