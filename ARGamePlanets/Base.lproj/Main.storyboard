@@ -92,7 +92,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="MFH-4V-VNn">
                                 <rect key="frame" x="16" y="727.66666666666663" width="343" height="50.333333333333371"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fsj-DD-N7J" userLabel="earth Button">
+                                    <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fsj-DD-N7J" userLabel="earth Button">
                                         <rect key="frame" x="0.0" y="0.0" width="50.666666666666664" height="50.333333333333336"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="fsj-DD-N7J" secondAttribute="height" multiplier="1:1" id="QcA-8k-HwB"/>
@@ -105,7 +105,7 @@
                                             <action selector="earthButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Zd6-xJ-7zx"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="605-ci-53E" userLabel="jupiter Button">
+                                    <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="605-ci-53E" userLabel="jupiter Button">
                                         <rect key="frame" x="58.666666666666671" y="0.0" width="50.333333333333329" height="50.333333333333336"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain">
@@ -115,7 +115,7 @@
                                             <action selector="jupiterButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="xNK-l9-jAL"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uQA-xq-dhO" userLabel="mars Button">
+                                    <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uQA-xq-dhO" userLabel="mars Button">
                                         <rect key="frame" x="117.00000000000001" y="0.0" width="50.666666666666671" height="50.333333333333336"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain">
@@ -125,7 +125,7 @@
                                             <action selector="marsButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="erN-wA-Z3K"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yDL-WL-HLW" userLabel="mercury Button">
+                                    <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yDL-WL-HLW" userLabel="mercury Button">
                                         <rect key="frame" x="175.66666666666666" y="0.0" width="50.333333333333343" height="50.333333333333336"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain">
@@ -135,7 +135,7 @@
                                             <action selector="merceryButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="B8I-Z7-3tD"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7bD-Fw-RI3" userLabel="moon Button">
+                                    <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7bD-Fw-RI3" userLabel="moon Button">
                                         <rect key="frame" x="233.99999999999997" y="0.0" width="50.666666666666657" height="50.333333333333336"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain">
@@ -145,7 +145,7 @@
                                             <action selector="moonButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="uAL-TJ-xv9"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P4Q-EA-PeG" userLabel="neptune Button">
+                                    <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P4Q-EA-PeG" userLabel="neptune Button">
                                         <rect key="frame" x="292.66666666666669" y="0.0" width="50.333333333333314" height="50.333333333333336"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain">

@@ -136,21 +136,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         planetNode.geometry = sphere
         planetNode.position = SCNVector3(xPos, yPos, -1.5)
         
-        switch planet {
-        case planets[0]:
-            planetNode.name = "earth"
-        case planets[1]:
-            planetNode.name = "jupiter"
-        case planets[2]:
-            planetNode.name = "mars"
-        case planets[3]:
-            planetNode.name = "mercury"
-        case planets[4]:
-            planetNode.name = "moon"
-        default:
-            planetNode.name = "neptune"
-        }
-        
         let material = SCNMaterial()
         material.diffuse.contents = planet
         material.locksAmbientWithDiffuse = true
@@ -198,21 +183,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         material.diffuse.contents = materialShot
         material.locksAmbientWithDiffuse = true
         shotNode.geometry?.materials = [material]
-        
-        switch materialShot {
-        case planets[0]:
-            shotNode.name = "earth"
-        case planets[1]:
-            shotNode.name = "jupiter"
-        case planets[2]:
-            shotNode.name = "mars"
-        case planets[3]:
-            shotNode.name = "mercury"
-        case planets[4]:
-            shotNode.name = "moon"
-        default:
-            shotNode.name = "neptune"
-        }
         
         shotNode.physicsBody?.categoryBitMask = CollisionCategory.missleCategory.rawValue
         shotNode.physicsBody?.contactTestBitMask = CollisionCategory.targetCategory.rawValue
