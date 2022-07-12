@@ -102,7 +102,7 @@
                                             <backgroundConfiguration key="background" image="earthUIImage"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="earthButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Zd6-xJ-7zx"/>
+                                            <action selector="didTapPlanetButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="qgI-wK-7W2"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="605-ci-53E" userLabel="jupiter Button">
@@ -112,7 +112,7 @@
                                             <backgroundConfiguration key="background" image="jupiterUIImage"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="jupiterButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="xNK-l9-jAL"/>
+                                            <action selector="didTapPlanetButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="zy9-uT-RLo"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uQA-xq-dhO" userLabel="mars Button">
@@ -122,7 +122,7 @@
                                             <backgroundConfiguration key="background" image="marsUIImage"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="marsButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="erN-wA-Z3K"/>
+                                            <action selector="didTapPlanetButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="QD9-11-FQZ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yDL-WL-HLW" userLabel="mercury Button">
@@ -132,7 +132,7 @@
                                             <backgroundConfiguration key="background" image="mercuryUIImage"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="merceryButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="B8I-Z7-3tD"/>
+                                            <action selector="didTapPlanetButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="qsJ-dS-kj5"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7bD-Fw-RI3" userLabel="moon Button">
@@ -142,7 +142,7 @@
                                             <backgroundConfiguration key="background" image="moonUIImage"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="moonButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="uAL-TJ-xv9"/>
+                                            <action selector="didTapPlanetButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="R89-St-jIW"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P4Q-EA-PeG" userLabel="neptune Button">
@@ -152,7 +152,7 @@
                                             <backgroundConfiguration key="background" image="neptuneUIImage"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="neptuneButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="FfH-Ml-TFV"/>
+                                            <action selector="didTapPlanetButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="9DF-7S-dIr"/>
                                         </connections>
                                     </button>
                                 </subviews>
