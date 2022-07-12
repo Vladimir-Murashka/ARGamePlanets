@@ -92,7 +92,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     // Базовые функции
     override func viewDidLoad() {
         super.viewDidLoad()
-        sceneView.delegate = self
+        sceneView.delegate
         sceneView.scene.physicsWorld.contactDelegate = self
         addPlanets()
         setupViewController()
@@ -135,6 +135,21 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         planetNode.geometry = sphere
         planetNode.position = SCNVector3(xPos, yPos, -1.5)
+        
+        switch planet{
+        case planets[0]:
+            planetNode.name = "green"
+        case planets[1]:
+            planetNode.name = "red"
+        case planets[2]:
+            planetNode.name = "purple"
+        case planets[3]:
+            planetNode.name = "gray"
+        case planets[4]:
+            planetNode.name = "orange"
+        default:
+            planetNode.name = "yellow"
+        }
         
         let material = SCNMaterial()
         material.diffuse.contents = planet
@@ -183,6 +198,21 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         material.diffuse.contents = materialShot
         material.locksAmbientWithDiffuse = true
         shotNode.geometry?.materials = [material]
+        
+        switch materialShot{
+        case planets[0]:
+            shotNode.name = "green"
+        case planets[1]:
+            shotNode.name = "red"
+        case planets[2]:
+            shotNode.name = "purple"
+        case planets[3]:
+            shotNode.name = "gray"
+        case planets[4]:
+            shotNode.name = "orange"
+        default:
+            shotNode.name = "yellow"
+        }
         
         shotNode.physicsBody?.categoryBitMask = CollisionCategory.missleCategory.rawValue
         shotNode.physicsBody?.contactTestBitMask = CollisionCategory.targetCategory.rawValue

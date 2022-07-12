@@ -9,6 +9,8 @@ import UIKit
 import AVFoundation
 
 final class FirstViewController: UIViewController {
+    
+    @IBOutlet private weak var videoLayer: UIView!
 
     private lazy var startButton: UIButton = {
         let button = UIButton()
@@ -31,23 +33,62 @@ final class FirstViewController: UIViewController {
         button.addTarget(self, action: #selector(settingsButtonPressed), for: .touchUpInside)
         return button
     }()
-
-    @IBOutlet weak var videoLayer: UIView!
     
-    @objc func startButtonPressed(_ sender: UIButton) {
-        performSegue(withIdentifier: "startARGame", sender: nil)
-    }
+    private var player: AVPlayer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        playVideo()
         setupViewController()
     }
     
+    @objc func settingsButtonPressed(_ sender: UIButton) {
+        
+        //performSegue(withIdentifier: "settings", sender: nil)
+        let settingsViewController = SettingsViewController()
+    
+        navigationController?.pushViewController(settingsViewController, animated: true)
+        //navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func startButtonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "startARGame", sender: nil)
+//        let startGameViewController = ViewController()
+//        navigationController?.pushViewController(startGameViewController, animated: true)
+        
+    }
+    
     private func setupViewController() {
+        makePlayerLayer()
+        addSubviews()
+        setupLayout()
+        player?.play()
+    }
+    
+    private func makePlayerLayer() {
+        guard let path = Bundle.main.path(forResource: "Earth", ofType: "mp4") else {
+            return
+        }
+        
+        let url = URL(fileURLWithPath: path)
+        let player = AVPlayer(url: url)
+        let playerLayer = AVPlayerLayer(player: player)
+        
+        self.player = player
+        
+        playerLayer.frame = view.bounds
+        playerLayer.videoGravity = .resizeAspectFill
+        
+        videoLayer.layer.addSublayer(playerLayer)
+        
+        //videoLayer.bringSubviewToFront(startButton)
+    }
+
+    private func addSubviews() {
         view.addSubview(startButton)
         view.addSubview(settingsButton)
-        
+    }
+    
+    private func setupLayout() {
         NSLayoutConstraint.activate([
             startButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             startButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
@@ -57,29 +98,5 @@ final class FirstViewController: UIViewController {
             settingsButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -16)
         ])
     }
-    
-    
-    @objc func settingsButtonPressed(_ sender: UIButton) {
-        //performSegue(withIdentifier: "settings", sender: nil)
-        let settingsViewController = SettingsViewController()
-
-        navigationController?.pushViewController(settingsViewController, animated: true)
-        //navigationController?.popViewController(animated: true)
-        
-    }
-
-    func playVideo() {
-        
-        guard let path = Bundle.main.path(forResource: "Earth", ofType: "mp4") else { return }
-        
-        let player = AVPlayer(url: URL(fileURLWithPath: path))
-        let playerLayer = AVPlayerLayer(player: player)
-        playerLayer.frame = self.view.bounds
-        playerLayer.videoGravity = .resizeAspectFill
-        self.videoLayer.layer.addSublayer(playerLayer)
-        
-        player.play()
-        
-        videoLayer.bringSubviewToFront(startButton)
-    }
 }
+    
