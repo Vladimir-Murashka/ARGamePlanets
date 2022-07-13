@@ -32,6 +32,8 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
         return button
     }()
     
+    private var selectPlanet: Planet = .earth
+    
     // Базовые функции
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +65,20 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
             planetButton?.alpha = 0.5
         }
         sender.alpha = 1
+        
+        if sender == earthButton {
+            selectPlanet = .earth
+        } else if sender == jupiterButton {
+            selectPlanet = .jupiter
+        } else if sender == marsButton {
+            selectPlanet = .mars
+        } else if sender == mercuryButton {
+            selectPlanet = .mercury
+        } else if sender == moonButton {
+            selectPlanet = .moon
+        } else {
+            selectPlanet = .neptune
+        }
     }
     
     @objc func quitGameButtonPressed(_ sender: UIButton) {
@@ -86,7 +102,6 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
     private func setupViewController() {
         sceneView.delegate = self
         sceneView.scene.physicsWorld.contactDelegate = self
-    
         addPlanets()
         
         view.addSubview(quitGameButton)
@@ -146,7 +161,7 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.scene.rootNode.addChildNode(planetNode)
     }
     
-    // Огонь батарея, Огонь батальон)
+    // Выстрел
     private func fire(planet: Planet) {
         let node = createShot(planet: planet)
         let (direction, position) = getUserVector()
@@ -188,7 +203,7 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
     
     // запуск при косании к экрану
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        fire(planet: Planet.moon)
+        fire(planet: selectPlanet)
     }
 }
 
@@ -204,11 +219,4 @@ extension ViewController: SCNPhysicsContactDelegate{
         }
     }
 }
-//let planetButtons = [
-//    earthButton,
-//    jupiterButton,
-//    marsButton,
-//    mercuryButton,
-//    moonButton,
-//    neptuneButton
-//]
+
