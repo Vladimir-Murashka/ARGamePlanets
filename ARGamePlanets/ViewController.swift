@@ -67,32 +67,15 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
     
     @objc func quitGameButtonPressed(_ sender: UIButton) {
         sceneView.session.pause()
-        
-//        let alertController = UIAlertController(
-//            title: "Вы хотите выйти?",
-//            message: "Прогресс не будет сохранен!",
-//            preferredStyle: .alert
-//        )
-//        let quitAction = UIAlertAction(title: "Покинуть игру", style: .cancel) { [weak self] _ in
-//            self?.dismiss(animated: true)
-//        }
-//        let continueAction = UIAlertAction(title: "Продолжить", style: .default) { [weak self] _ in
-//            let configuration = ARWorldTrackingConfiguration()
-//            self?.sceneView.session.run(configuration)
-//        }
-//
-//        alertController.addAction(quitAction)
-//        alertController.addAction(continueAction)
-//
-//        present(alertController, animated: true)
-        
+
         AlertManager().showAlert(
             fromViewController: self,
             title: "Вы хотите выйти?",
             message: "Прогресс не будет сохранен!",
             firstButtonTitle: "Покинуть игру",
             firstActionBlock: { [weak self] in
-                self?.dismiss(animated: true)
+                self?.navigationController?.popViewController(animated: true)
+                //self?.dismiss(animated: true)
             },
             secondTitleButton: "Продолжить") { [weak self] in
                 let configuration = ARWorldTrackingConfiguration()
@@ -103,7 +86,7 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
     private func setupViewController() {
         sceneView.delegate = self
         sceneView.scene.physicsWorld.contactDelegate = self
-        
+    
         addPlanets()
         
         view.addSubview(quitGameButton)
@@ -120,8 +103,8 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
     // Добавление планет каждого типа.
     private func addPlanets() {
         let planets = Planet.allCases
-        for i in planets {
-            addRandomPisitionPlanet(number: 5, planet: i)
+        for planet in planets {
+            addRandomPisitionPlanet(number: 5, planet: planet)
         }
     }
     
@@ -151,7 +134,7 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
         planetNode.name = planet.rawValue
         
         let material = SCNMaterial()
-        material.diffuse.contents = planet
+        material.diffuse.contents = planet.image
         material.locksAmbientWithDiffuse = true
         planetNode.geometry?.materials = [material]
         
@@ -182,7 +165,7 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
         shotNode.physicsBody?.isAffectedByGravity = false
         
         let material = SCNMaterial()
-        material.diffuse.contents = planet
+        material.diffuse.contents = planet.image
         material.locksAmbientWithDiffuse = true
         shotNode.geometry?.materials = [material]
         shotNode.name = planet.rawValue
@@ -191,7 +174,7 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
         
         return shotNode
     }
-    
+
     // поиск позиции и вектора устройства в прострвнстве
     private func getUserVector() -> (SCNVector3, SCNVector3) {
         if let frame = self.sceneView.session.currentFrame {
@@ -205,7 +188,7 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
     
     // запуск при косании к экрану
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //fire(planet: changeFlag.image!)
+        fire(planet: Planet.moon)
     }
 }
 
@@ -221,3 +204,11 @@ extension ViewController: SCNPhysicsContactDelegate{
         }
     }
 }
+//let planetButtons = [
+//    earthButton,
+//    jupiterButton,
+//    marsButton,
+//    mercuryButton,
+//    moonButton,
+//    neptuneButton
+//]

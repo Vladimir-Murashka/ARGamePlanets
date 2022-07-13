@@ -1,5 +1,5 @@
 //
-//  AlertServiсe.swift
+//  AlertManager.swift
 //  ARGamePlanets
 //
 //  Created by Swift Learning on 01.07.2022.
