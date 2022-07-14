@@ -10,6 +10,14 @@ import UIKit
 
 final class SettingsViewController: UIViewController {
     
+    private lazy var levelStepper: UIStepper = {
+        let stepper = UIStepper()
+        return stepper
+    }()
+
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSettingsViewController()

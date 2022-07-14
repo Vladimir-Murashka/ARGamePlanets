@@ -91,7 +91,6 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
             firstButtonTitle: "Покинуть игру",
             firstActionBlock: { [weak self] in
                 self?.navigationController?.popViewController(animated: true)
-                //self?.dismiss(animated: true)
             },
             secondTitleButton: "Продолжить") { [weak self] in
                 let configuration = ARWorldTrackingConfiguration()
@@ -111,10 +110,8 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
             quitGameButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             quitGameButton.heightAnchor.constraint(equalToConstant: 40),
             quitGameButton.widthAnchor.constraint(equalToConstant: 40)
-            
         ])
     }
-    
     // Добавление планет каждого типа.
     private func addPlanets() {
         let planets = Planet.allCases
@@ -122,7 +119,6 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
             addRandomPisitionPlanet(number: 5, planet: planet)
         }
     }
-    
     //Рандомное размещение планет (мешеней)
     private func addRandomPisitionPlanet(number: Int, planet: Planet) {
         for _ in 1...number {
@@ -133,12 +129,10 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
             addPlanet(planet: planet, xPos: xPos, yPos: yPos, zPos: zPos)
         }
     }
-    
     //Рандомайзер
     private func randomPosition(from: Float, to: Float) -> Float {
         return Float(arc4random()) / Float(UInt32.max) * (from - to) + to
     }
-    
     //Создание планеты
     private func addPlanet(planet: Planet, xPos: Float, yPos: Float, zPos: Float) {
         let sphere = SCNSphere(radius: 0.1)
@@ -160,7 +154,6 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
         
         sceneView.scene.rootNode.addChildNode(planetNode)
     }
-    
     // Выстрел
     private func fire(planet: Planet) {
         let node = createShot(planet: planet)
@@ -170,7 +163,6 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
         node.physicsBody?.applyForce(nodeDirection, at: SCNVector3(0.1, 0, 0), asImpulse: true)
         sceneView.scene.rootNode.addChildNode(node)
     }
-    
     // Создание снаряда/пули
     private func createShot(planet: Planet) -> SCNNode {
         let shot = SCNSphere(radius: 0.03)
@@ -189,7 +181,6 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
         
         return shotNode
     }
-
     // поиск позиции и вектора устройства в прострвнстве
     private func getUserVector() -> (SCNVector3, SCNVector3) {
         if let frame = self.sceneView.session.currentFrame {
@@ -200,7 +191,6 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
         }
         return (SCNVector3(0, 0, -1), SCNVector3(0, 0, -0.2))
     }
-    
     // запуск при косании к экрану
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         fire(planet: selectPlanet)
