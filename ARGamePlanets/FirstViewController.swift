@@ -62,9 +62,11 @@ final class FirstViewController: UIViewController {
     
     private func setupViewController() {
         makePlayerLayer()
+        playSound()
         addSubviews()
         setupLayout()
         player?.play()
+        musicPlayer?.play()
     }
     
     private func makePlayerLayer() {
@@ -86,7 +88,32 @@ final class FirstViewController: UIViewController {
         videoLayer.layer.repeatCount = 2
         //videoLayer.bringSubviewToFront(startButton)
     }
-
+    
+    var musicPlayer: AVAudioPlayer?
+    
+    func playSound() {
+        
+        guard let url = Bundle.main.url(forResource: "FirstViewControllerMusic", withExtension: "mp3") else {
+            return
+        }
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+            
+            musicPlayer = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+            
+            guard let player = player else {
+                return
+            }
+            
+            player.play()
+            
+        } catch {
+            fatalError()
+        }
+    }
+    
+    
     private func addSubviews() {
         view.addSubview(startButton)
         view.addSubview(settingsButton)
