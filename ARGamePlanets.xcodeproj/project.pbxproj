@@ -16,7 +16,7 @@
 		221CF161285F4EDF003A7329 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221CF160285F4EDF003A7329 /* FirstViewController.swift */; };
 		221CF169285F6A6A003A7329 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 221CF168285F6A6A003A7329 /* Assets.xcassets */; };
 		223C8E33286CE48E00A2782A /* CollisionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C8E32286CE48E00A2782A /* CollisionCategory.swift */; };
-		223C8E35286E501900A2782A /* settingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C8E34286E501800A2782A /* settingsViewController.swift */; };
+		223C8E35286E501900A2782A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C8E34286E501800A2782A /* SettingsViewController.swift */; };
 		223C8E37286F0D7600A2782A /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C8E36286F0D7500A2782A /* AlertManager.swift */; };
 		22E6C6E4287CB6450006B53B /* PlanetEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E6C6E3287CB6450006B53B /* PlanetEnum.swift */; };
 /* End PBXBuildFile section */
@@ -32,7 +32,7 @@
 		221CF160285F4EDF003A7329 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		221CF168285F6A6A003A7329 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		223C8E32286CE48E00A2782A /* CollisionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionCategory.swift; sourceTree = "<group>"; };
-		223C8E34286E501800A2782A /* settingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingsViewController.swift; sourceTree = "<group>"; };
+		223C8E34286E501800A2782A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		223C8E36286F0D7500A2782A /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		22E6C6E3287CB6450006B53B /* PlanetEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetEnum.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -74,7 +74,7 @@
 				223C8E36286F0D7500A2782A /* AlertManager.swift */,
 				223C8E32286CE48E00A2782A /* CollisionCategory.swift */,
 				221CF160285F4EDF003A7329 /* FirstViewController.swift */,
-				223C8E34286E501800A2782A /* settingsViewController.swift */,
+				223C8E34286E501800A2782A /* SettingsViewController.swift */,
 				221CF14B285E6385003A7329 /* Main.storyboard */,
 				221CF150285E6389003A7329 /* LaunchScreen.storyboard */,
 				221CF15E285F4CCB003A7329 /* Earth.mp4 */,
@@ -157,7 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22E6C6E4287CB6450006B53B /* PlanetEnum.swift in Sources */,
-				223C8E35286E501900A2782A /* settingsViewController.swift in Sources */,
+				223C8E35286E501900A2782A /* SettingsViewController.swift in Sources */,
 				223C8E33286CE48E00A2782A /* CollisionCategory.swift in Sources */,
 				223C8E37286F0D7600A2782A /* AlertManager.swift in Sources */,
 				221CF161285F4EDF003A7329 /* FirstViewController.swift in Sources */,

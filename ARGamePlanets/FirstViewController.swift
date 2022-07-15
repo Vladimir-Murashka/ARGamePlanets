@@ -14,10 +14,12 @@ final class FirstViewController: UIViewController {
 
     private lazy var startButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor.clear
         button.setTitle("Start", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 30)
-        button.setTitleColor(.red, for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .black
+        button.layer.cornerRadius = 12
+        button.layer.masksToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(startButtonPressed), for: .touchUpInside)
         return button
@@ -25,10 +27,12 @@ final class FirstViewController: UIViewController {
     
     private lazy var settingsButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .clear
         button.setTitle("Settings", for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 30)
-        button.setTitleColor(.red, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 24)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .black
+        button.layer.cornerRadius = 12
+        button.layer.masksToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(settingsButtonPressed), for: .touchUpInside)
         return button
@@ -94,8 +98,8 @@ final class FirstViewController: UIViewController {
             startButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             startButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
             
-            settingsButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            settingsButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -16)
+            settingsButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            settingsButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -20)
         ])
     }
 }
