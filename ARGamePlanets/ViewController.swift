@@ -112,11 +112,14 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
             quitGameButton.widthAnchor.constraint(equalToConstant: 40)
         ])
     }
+    //TODO- Развернуть после настройки логики
+    let levelLabelVolue = Int(SettingsViewController().levelLable.text!)
+    
     // Добавление планет каждого типа.
     private func addPlanets() {
         let planets = Planet.allCases
         for planet in planets {
-            addRandomPisitionPlanet(number: 5, planet: planet)
+            addRandomPisitionPlanet(number: levelLabelVolue!, planet: planet)
         }
     }
     //Рандомное размещение планет (мешеней)

@@ -54,7 +54,6 @@ final class FirstViewController: UIViewController {
         performSegue(withIdentifier: "startARGame", sender: nil)
 //        let startGameViewController = ViewController()
 //        navigationController?.pushViewController(startGameViewController, animated: true)
-        
     }
     
     private func setupViewController() {
@@ -69,6 +68,7 @@ final class FirstViewController: UIViewController {
             return
         }
         
+ 
         let url = URL(fileURLWithPath: path)
         let player = AVPlayer(url: url)
         let playerLayer = AVPlayerLayer(player: player)
@@ -79,7 +79,7 @@ final class FirstViewController: UIViewController {
         playerLayer.videoGravity = .resizeAspectFill
         
         videoLayer.layer.addSublayer(playerLayer)
-        
+        videoLayer.layer.repeatCount = 2
         //videoLayer.bringSubviewToFront(startButton)
     }
 
