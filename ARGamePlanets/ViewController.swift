@@ -35,6 +35,7 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
         button.addTarget(self, action: #selector(quitGameButtonPressed), for: .touchUpInside)
         return button
     }()
+    
     private var audioPlayer = AVAudioPlayer()
     private var selectPlanet: Planet = .earth
     
