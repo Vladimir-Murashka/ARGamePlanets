@@ -34,7 +34,7 @@
                     <connections>
                         <outlet property="videoLayer" destination="QpH-ov-u7R" id="bKj-9d-5e1"/>
                         <segue destination="BV1-FR-VrT" kind="show" identifier="startARGame" id="u0B-tM-mAE"/>
-                        <segue destination="JOn-KW-DG8" kind="show" identifier="settings" id="cTr-ka-evL"/>
+                        <segue destination="JOn-KW-DG8" kind="show" identifier="" id="cTr-ka-evL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YHB-yk-XBI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -51,7 +51,6 @@
                         <viewLayoutGuide key="safeArea" id="HqG-Gk-tq0"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <navigationItem key="navigationItem" id="jvD-w9-5Cv"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xlu-fA-4JB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -90,7 +89,7 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="MFH-4V-VNn">
-                                <rect key="frame" x="16" y="727.66666666666663" width="343" height="50.333333333333371"/>
+                                <rect key="frame" x="16" y="678.66666666666663" width="343" height="50.333333333333371"/>
                                 <subviews>
                                     <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fsj-DD-N7J" userLabel="earth Button">
                                         <rect key="frame" x="0.0" y="0.0" width="50.666666666666664" height="50.333333333333336"/>
@@ -178,7 +177,6 @@
                             <constraint firstItem="CyP-Q4-IwL" firstAttribute="centerX" secondItem="U0K-SW-4ec" secondAttribute="centerX" id="yzv-Ij-LLP"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="W9R-Ko-x11"/>
                     <connections>
                         <outlet property="aimHor" destination="CyP-Q4-IwL" id="Ziq-nH-O2C"/>
                         <outlet property="aimVert" destination="oph-lD-bhO" id="K11-YL-e6h"/>
@@ -199,20 +197,24 @@
         <!--Navigation Controller-->
         <scene sceneID="S17-qc-C93">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FP6-ay-GAg" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qoi-nC-C7k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="FP6-ay-GAg" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="iZB-Ue-pqk">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eDj-e0-Ydq">
+                        <rect key="frame" x="0.0" y="729" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="Cwt-mk-Z3t" kind="relationship" relationship="rootViewController" id="onZ-kt-BxU"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Qoi-nC-C7k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1414" y="115"/>
+            <point key="canvasLocation" x="-1426" y="115"/>
         </scene>
     </scenes>
     <resources>

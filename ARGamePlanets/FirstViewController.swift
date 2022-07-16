@@ -43,15 +43,16 @@ final class FirstViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewController()
+        
     }
     
     @objc func settingsButtonPressed(_ sender: UIButton) {
-        
-        //performSegue(withIdentifier: "settings", sender: nil)
         let settingsViewController = SettingsViewController()
-    
         navigationController?.pushViewController(settingsViewController, animated: true)
-        //navigationController?.popViewController(animated: true)
+        
+//        let backItem = UIBarButtonItem()
+//            backItem.title = "На главный экран"
+//            navigationItem.backBarButtonItem = backItem
     }
     
     @objc func startButtonPressed(_ sender: UIButton) {
@@ -74,7 +75,6 @@ final class FirstViewController: UIViewController {
             return
         }
         
- 
         let url = URL(fileURLWithPath: path)
         let player = AVPlayer(url: url)
         let playerLayer = AVPlayerLayer(player: player)
@@ -89,10 +89,9 @@ final class FirstViewController: UIViewController {
         //videoLayer.bringSubviewToFront(startButton)
     }
     
-    var musicPlayer: AVAudioPlayer?
+    private var musicPlayer: AVAudioPlayer?
     
-    func playSound() {
-        
+    private func playSound() {
         guard let url = Bundle.main.url(forResource: "FirstViewControllerMusic", withExtension: "mp3") else {
             return
         }
@@ -112,7 +111,6 @@ final class FirstViewController: UIViewController {
             fatalError()
         }
     }
-    
     
     private func addSubviews() {
         view.addSubview(startButton)

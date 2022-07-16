@@ -17,6 +17,19 @@ final class SettingsViewController: UIViewController {
         return imageView
     }()
     
+    private lazy var quitSettingGameButton: UIButton = {
+        let button = UIButton()
+        let imageQuitGameButton = UIImage(systemName: "arrowshape.turn.up.left.circle.fill")
+        button.setBackgroundImage(imageQuitGameButton, for: .normal)
+        button.tintColor = .black
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 20
+        button.layer.masksToBounds = true
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(quitSettingsButtonPressed), for: .touchUpInside)
+        return button
+    }()
+    
     lazy var levelLable: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -168,6 +181,10 @@ final class SettingsViewController: UIViewController {
         setupSettingsViewController()
     }
     
+    @objc func quitSettingsButtonPressed(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     @objc func levelStepperPressed(_ sender: UIButton) {
         levelLable.text = "\(Int(levelStepper.value))"
     }
@@ -175,6 +192,7 @@ final class SettingsViewController: UIViewController {
     private func setupSettingsViewController() {
         addSubviews()
         setupLayout()
+        self.navigationItem.setHidesBackButton(true, animated: true)
     }
     
     private func addSubviews() {
@@ -184,6 +202,7 @@ final class SettingsViewController: UIViewController {
         view.addSubview(soundEffectsStackView)
         view.addSubview(commonSettigStackView)
         view.addSubview(musicStackView)
+        view.addSubview(quitSettingGameButton)
         
         
         levelStackView.addArrangedSubview(infoLevelLable)
@@ -207,9 +226,14 @@ final class SettingsViewController: UIViewController {
     
     private func setupLayout() {
         NSLayoutConstraint.activate([
-            commonSettigStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            commonSettigStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 70),
             commonSettigStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            commonSettigStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16)
+            commonSettigStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            
+            quitSettingGameButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            quitSettingGameButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            quitSettingGameButton.heightAnchor.constraint(equalToConstant: 40),
+            quitSettingGameButton.widthAnchor.constraint(equalToConstant: 40)
         ])
     }
 }

@@ -19,6 +19,7 @@
 		223C8E35286E501900A2782A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C8E34286E501800A2782A /* SettingsViewController.swift */; };
 		223C8E37286F0D7600A2782A /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C8E36286F0D7500A2782A /* AlertManager.swift */; };
 		22E680582881DC5600FAB2E1 /* FirstViewControllerMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 22E680572881DC5600FAB2E1 /* FirstViewControllerMusic.mp3 */; };
+		22E6805A2882D60500FAB2E1 /* contactPlanetSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 22E680592882D60500FAB2E1 /* contactPlanetSound.mp3 */; };
 		22E6C6E4287CB6450006B53B /* PlanetEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E6C6E3287CB6450006B53B /* PlanetEnum.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +37,7 @@
 		223C8E34286E501800A2782A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		223C8E36286F0D7500A2782A /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		22E680572881DC5600FAB2E1 /* FirstViewControllerMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = FirstViewControllerMusic.mp3; path = Assets.xcassets/FirstViewControllerMusic.mp3; sourceTree = "<group>"; };
+		22E680592882D60500FAB2E1 /* contactPlanetSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = contactPlanetSound.mp3; path = ../../../contactPlanetSound.mp3; sourceTree = "<group>"; };
 		22E6C6E3287CB6450006B53B /* PlanetEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetEnum.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,6 +84,7 @@
 				221CF15E285F4CCB003A7329 /* Earth.mp4 */,
 				221CF168285F6A6A003A7329 /* Assets.xcassets */,
 				22E680572881DC5600FAB2E1 /* FirstViewControllerMusic.mp3 */,
+				22E680592882D60500FAB2E1 /* contactPlanetSound.mp3 */,
 			);
 			path = ARGamePlanets;
 			sourceTree = "<group>";
@@ -150,6 +153,7 @@
 				221CF14D285E6385003A7329 /* Main.storyboard in Resources */,
 				22E680582881DC5600FAB2E1 /* FirstViewControllerMusic.mp3 in Resources */,
 				221CF169285F6A6A003A7329 /* Assets.xcassets in Resources */,
+				22E6805A2882D60500FAB2E1 /* contactPlanetSound.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

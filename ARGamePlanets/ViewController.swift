@@ -27,11 +27,15 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
         let button = UIButton()
         let imageQuitGameButton = UIImage(systemName: "arrowshape.turn.up.left.circle.fill")
         button.setBackgroundImage(imageQuitGameButton, for: .normal)
+        button.tintColor = .black
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 20
+        button.layer.masksToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(quitGameButtonPressed), for: .touchUpInside)
         return button
     }()
-    
+    private var audioPlayer = AVAudioPlayer()
     private var selectPlanet: Planet = .earth
     
     // Базовые функции
@@ -102,12 +106,13 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.delegate = self
         sceneView.scene.physicsWorld.contactDelegate = self
         addPlanets()
+        self.navigationItem.setHidesBackButton(true, animated: true)
         
         view.addSubview(quitGameButton)
         
         NSLayoutConstraint.activate([
             quitGameButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            quitGameButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            quitGameButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             quitGameButton.heightAnchor.constraint(equalToConstant: 40),
             quitGameButton.widthAnchor.constraint(equalToConstant: 40)
         ])
@@ -198,6 +203,16 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         fire(planet: selectPlanet)
     }
+    
+    private func playEffects(named: String) {
+        let pianoSound = URL(fileURLWithPath: Bundle.main.path(forResource: named, ofType: "mp3")!)
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: pianoSound)
+            audioPlayer.play()
+        } catch {
+            
+        }
+    }
 }
 
 // обработка столкновений
@@ -208,6 +223,7 @@ extension ViewController: SCNPhysicsContactDelegate{
                 AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) { }
                 contact.nodeA.removeFromParentNode()
                 contact.nodeB.removeFromParentNode()
+                self.playEffects(named: "contactPlanetSound")
             }
         }
     }
