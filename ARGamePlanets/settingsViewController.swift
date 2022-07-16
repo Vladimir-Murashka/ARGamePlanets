@@ -95,7 +95,7 @@ final class SettingsViewController: UIViewController {
         return label
     }()
     
-    private lazy var levelStepper: UIStepper = {
+    lazy var levelStepper: UIStepper = {
         let stepper = UIStepper()
         stepper.maximumValue = 20
         stepper.minimumValue = 1
@@ -131,6 +131,7 @@ final class SettingsViewController: UIViewController {
         switcher.layer.masksToBounds = true
         switcher.backgroundColor = .black
         switcher.isOn = true
+        switcher.addTarget(self, action: #selector(musicSwitcherChange), for: .valueChanged)
         return switcher
     }()
     
@@ -181,8 +182,18 @@ final class SettingsViewController: UIViewController {
         setupSettingsViewController()
     }
     
+//    override func viewDidAppear(_ animated: Bool) {
+//        musicSwitcher.isOn = userDefaults.bool(forKey: "musicSwitcherChange")
+//        }
+    
     @objc func quitSettingsButtonPressed(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    let userDefaults = UserDefaults.standard
+    
+    @objc func musicSwitcherChange(_ sender: UISwitch) {
+        //userDefaults.set(sender.isOn, forKey: "musicSwitcherChange")
     }
     
     @objc func levelStepperPressed(_ sender: UIButton) {
@@ -203,7 +214,6 @@ final class SettingsViewController: UIViewController {
         view.addSubview(commonSettigStackView)
         view.addSubview(musicStackView)
         view.addSubview(quitSettingGameButton)
-        
         
         levelStackView.addArrangedSubview(infoLevelLable)
         levelStackView.addArrangedSubview(levelLable)

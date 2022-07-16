@@ -14,7 +14,7 @@ final class FirstViewController: UIViewController {
 
     private lazy var startButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Start", for: .normal)
+        button.setTitle("Начать", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 30)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .black
@@ -27,7 +27,7 @@ final class FirstViewController: UIViewController {
     
     private lazy var settingsButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Settings", for: .normal)
+        button.setTitle("Настройки", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 24)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .black
@@ -38,37 +38,39 @@ final class FirstViewController: UIViewController {
         return button
     }()
     
-    private var player: AVPlayer?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewController()
-        
     }
+    
+    let userDefaults = UserDefaults.standard
+    
+//    override func viewDidAppear(_ animated: Bool) {
+//        soundEffectsSwitcher.isOn = userDefaults.bool(forKey: "soundEffectsSwitcher")
+//        }
     
     @objc func settingsButtonPressed(_ sender: UIButton) {
         let settingsViewController = SettingsViewController()
         navigationController?.pushViewController(settingsViewController, animated: true)
-        
-//        let backItem = UIBarButtonItem()
-//            backItem.title = "На главный экран"
-//            navigationItem.backBarButtonItem = backItem
     }
     
     @objc func startButtonPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "startARGame", sender: nil)
+        musicPlayer?.pause()
 //        let startGameViewController = ViewController()
 //        navigationController?.pushViewController(startGameViewController, animated: true)
     }
     
     private func setupViewController() {
-        makePlayerLayer()
-        playSound()
         addSubviews()
         setupLayout()
+        makePlayerLayer()
         player?.play()
+        playSound()
         musicPlayer?.play()
     }
+    
+    private var player: AVPlayer?
     
     private func makePlayerLayer() {
         guard let path = Bundle.main.path(forResource: "Earth", ofType: "mp4") else {
@@ -89,7 +91,7 @@ final class FirstViewController: UIViewController {
         //videoLayer.bringSubviewToFront(startButton)
     }
     
-    private var musicPlayer: AVAudioPlayer?
+     var musicPlayer: AVAudioPlayer?
     
     private func playSound() {
         guard let url = Bundle.main.url(forResource: "FirstViewControllerMusic", withExtension: "mp3") else {
@@ -101,7 +103,7 @@ final class FirstViewController: UIViewController {
             
             musicPlayer = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
             
-            guard let player = player else {
+            guard let player = musicPlayer else {
                 return
             }
             

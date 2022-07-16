@@ -95,6 +95,7 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
             firstButtonTitle: "Покинуть игру",
             firstActionBlock: { [weak self] in
                 self?.navigationController?.popViewController(animated: true)
+                //FirstViewController().musicPlayer?.play()
             },
             secondTitleButton: "Продолжить") { [weak self] in
                 let configuration = ARWorldTrackingConfiguration()
@@ -124,7 +125,7 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
     private func addPlanets() {
         let planets = Planet.allCases
         for planet in planets {
-            addRandomPisitionPlanet(number: levelLabelVolue!, planet: planet)
+            addRandomPisitionPlanet(number: Int(SettingsViewController().levelStepper.value), planet: planet)
         }
     }
     //Рандомное размещение планет (мешеней)
