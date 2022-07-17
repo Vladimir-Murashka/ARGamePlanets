@@ -28,6 +28,9 @@ final class FirstViewController: UIViewController {
         return button
     }()
     
+    
+    
+    
     private lazy var settingsButton: UIButton = {
         let button = UIButton()
         button.setTitle("Настройки", for: .normal)
@@ -155,7 +158,6 @@ final class FirstViewController: UIViewController {
         
         infolevelStackView.addArrangedSubview(infolevelLableText)
         infolevelStackView.addArrangedSubview(infolevelLableValue)
-        
     }
     
     private func setupLayout() {
