@@ -12,6 +12,16 @@ final class FirstViewController: UIViewController {
     
     @IBOutlet private weak var videoLayer: UIView!
 
+    @IBAction func unwindSegueToMainScreen(segue: UIStoryboardSegue) {
+        guard segue.identifier == "quitARGameSegue" else {
+            return
+        }
+        
+        guard segue.identifier == "quitSettingsScreen" else {
+            return
+        }
+    }
+    
     private var videoplayer: AVPlayer?
     var musicPlayer: AVAudioPlayer?
     
@@ -27,9 +37,6 @@ final class FirstViewController: UIViewController {
         button.addTarget(self, action: #selector(startButtonPressed), for: .touchUpInside)
         return button
     }()
-    
-    
-    
     
     private lazy var settingsButton: UIButton = {
         let button = UIButton()
@@ -84,22 +91,12 @@ final class FirstViewController: UIViewController {
         setupViewController()
     }
     
-    let userDefaults = UserDefaults.standard
-    
-//    override func viewDidAppear(_ animated: Bool) {
-//        soundEffectsSwitcher.isOn = userDefaults.bool(forKey: "soundEffectsSwitcher")
-//        }
-    
     @objc func settingsButtonPressed(_ sender: UIButton) {
-        let settingsViewController = SettingsViewController()
-        navigationController?.pushViewController(settingsViewController, animated: true)
+        performSegue(withIdentifier: "settingsScreen", sender: nil)
     }
     
     @objc func startButtonPressed(_ sender: UIButton) {
-        performSegue(withIdentifier: "startARGame", sender: nil)
-        musicPlayer?.pause()
-//        let startGameViewController = ViewController()
-//        navigationController?.pushViewController(startGameViewController, animated: true)
+        performSegue(withIdentifier: "startARGameSegue", sender: nil)
     }
     
     private func setupViewController() {
@@ -167,7 +164,7 @@ final class FirstViewController: UIViewController {
             startButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
             
             settingsButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            settingsButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -20),
+            settingsButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             
             infolevelStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             infolevelStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),

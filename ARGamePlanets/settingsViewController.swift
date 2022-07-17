@@ -181,19 +181,15 @@ final class SettingsViewController: UIViewController {
         super.viewDidLoad()
         setupSettingsViewController()
     }
-    
-//    override func viewDidAppear(_ animated: Bool) {
-//        musicSwitcher.isOn = userDefaults.bool(forKey: "musicSwitcherChange")
-//        }
-    
+        
     @objc func quitSettingsButtonPressed(_ sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
+        self.performSegue(withIdentifier: "quitSettingsScreen", sender: nil)
     }
     
     let userDefaults = UserDefaults.standard
     
     @objc func musicSwitcherChange(_ sender: UISwitch) {
-        //userDefaults.set(sender.isOn, forKey: "musicSwitcherChange")
+       
     }
     
     @objc func levelStepperPressed(_ sender: UIButton) {

@@ -94,9 +94,8 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
             title: "Вы хотите выйти?",
             message: "Прогресс не будет сохранен!",
             firstButtonTitle: "Покинуть игру",
-            firstActionBlock: { [weak self] in
-                self?.navigationController?.popViewController(animated: true)
-                //FirstViewController().musicPlayer?.play()
+            firstActionBlock: {
+                self.performSegue(withIdentifier: "quitARGameSegue", sender: nil)
             },
             secondTitleButton: "Продолжить") { [weak self] in
                 let configuration = ARWorldTrackingConfiguration()
