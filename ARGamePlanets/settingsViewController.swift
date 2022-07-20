@@ -33,6 +33,7 @@ final class SettingsViewController: UIViewController {
     lazy var levelLable: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
+        label.textColor = .white
         label.layer.cornerRadius = 8
         label.layer.masksToBounds = true
         label.text = "\(Int(levelStepper.value))"
@@ -46,6 +47,7 @@ final class SettingsViewController: UIViewController {
     private lazy var infoLevelLable: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
+        label.textColor = .white
         label.layer.cornerRadius = 8
         label.layer.masksToBounds = true
         label.text = "Уровень сложности"
@@ -59,6 +61,7 @@ final class SettingsViewController: UIViewController {
     private lazy var infoVibrationLable: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
+        label.textColor = .white
         label.layer.cornerRadius = 8
         label.layer.masksToBounds = true
         label.text = "Вибрация"
@@ -71,6 +74,7 @@ final class SettingsViewController: UIViewController {
     
     private lazy var infoSoundEffectsLable: UILabel = {
         let label = UILabel()
+        label.textColor = .white
         label.textAlignment = .center
         label.layer.cornerRadius = 8
         label.layer.masksToBounds = true
@@ -85,6 +89,7 @@ final class SettingsViewController: UIViewController {
     private lazy var infoMusicLable: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
+        label.textColor = .white
         label.layer.cornerRadius = 8
         label.layer.masksToBounds = true
         label.text = "Музыка"
@@ -240,6 +245,7 @@ final class SettingsViewController: UIViewController {
             quitSettingGameButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             quitSettingGameButton.heightAnchor.constraint(equalToConstant: 40),
             quitSettingGameButton.widthAnchor.constraint(equalToConstant: 40)
+            
         ])
     }
 }

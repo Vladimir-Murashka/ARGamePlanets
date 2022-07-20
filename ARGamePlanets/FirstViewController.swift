@@ -54,6 +54,7 @@ final class FirstViewController: UIViewController {
     lazy var infolevelLableText: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
+        label.textColor = .white
         label.layer.cornerRadius = 8
         label.layer.masksToBounds = true
         label.text = "Текущий уровень"
@@ -67,6 +68,7 @@ final class FirstViewController: UIViewController {
     lazy var infolevelLableValue: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
+        label.textColor = .white
         label.layer.cornerRadius = 8
         label.layer.masksToBounds = true
         label.text = "\(Int(SettingsViewController().levelStepper.value))"
@@ -104,8 +106,8 @@ final class FirstViewController: UIViewController {
         setupLayout()
         makePlayerLayer()
         videoplayer?.play()
-        playSound()
-        musicPlayer?.play()
+       // playSound()
+        //musicPlayer?.play()
     }
     
     private func makePlayerLayer() {
