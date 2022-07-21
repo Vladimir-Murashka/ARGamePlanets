@@ -23,7 +23,8 @@ final class FirstViewController: UIViewController {
     }
     
     private var videoplayer: AVPlayer?
-    var musicPlayer: AVAudioPlayer?
+    private var musicPlayer: AVAudioPlayer?
+    private let valueMusicSwitcher = SettingsViewController().defaultsStorage.fetchObject(type: Bool.self, for: .isMusicOn) ?? true
     
     private lazy var startButton: UIButton = {
         let button = UIButton()
@@ -91,6 +92,7 @@ final class FirstViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewController()
+        
     }
     
     @objc func settingsButtonPressed(_ sender: UIButton) {
@@ -107,7 +109,13 @@ final class FirstViewController: UIViewController {
         makePlayerLayer()
         videoplayer?.play()
         playSound()
-        musicPlayer?.play()
+        
+        //TODO - Наблюдатель или что-то подобное. Настройки музыки принимаются после перезапуска View что логично...
+        if valueMusicSwitcher == true {
+            musicPlayer?.play()
+        } else {
+            musicPlayer?.pause()
+        }
     }
     
     private func makePlayerLayer() {

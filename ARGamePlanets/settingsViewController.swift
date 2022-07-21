@@ -125,7 +125,7 @@ final class SettingsViewController: UIViewController {
         return switcher
     }()
     
-     lazy var soundEffectsSwitcher: UISwitch = {
+     private lazy var soundEffectsSwitcher: UISwitch = {
         let switcher = UISwitch()
         switcher.layer.cornerRadius = 15
         switcher.layer.masksToBounds = true
@@ -194,6 +194,7 @@ final class SettingsViewController: UIViewController {
     
     @objc func vibrationSwitcherChange(_ sender: UISwitch) {
         defaultsStorage.saveObject(sender.isOn, for: .isVibrationOn)
+        
     }
     
     @objc func soundEffectsSwitcherChenge(_ sender: UISwitch) {
@@ -225,7 +226,6 @@ final class SettingsViewController: UIViewController {
         
         let valueSoundEffectsSwitcher = defaultsStorage.fetchObject(type: Bool.self, for: .isSoundEffect) ?? true
         soundEffectsSwitcher.isOn = valueSoundEffectsSwitcher
-        
     }
     
     private func addSubviews() {

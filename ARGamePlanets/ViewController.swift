@@ -24,6 +24,7 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet private weak var neptuneButton: UIButton!
     
     private let valueSoundEffectsSwitcher = SettingsViewController().defaultsStorage.fetchObject(type: Bool.self, for: .isSoundEffect) ?? true
+    private let valueVibrationSwitcher = SettingsViewController().defaultsStorage.fetchObject(type: Bool.self, for: .isVibrationOn) ?? true
     
     private lazy var quitGameButton: UIButton = {
         let button = UIButton()
@@ -223,13 +224,14 @@ extension ViewController: SCNPhysicsContactDelegate{
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
         if contact.nodeA.name == contact.nodeB.name {
             DispatchQueue.main.async {
-                AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) { }
                 contact.nodeA.removeFromParentNode()
                 contact.nodeB.removeFromParentNode()
+                if self.valueVibrationSwitcher == true {
+                    AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) { }
+                }
                 if self.valueSoundEffectsSwitcher == true {
                     self.playEffects(named: "contactPlanetSound")
                 }
-                
             }
         }
     }
