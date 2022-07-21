@@ -41,9 +41,6 @@ final class SettingsViewController: UIViewController {
         label.layer.masksToBounds = true
         label.text = "\(Int(levelStepper.value))"
         label.backgroundColor = .black
-        NSLayoutConstraint.activate([
-            label.widthAnchor.constraint(lessThanOrEqualToConstant: 30)
-        ])
         return label
     }()
     
@@ -55,9 +52,6 @@ final class SettingsViewController: UIViewController {
         label.layer.masksToBounds = true
         label.text = "Уровень сложности"
         label.backgroundColor = .black
-        NSLayoutConstraint.activate([
-            label.widthAnchor.constraint(equalToConstant: 200)
-        ])
         return label
     }()
     
@@ -69,9 +63,6 @@ final class SettingsViewController: UIViewController {
         label.layer.masksToBounds = true
         label.text = "Вибрация"
         label.backgroundColor = .black
-        NSLayoutConstraint.activate([
-            label.widthAnchor.constraint(equalToConstant: 200)
-        ])
         return label
     }()
     
@@ -83,9 +74,6 @@ final class SettingsViewController: UIViewController {
         label.layer.masksToBounds = true
         label.text = "Звуковые эффекты"
         label.backgroundColor = .black
-        NSLayoutConstraint.activate([
-            label.widthAnchor.constraint(equalToConstant: 200)
-        ])
         return label
     }()
     
@@ -97,9 +85,6 @@ final class SettingsViewController: UIViewController {
         label.layer.masksToBounds = true
         label.text = "Музыка"
         label.backgroundColor = .black
-        NSLayoutConstraint.activate([
-            label.widthAnchor.constraint(equalToConstant: 200)
-        ])
         return label
     }()
     
@@ -107,7 +92,7 @@ final class SettingsViewController: UIViewController {
         let stepper = UIStepper()
         stepper.maximumValue = 20
         stepper.minimumValue = 1
-        stepper.value = 5
+        stepper.value = Double(defaultsStorage.fetchObject(type: Int.self, for: .levelStepper) ?? 0)
         stepper.stepValue = 1
         stepper.backgroundColor = .black
         stepper.layer.cornerRadius = 8
@@ -211,6 +196,7 @@ final class SettingsViewController: UIViewController {
     
     @objc func levelStepperPressed(_ sender: UIButton) {
         levelLable.text = "\(Int(levelStepper.value))"
+        defaultsStorage.saveObject(levelStepper.value, for: .levelStepper)
     }
     
     private func setupSettingsViewController() {
@@ -226,6 +212,9 @@ final class SettingsViewController: UIViewController {
         
         let valueSoundEffectsSwitcher = defaultsStorage.fetchObject(type: Bool.self, for: .isSoundEffect) ?? true
         soundEffectsSwitcher.isOn = valueSoundEffectsSwitcher
+        
+        let valuelevelStepper = defaultsStorage.fetchObject(type: Int.self, for: .levelStepper)
+        levelStepper.value = Double(valuelevelStepper ?? 0) 
     }
     
     private func addSubviews() {
@@ -258,6 +247,12 @@ final class SettingsViewController: UIViewController {
     
     private func setupLayout() {
         NSLayoutConstraint.activate([
+            infoLevelLable.widthAnchor.constraint(equalToConstant: 200),
+            levelLable.widthAnchor.constraint(lessThanOrEqualToConstant: 30),
+            infoVibrationLable.widthAnchor.constraint(equalToConstant: 200),
+            infoSoundEffectsLable.widthAnchor.constraint(equalToConstant: 200),
+            infoMusicLable.widthAnchor.constraint(equalToConstant: 200),
+            
             commonSettigStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 70),
             commonSettigStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             commonSettigStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),

@@ -121,9 +121,6 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
             quitGameButton.widthAnchor.constraint(equalToConstant: 40)
         ])
     }
-    //TODO- Развернуть после настройки логики
-    let levelLabelVolue = Int(SettingsViewController().levelLable.text!)
-    
     // Добавление планет каждого типа.
     private func addPlanets() {
         let planets = Planet.allCases

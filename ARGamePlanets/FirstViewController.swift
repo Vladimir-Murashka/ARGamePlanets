@@ -60,12 +60,10 @@ final class FirstViewController: UIViewController {
         label.layer.masksToBounds = true
         label.text = "Текущий уровень"
         label.backgroundColor = .black
-        NSLayoutConstraint.activate([
-            label.widthAnchor.constraint(greaterThanOrEqualToConstant: 200)
-        ])
         return label
     }()
     
+    //TODO - Наблюдатель или что-то подобное. Настройки label.text принимаются после перезапуска View что логично...
     lazy var infolevelLableValue: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -74,9 +72,6 @@ final class FirstViewController: UIViewController {
         label.layer.masksToBounds = true
         label.text = "\(Int(SettingsViewController().levelStepper.value))"
         label.backgroundColor = .black
-        NSLayoutConstraint.activate([
-            label.widthAnchor.constraint(greaterThanOrEqualToConstant: 30)
-        ])
         return label
     }()
     
@@ -169,6 +164,9 @@ final class FirstViewController: UIViewController {
     
     private func setupLayout() {
         NSLayoutConstraint.activate([
+            infolevelLableText.widthAnchor.constraint(greaterThanOrEqualToConstant: 200),
+            infolevelLableValue.widthAnchor.constraint(greaterThanOrEqualToConstant: 30),
+            
             startButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             startButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             startButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),

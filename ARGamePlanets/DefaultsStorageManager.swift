@@ -38,4 +38,5 @@ enum DefaultsKey: String {
     case isVibrationOn
     case isMusicOn
     case isSoundEffect
+    case levelStepper
 }
