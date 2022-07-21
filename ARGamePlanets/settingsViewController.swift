@@ -10,6 +10,9 @@ import UIKit
 
 final class SettingsViewController: UIViewController {
     
+     let defaultsStorage: DefaultsStoragable = DefaultsStorage()
+    
+    
     private lazy var imageViewBackgroundScreen: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "settingBackground")
@@ -118,15 +121,17 @@ final class SettingsViewController: UIViewController {
         switcher.layer.masksToBounds = true
         switcher.backgroundColor = .black
         switcher.isOn = true
+        switcher.addTarget(self, action:  #selector(vibrationSwitcherChange), for: .valueChanged)
         return switcher
     }()
     
-    private lazy var soundEffectsSwitcher: UISwitch = {
+     lazy var soundEffectsSwitcher: UISwitch = {
         let switcher = UISwitch()
         switcher.layer.cornerRadius = 15
         switcher.layer.masksToBounds = true
         switcher.backgroundColor = .black
         switcher.isOn = true
+        switcher.addTarget(self, action: #selector(soundEffectsSwitcherChenge), for: .valueChanged)
         return switcher
     }()
     
@@ -186,15 +191,21 @@ final class SettingsViewController: UIViewController {
         super.viewDidLoad()
         setupSettingsViewController()
     }
+    
+    @objc func vibrationSwitcherChange(_ sender: UISwitch) {
+        defaultsStorage.saveObject(sender.isOn, for: .isVibrationOn)
+    }
+    
+    @objc func soundEffectsSwitcherChenge(_ sender: UISwitch) {
+        defaultsStorage.saveObject(sender.isOn, for: .isSoundEffect)
+    }
+    
+    @objc func musicSwitcherChange(_ sender: UISwitch) {
+        defaultsStorage.saveObject(sender.isOn, for: .isMusicOn)
+    }
         
     @objc func quitSettingsButtonPressed(_ sender: UIButton) {
         self.performSegue(withIdentifier: "quitSettingsScreen", sender: nil)
-    }
-    
-    let userDefaults = UserDefaults.standard
-    
-    @objc func musicSwitcherChange(_ sender: UISwitch) {
-       
     }
     
     @objc func levelStepperPressed(_ sender: UIButton) {
@@ -205,6 +216,16 @@ final class SettingsViewController: UIViewController {
         addSubviews()
         setupLayout()
         self.navigationItem.setHidesBackButton(true, animated: true)
+        
+        let valueVibrationSwitcher = defaultsStorage.fetchObject(type: Bool.self, for: .isVibrationOn) ?? true
+        vibrationSwitcher.isOn = valueVibrationSwitcher
+        
+        let valueMusicSwitcher = defaultsStorage.fetchObject(type: Bool.self, for: .isMusicOn) ?? true
+        musicSwitcher.isOn = valueMusicSwitcher
+        
+        let valueSoundEffectsSwitcher = defaultsStorage.fetchObject(type: Bool.self, for: .isSoundEffect) ?? true
+        soundEffectsSwitcher.isOn = valueSoundEffectsSwitcher
+        
     }
     
     private func addSubviews() {

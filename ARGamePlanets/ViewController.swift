@@ -23,6 +23,8 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet private weak var moonButton: UIButton!
     @IBOutlet private weak var neptuneButton: UIButton!
     
+    private let valueSoundEffectsSwitcher = SettingsViewController().defaultsStorage.fetchObject(type: Bool.self, for: .isSoundEffect) ?? true
+    
     private lazy var quitGameButton: UIButton = {
         let button = UIButton()
         let imageQuitGameButton = UIImage(systemName: "arrowshape.turn.up.left.circle.fill")
@@ -224,7 +226,10 @@ extension ViewController: SCNPhysicsContactDelegate{
                 AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) { }
                 contact.nodeA.removeFromParentNode()
                 contact.nodeB.removeFromParentNode()
-                self.playEffects(named: "contactPlanetSound")
+                if self.valueSoundEffectsSwitcher == true {
+                    self.playEffects(named: "contactPlanetSound")
+                }
+                
             }
         }
     }

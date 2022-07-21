@@ -106,8 +106,8 @@ final class FirstViewController: UIViewController {
         setupLayout()
         makePlayerLayer()
         videoplayer?.play()
-       // playSound()
-        //musicPlayer?.play()
+        playSound()
+        musicPlayer?.play()
     }
     
     private func makePlayerLayer() {

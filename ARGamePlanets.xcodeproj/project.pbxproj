@@ -18,6 +18,7 @@
 		223C8E33286CE48E00A2782A /* CollisionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C8E32286CE48E00A2782A /* CollisionCategory.swift */; };
 		223C8E35286E501900A2782A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C8E34286E501800A2782A /* SettingsViewController.swift */; };
 		223C8E37286F0D7600A2782A /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C8E36286F0D7500A2782A /* AlertManager.swift */; };
+		22DFF64A2889A4410037EEF5 /* DefaultsStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DFF6492889A4410037EEF5 /* DefaultsStorageManager.swift */; };
 		22E680582881DC5600FAB2E1 /* FirstViewControllerMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 22E680572881DC5600FAB2E1 /* FirstViewControllerMusic.mp3 */; };
 		22E6805A2882D60500FAB2E1 /* contactPlanetSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 22E680592882D60500FAB2E1 /* contactPlanetSound.mp3 */; };
 		22E6C6E4287CB6450006B53B /* PlanetEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E6C6E3287CB6450006B53B /* PlanetEnum.swift */; };
@@ -36,6 +37,7 @@
 		223C8E32286CE48E00A2782A /* CollisionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionCategory.swift; sourceTree = "<group>"; };
 		223C8E34286E501800A2782A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		223C8E36286F0D7500A2782A /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
+		22DFF6492889A4410037EEF5 /* DefaultsStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsStorageManager.swift; sourceTree = "<group>"; };
 		22E680572881DC5600FAB2E1 /* FirstViewControllerMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = FirstViewControllerMusic.mp3; path = Assets.xcassets/FirstViewControllerMusic.mp3; sourceTree = "<group>"; };
 		22E680592882D60500FAB2E1 /* contactPlanetSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = contactPlanetSound.mp3; path = ../../../contactPlanetSound.mp3; sourceTree = "<group>"; };
 		22E6C6E3287CB6450006B53B /* PlanetEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetEnum.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				223C8E32286CE48E00A2782A /* CollisionCategory.swift */,
 				221CF160285F4EDF003A7329 /* FirstViewController.swift */,
 				223C8E34286E501800A2782A /* SettingsViewController.swift */,
+				22DFF6492889A4410037EEF5 /* DefaultsStorageManager.swift */,
 				221CF14B285E6385003A7329 /* Main.storyboard */,
 				221CF150285E6389003A7329 /* LaunchScreen.storyboard */,
 				221CF15E285F4CCB003A7329 /* Earth.mp4 */,
@@ -171,6 +174,7 @@
 				221CF161285F4EDF003A7329 /* FirstViewController.swift in Sources */,
 				221CF14A285E6385003A7329 /* ViewController.swift in Sources */,
 				221CF146285E6385003A7329 /* AppDelegate.swift in Sources */,
+				22DFF64A2889A4410037EEF5 /* DefaultsStorageManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
