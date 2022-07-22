@@ -19,6 +19,7 @@
 		223C8E37286F0D7600A2782A /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C8E36286F0D7500A2782A /* AlertManager.swift */; };
 		22DFF64A2889A4410037EEF5 /* DefaultsStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DFF6492889A4410037EEF5 /* DefaultsStorageManager.swift */; };
 		22DFF64C2889CD050037EEF5 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DFF64B2889CD050037EEF5 /* FirstViewController.swift */; };
+		22DFF64E288AF9E50037EEF5 /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DFF64D288AF9E50037EEF5 /* TimerManager.swift */; };
 		22E680582881DC5600FAB2E1 /* FirstViewControllerMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 22E680572881DC5600FAB2E1 /* FirstViewControllerMusic.mp3 */; };
 		22E6805A2882D60500FAB2E1 /* contactPlanetSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 22E680592882D60500FAB2E1 /* contactPlanetSound.mp3 */; };
 		22E6C6E4287CB6450006B53B /* PlanetEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E6C6E3287CB6450006B53B /* PlanetEnum.swift */; };
@@ -38,6 +39,7 @@
 		223C8E36286F0D7500A2782A /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		22DFF6492889A4410037EEF5 /* DefaultsStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsStorageManager.swift; sourceTree = "<group>"; };
 		22DFF64B2889CD050037EEF5 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		22DFF64D288AF9E50037EEF5 /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
 		22E680572881DC5600FAB2E1 /* FirstViewControllerMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = FirstViewControllerMusic.mp3; path = Assets.xcassets/FirstViewControllerMusic.mp3; sourceTree = "<group>"; };
 		22E680592882D60500FAB2E1 /* contactPlanetSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = contactPlanetSound.mp3; path = ../../../contactPlanetSound.mp3; sourceTree = "<group>"; };
 		22E6C6E3287CB6450006B53B /* PlanetEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetEnum.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				223C8E34286E501800A2782A /* SettingsViewController.swift */,
 				223C8E36286F0D7500A2782A /* AlertManager.swift */,
 				22DFF6492889A4410037EEF5 /* DefaultsStorageManager.swift */,
+				22DFF64D288AF9E50037EEF5 /* TimerManager.swift */,
 				22E6C6E3287CB6450006B53B /* PlanetEnum.swift */,
 				223C8E32286CE48E00A2782A /* CollisionCategory.swift */,
 				221CF14B285E6385003A7329 /* Main.storyboard */,
@@ -173,6 +176,7 @@
 				22DFF64C2889CD050037EEF5 /* FirstViewController.swift in Sources */,
 				223C8E37286F0D7600A2782A /* AlertManager.swift in Sources */,
 				221CF14A285E6385003A7329 /* ViewController.swift in Sources */,
+				22DFF64E288AF9E50037EEF5 /* TimerManager.swift in Sources */,
 				221CF146285E6385003A7329 /* AppDelegate.swift in Sources */,
 				22DFF64A2889A4410037EEF5 /* DefaultsStorageManager.swift in Sources */,
 			);

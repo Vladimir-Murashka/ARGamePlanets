@@ -31,6 +31,18 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
     private let numberOfPlanetsTypes = 6
     private var counter = 0
     
+    private lazy var timerLable: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .white
+        label.layer.cornerRadius = 8
+        label.layer.masksToBounds = true
+        label.text = "01 : 10"
+        label.backgroundColor = .black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     private lazy var numberOfPlanetsOf: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -90,30 +102,13 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewController()
-        //var timer = Timer()
-        //timer.invalidate()
-        //let timer = Timer.scheduledTimer(timeInterval: 30.0, target: self, selector: #selector(delayedAction), userInfo: nil, repeats: false)
-    }
-    
-    @objc func delayedAction() {
-        sceneView.session.pause()
-        AlertManager().showAlert(
-            fromViewController: self,
-            title: "Ай яй яй",
-            message: "Время истекло",
-            firstButtonTitle: "Попробовать еще раз",
-            firstActionBlock: {
-             //TODO: - перезапустить viewController
-            },
-            secondTitleButton: "Выйти") {
-                self.performSegue(withIdentifier: "quitARGameSegue", sender: nil)
-            }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let configuration = ARWorldTrackingConfiguration()
         sceneView.session.run(configuration)
+        
         
     }
     
@@ -152,9 +147,23 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
         }
     }
     
+    @objc func delayedAction() {
+        AlertManager().showAlert(
+            fromViewController: self,
+            title: "Ай яй яй",
+            message: "Время истекло",
+            firstButtonTitle: "Попробовать еще раз",
+            firstActionBlock: {
+            //TODO: - обновить ViewConroller
+            },
+            secondTitleButton: "Выйти") {
+                self.performSegue(withIdentifier: "quitARGameSegue", sender: nil)
+            }
+    }
+    
     @objc func quitGameButtonPressed(_ sender: UIButton) {
         sceneView.session.pause()
-
+        startStopTimer()
         AlertManager().showAlert(
             fromViewController: self,
             title: "Вы хотите выйти?",
@@ -166,15 +175,18 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
             secondTitleButton: "Продолжить") { [weak self] in
                 let configuration = ARWorldTrackingConfiguration()
                 self?.sceneView.session.run(configuration)
+                self?.startStopTimer()
             }
     }
     
     private func setupViewController() {
         sceneView.delegate = self
         sceneView.scene.physicsWorld.contactDelegate = self
+        startStopTimer()
         addPlanets()
-        self.navigationItem.setHidesBackButton(true, animated: true)
+        //self.navigationItem.setHidesBackButton(true, animated: true)
         
+        view.addSubview(timerLable)
         view.addSubview(quitGameButton)
         view.addSubview(numbersOfPlanetsStackView)
         
@@ -192,12 +204,20 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
             totalNumberOfPlanets.widthAnchor.constraint(equalToConstant: 30),
             
             numbersOfPlanetsStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            numbersOfPlanetsStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0)
+            numbersOfPlanetsStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            
+            timerLable.widthAnchor.constraint(equalToConstant: 80),
+            timerLable.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            timerLable.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor, constant: 0)
             
         ])
+        
+        //TODO: - тут таймеру не место
+        //let timer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(delayedAction), userInfo: nil, repeats: true)
     }
     // Добавление планет каждого типа.
     private func addPlanets() {
+        
         let planets = Planet.allCases
         for planet in planets {
             addRandomPisitionPlanet(number: numberOfPlanets, planet: planet)
@@ -289,6 +309,62 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
             
         }
     }
+    
+    private func winLevel() {
+        AlertManager().showAlert(
+            fromViewController: self,
+            title: "Поздравляем",
+            message: "Уровень пройден",
+            firstButtonTitle: "Следующий уровень",
+            firstActionBlock: {
+                //TODO: - обновить ViewConroller с новыми настройками numberOfPlanets
+            },
+            secondTitleButton: "Выйти") {
+                self.performSegue(withIdentifier: "quitARGameSegue", sender: nil)
+            }
+    }
+    
+    // Таймер
+    private var timer = Timer()
+    private var count = 70
+    private var timerCounting = false
+    
+    private func resetTimer() {
+        
+    }
+    
+    private func startStopTimer() {
+        if(timerCounting)
+        {
+            timerCounting = false
+            timer.invalidate()
+        }
+        else
+        {
+            timerCounting = true
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerCounter), userInfo: nil, repeats: true)
+        }
+    }
+    
+    @objc func timerCounter() -> Void {
+        count = count - 1
+        let time = secondsToHoursMinutesSeconds(seconds: count)
+        let timeString = makeTimeString(minutes: time.0, seconds: time.1)
+        timerLable.text = timeString
+    }
+    
+    private func secondsToHoursMinutesSeconds(seconds: Int) -> (Int, Int) {
+        return (((seconds % 3600) / 60), ((seconds % 3600) % 60))
+    }
+    
+    private func makeTimeString(minutes: Int, seconds : Int) -> String {
+        var timeString = ""
+        timeString += String(format: "%02d", minutes)
+        timeString += " : "
+        timeString += String(format: "%02d", seconds)
+        return timeString
+    }
+    
 }
 
 // обработка столкновений
@@ -298,9 +374,12 @@ extension ViewController: SCNPhysicsContactDelegate{
             DispatchQueue.main.async {
                 contact.nodeA.removeFromParentNode()
                 contact.nodeB.removeFromParentNode()
-                //TODO: - переодически счетчик +2...
+                //TODO: - переодически счетчик +2... как то связано с муз. эффектами, без них работает.
                 self.counter += 1
                 self.numberOfPlanetsOf.text = "\(self.counter)"
+                if self.counter == self.numberOfPlanets * self.numberOfPlanetsTypes {
+                    self.winLevel()
+                }
                 if self.valueVibrationSwitcher == true {
                     AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) { }
                 }
