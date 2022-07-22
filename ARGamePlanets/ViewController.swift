@@ -25,6 +25,53 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
     
     private let valueSoundEffectsSwitcher = SettingsViewController().defaultsStorage.fetchObject(type: Bool.self, for: .isSoundEffect) ?? true
     private let valueVibrationSwitcher = SettingsViewController().defaultsStorage.fetchObject(type: Bool.self, for: .isVibrationOn) ?? true
+    private var audioPlayer = AVAudioPlayer()
+    private var selectPlanet: Planet = .earth
+    private var numberOfPlanets = Int(SettingsViewController().levelStepper.value)
+    private let numberOfPlanetsTypes = 6
+    private var counter = 0
+    
+    private lazy var numberOfPlanetsOf: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .white
+        label.layer.cornerRadius = 8
+        label.layer.masksToBounds = true
+        label.text = "\(counter)"
+        label.backgroundColor = .black
+        return label
+    }()
+    
+    private lazy var totalNumberOfPlanets: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .white
+        label.layer.cornerRadius = 8
+        label.layer.masksToBounds = true
+        label.text = "\(numberOfPlanets * numberOfPlanetsTypes)"
+        label.backgroundColor = .black
+        return label
+    }()
+    
+    private lazy var separatorNumbersOfPlanets: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .white
+        label.layer.cornerRadius = 8
+        label.layer.masksToBounds = true
+        label.text = "/"
+        label.backgroundColor = .clear
+        return label
+    }()
+    
+    private lazy var numbersOfPlanetsStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 4
+        stackView.alignment = .fill
+        stackView.distribution = .equalSpacing
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
     
     private lazy var quitGameButton: UIButton = {
         let button = UIButton()
@@ -38,20 +85,36 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
         button.addTarget(self, action: #selector(quitGameButtonPressed), for: .touchUpInside)
         return button
     }()
-    
-    private var audioPlayer = AVAudioPlayer()
-    private var selectPlanet: Planet = .earth
-    
+
     // Базовые функции
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewController()
+        //var timer = Timer()
+        //timer.invalidate()
+        //let timer = Timer.scheduledTimer(timeInterval: 30.0, target: self, selector: #selector(delayedAction), userInfo: nil, repeats: false)
+    }
+    
+    @objc func delayedAction() {
+        sceneView.session.pause()
+        AlertManager().showAlert(
+            fromViewController: self,
+            title: "Ай яй яй",
+            message: "Время истекло",
+            firstButtonTitle: "Попробовать еще раз",
+            firstActionBlock: {
+             //TODO: - перезапустить viewController
+            },
+            secondTitleButton: "Выйти") {
+                self.performSegue(withIdentifier: "quitARGameSegue", sender: nil)
+            }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let configuration = ARWorldTrackingConfiguration()
         sceneView.session.run(configuration)
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -73,7 +136,7 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
             planetButton?.alpha = 0.5
         }
         sender.alpha = 1
-        
+        //TODO: - Работает но выглядит так себе...
         if sender == earthButton {
             selectPlanet = .earth
         } else if sender == jupiterButton {
@@ -113,19 +176,31 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
         self.navigationItem.setHidesBackButton(true, animated: true)
         
         view.addSubview(quitGameButton)
+        view.addSubview(numbersOfPlanetsStackView)
+        
+        numbersOfPlanetsStackView.addArrangedSubview(numberOfPlanetsOf)
+        numbersOfPlanetsStackView.addArrangedSubview(separatorNumbersOfPlanets)
+        numbersOfPlanetsStackView.addArrangedSubview(totalNumberOfPlanets)
         
         NSLayoutConstraint.activate([
             quitGameButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             quitGameButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             quitGameButton.heightAnchor.constraint(equalToConstant: 40),
-            quitGameButton.widthAnchor.constraint(equalToConstant: 40)
+            quitGameButton.widthAnchor.constraint(equalToConstant: 40),
+            
+            numberOfPlanetsOf.widthAnchor.constraint(equalToConstant: 30),
+            totalNumberOfPlanets.widthAnchor.constraint(equalToConstant: 30),
+            
+            numbersOfPlanetsStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            numbersOfPlanetsStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0)
+            
         ])
     }
     // Добавление планет каждого типа.
     private func addPlanets() {
         let planets = Planet.allCases
         for planet in planets {
-            addRandomPisitionPlanet(number: Int(SettingsViewController().levelStepper.value), planet: planet)
+            addRandomPisitionPlanet(number: numberOfPlanets, planet: planet)
         }
     }
     //Рандомное размещение планет (мешеней)
@@ -223,6 +298,9 @@ extension ViewController: SCNPhysicsContactDelegate{
             DispatchQueue.main.async {
                 contact.nodeA.removeFromParentNode()
                 contact.nodeB.removeFromParentNode()
+                //TODO: - переодически счетчик +2...
+                self.counter += 1
+                self.numberOfPlanetsOf.text = "\(self.counter)"
                 if self.valueVibrationSwitcher == true {
                     AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) { }
                 }
