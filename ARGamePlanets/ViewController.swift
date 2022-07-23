@@ -81,6 +81,14 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
         stackView.spacing = 4
         stackView.alignment = .fill
         stackView.distribution = .equalSpacing
+        return stackView
+    }()
+    
+    private lazy var commonTopStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 5
+        stackView.alignment = .fill
+        stackView.distribution = .equalCentering
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -91,7 +99,7 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
         button.setBackgroundImage(imageQuitGameButton, for: .normal)
         button.tintColor = .black
         button.backgroundColor = .white
-        button.layer.cornerRadius = 20
+        button.layer.cornerRadius = 15
         button.layer.masksToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(quitGameButtonPressed), for: .touchUpInside)
@@ -108,8 +116,6 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
         super.viewWillAppear(animated)
         let configuration = ARWorldTrackingConfiguration()
         sceneView.session.run(configuration)
-        
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -171,6 +177,7 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
             firstButtonTitle: "Покинуть игру",
             firstActionBlock: {
                 self.performSegue(withIdentifier: "quitARGameSegue", sender: nil)
+                
             },
             secondTitleButton: "Продолжить") { [weak self] in
                 let configuration = ARWorldTrackingConfiguration()
@@ -184,8 +191,8 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.scene.physicsWorld.contactDelegate = self
         startStopTimer()
         addPlanets()
-        //self.navigationItem.setHidesBackButton(true, animated: true)
         
+        view.addSubview(commonTopStackView)
         view.addSubview(timerLable)
         view.addSubview(quitGameButton)
         view.addSubview(numbersOfPlanetsStackView)
@@ -194,24 +201,24 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
         numbersOfPlanetsStackView.addArrangedSubview(separatorNumbersOfPlanetsLabel)
         numbersOfPlanetsStackView.addArrangedSubview(totalNumberOfPlanetsLabel)
         
+        commonTopStackView.addArrangedSubview(quitGameButton)
+        commonTopStackView.addArrangedSubview(timerLable)
+        commonTopStackView.addArrangedSubview(numbersOfPlanetsStackView)
+        
         NSLayoutConstraint.activate([
-            quitGameButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            quitGameButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            quitGameButton.heightAnchor.constraint(equalToConstant: 40),
-            quitGameButton.widthAnchor.constraint(equalToConstant: 40),
+            quitGameButton.heightAnchor.constraint(equalToConstant: 30),
+            quitGameButton.widthAnchor.constraint(equalToConstant: 30),
             
+            numbersOfPlanetsStackView.heightAnchor.constraint(equalToConstant: 30),
             numberOfPlanetsOflabel.widthAnchor.constraint(equalToConstant: 30),
             totalNumberOfPlanetsLabel.widthAnchor.constraint(equalToConstant: 30),
-            
-            numbersOfPlanetsStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            numbersOfPlanetsStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            numbersOfPlanetsStackView.heightAnchor.constraint(equalToConstant: 30),
-            
+    
             timerLable.widthAnchor.constraint(equalToConstant: 80),
-            timerLable.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            timerLable.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor, constant: 0),
-            timerLable.heightAnchor.constraint(equalToConstant: 30)
+            timerLable.heightAnchor.constraint(equalToConstant: 30),
             
+            commonTopStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            commonTopStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            commonTopStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16)
         ])
     }
     // Добавление планет каждого типа.
@@ -327,11 +334,7 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
     private var timer = Timer()
     private var count = SettingsViewController().timeStepper.value
     private var timerCounting = false
-    
-    private func resetTimer() {
-        
-    }
-    
+
     private func startStopTimer() {
         if(timerCounting)
         {
@@ -355,7 +358,6 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
             timer.invalidate()
             delayedAction()
         }
-        
     }
     
     private func secondsToHoursMinutesSeconds(seconds: Int) -> (Int, Int) {
@@ -369,7 +371,6 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
         timeString += String(format: "%02d", seconds)
         return timeString
     }
-    
 }
 
 // обработка столкновений
@@ -396,4 +397,17 @@ extension ViewController: SCNPhysicsContactDelegate{
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 

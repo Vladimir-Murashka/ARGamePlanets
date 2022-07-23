@@ -22,7 +22,7 @@ final class FirstViewController: UIViewController {
         }
     }
     
-    private var videoplayer: AVPlayer?
+    private var videoPlayer: AVPlayer?
     private var musicPlayer: AVAudioPlayer?
     private let valueMusicSwitcher = SettingsViewController().defaultsStorage.fetchObject(type: Bool.self, for: .isMusicOn) ?? true
     
@@ -92,6 +92,7 @@ final class FirstViewController: UIViewController {
     
     @objc func settingsButtonPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "settingsScreen", sender: nil)
+        
     }
     
     @objc func startButtonPressed(_ sender: UIButton) {
@@ -102,7 +103,7 @@ final class FirstViewController: UIViewController {
         addSubviews()
         setupLayout()
         makePlayerLayer()
-        videoplayer?.play()
+        videoPlayer?.play()
         playSound()
         
         //TODO - Наблюдатель или что-то подобное. Настройки музыки принимаются после перезапуска View что логично...
@@ -121,15 +122,29 @@ final class FirstViewController: UIViewController {
         let url = URL(fileURLWithPath: path)
         let player = AVPlayer(url: url)
         let playerLayer = AVPlayerLayer(player: player)
-        
-        self.videoplayer = player
+    
+        self.videoPlayer = player
         
         playerLayer.frame = view.bounds
         playerLayer.videoGravity = .resizeAspectFill
         
         videoLayer.layer.addSublayer(playerLayer)
         videoLayer.layer.repeatCount = 2
-        //videoLayer.bringSubviewToFront(startButton)
+        
+        
+        videoPlayer?.actionAtItemEnd = .none
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(playerItemDidReachEnd(notification:)),
+                                               name: .AVPlayerItemDidPlayToEndTime,
+                                               object: videoPlayer?.currentItem)
+    }
+    
+    @objc
+    func playerItemDidReachEnd(notification: Notification) {
+        if let playerItem = notification.object as? AVPlayerItem {
+            playerItem.seek(to: CMTime.zero, completionHandler: nil)
+        }
     }
     
     private func playSound() {
@@ -145,9 +160,7 @@ final class FirstViewController: UIViewController {
             guard let player = musicPlayer else {
                 return
             }
-            
             player.play()
-            
         } catch {
             fatalError()
         }
@@ -157,6 +170,7 @@ final class FirstViewController: UIViewController {
         view.addSubview(startButton)
         view.addSubview(settingsButton)
         view.addSubview(infolevelStackView)
+        
         
         infolevelStackView.addArrangedSubview(infolevelLableText)
         infolevelStackView.addArrangedSubview(infolevelLableValue)

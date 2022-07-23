@@ -12,7 +12,6 @@ final class SettingsViewController: UIViewController {
     
      let defaultsStorage: DefaultsStoragable = DefaultsStorage()
     
-    
     private lazy var imageViewBackgroundScreen: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "settingBackground")
@@ -26,7 +25,7 @@ final class SettingsViewController: UIViewController {
         button.setBackgroundImage(imageQuitGameButton, for: .normal)
         button.tintColor = .black
         button.backgroundColor = .white
-        button.layer.cornerRadius = 20
+        button.layer.cornerRadius = 15
         button.layer.masksToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(quitSettingsButtonPressed), for: .touchUpInside)
@@ -327,31 +326,9 @@ final class SettingsViewController: UIViewController {
             
             quitSettingGameButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             quitSettingGameButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            quitSettingGameButton.heightAnchor.constraint(equalToConstant: 40),
-            quitSettingGameButton.widthAnchor.constraint(equalToConstant: 40)
+            quitSettingGameButton.heightAnchor.constraint(equalToConstant: 30),
+            quitSettingGameButton.widthAnchor.constraint(equalToConstant: 30)
             
         ])
     }
-    
-//    var count = timeStepper.value
-//
-//    func timerCounter() {
-//        let time = secondsToHoursMinutesSeconds(seconds: count)
-//        let timeString = makeTimeString(minutes: time.0, seconds: time.1)
-//        timeLable.text = timeString
-//    }
-//
-//    func secondsToHoursMinutesSeconds(seconds: Int) -> (Int, Int) {
-//        return (((seconds % 3600) / 60), ((seconds % 3600) % 60))
-//    }
-//
-//    func makeTimeString(minutes: Int, seconds : Int) -> String {
-//        var timeString = ""
-//        timeString += String(format: "%02d", minutes)
-//        timeString += " : "
-//        timeString += String(format: "%02d", seconds)
-//        return timeString
-//    }
-    
-    
 }
