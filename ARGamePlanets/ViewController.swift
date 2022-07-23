@@ -37,13 +37,13 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
         label.textColor = .white
         label.layer.cornerRadius = 8
         label.layer.masksToBounds = true
-        label.text = "01 : 10"
+        label.text = SettingsViewController().timeLable.text
         label.backgroundColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private lazy var numberOfPlanetsOf: UILabel = {
+    private lazy var numberOfPlanetsOflabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .white
@@ -54,7 +54,7 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
         return label
     }()
     
-    private lazy var totalNumberOfPlanets: UILabel = {
+    private lazy var totalNumberOfPlanetsLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .white
@@ -65,7 +65,7 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
         return label
     }()
     
-    private lazy var separatorNumbersOfPlanets: UILabel = {
+    private lazy var separatorNumbersOfPlanetsLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .white
@@ -147,7 +147,7 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
         }
     }
     
-    @objc func delayedAction() {
+    private func delayedAction() {
         AlertManager().showAlert(
             fromViewController: self,
             title: "Ай яй яй",
@@ -190,9 +190,9 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
         view.addSubview(quitGameButton)
         view.addSubview(numbersOfPlanetsStackView)
         
-        numbersOfPlanetsStackView.addArrangedSubview(numberOfPlanetsOf)
-        numbersOfPlanetsStackView.addArrangedSubview(separatorNumbersOfPlanets)
-        numbersOfPlanetsStackView.addArrangedSubview(totalNumberOfPlanets)
+        numbersOfPlanetsStackView.addArrangedSubview(numberOfPlanetsOflabel)
+        numbersOfPlanetsStackView.addArrangedSubview(separatorNumbersOfPlanetsLabel)
+        numbersOfPlanetsStackView.addArrangedSubview(totalNumberOfPlanetsLabel)
         
         NSLayoutConstraint.activate([
             quitGameButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
@@ -200,20 +200,19 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
             quitGameButton.heightAnchor.constraint(equalToConstant: 40),
             quitGameButton.widthAnchor.constraint(equalToConstant: 40),
             
-            numberOfPlanetsOf.widthAnchor.constraint(equalToConstant: 30),
-            totalNumberOfPlanets.widthAnchor.constraint(equalToConstant: 30),
+            numberOfPlanetsOflabel.widthAnchor.constraint(equalToConstant: 30),
+            totalNumberOfPlanetsLabel.widthAnchor.constraint(equalToConstant: 30),
             
             numbersOfPlanetsStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             numbersOfPlanetsStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            numbersOfPlanetsStackView.heightAnchor.constraint(equalToConstant: 30),
             
             timerLable.widthAnchor.constraint(equalToConstant: 80),
             timerLable.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            timerLable.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor, constant: 0)
+            timerLable.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor, constant: 0),
+            timerLable.heightAnchor.constraint(equalToConstant: 30)
             
         ])
-        
-        //TODO: - тут таймеру не место
-        //let timer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(delayedAction), userInfo: nil, repeats: true)
     }
     // Добавление планет каждого типа.
     private func addPlanets() {
@@ -324,9 +323,9 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
             }
     }
     
-    // Таймер
+    // TODO: - Таймер вынести в менеджер, пока не пойму как передать label в @objc метод.
     private var timer = Timer()
-    private var count = 70
+    private var count = SettingsViewController().timeStepper.value
     private var timerCounting = false
     
     private func resetTimer() {
@@ -346,11 +345,17 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
         }
     }
     
-    @objc func timerCounter() -> Void {
-        count = count - 1
-        let time = secondsToHoursMinutesSeconds(seconds: count)
+    @objc func timerCounter() {
+        count -=  1
+        let time = secondsToHoursMinutesSeconds(seconds: Int(count))
         let timeString = makeTimeString(minutes: time.0, seconds: time.1)
         timerLable.text = timeString
+        
+        if count == 0 {
+            timer.invalidate()
+            delayedAction()
+        }
+        
     }
     
     private func secondsToHoursMinutesSeconds(seconds: Int) -> (Int, Int) {
@@ -376,8 +381,9 @@ extension ViewController: SCNPhysicsContactDelegate{
                 contact.nodeB.removeFromParentNode()
                 //TODO: - переодически счетчик +2... как то связано с муз. эффектами, без них работает.
                 self.counter += 1
-                self.numberOfPlanetsOf.text = "\(self.counter)"
+                self.numberOfPlanetsOflabel.text = "\(self.counter)"
                 if self.counter == self.numberOfPlanets * self.numberOfPlanetsTypes {
+                    self.timer.invalidate()
                     self.winLevel()
                 }
                 if self.valueVibrationSwitcher == true {

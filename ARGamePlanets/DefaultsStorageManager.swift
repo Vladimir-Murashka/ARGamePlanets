@@ -39,4 +39,6 @@ enum DefaultsKey: String {
     case isMusicOn
     case isSoundEffect
     case levelStepper
+    case timeStepperValue
+    case timeLabelText
 }

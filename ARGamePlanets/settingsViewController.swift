@@ -33,6 +33,28 @@ final class SettingsViewController: UIViewController {
         return button
     }()
     
+    lazy var timeLable: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .white
+        label.layer.cornerRadius = 8
+        label.layer.masksToBounds = true
+        label.text = defaultsStorage.fetchObject(type: String.self, for: .timeLabelText)
+        label.backgroundColor = .black
+        return label
+    }()
+    
+    private lazy var infoTimeLable: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .white
+        label.layer.cornerRadius = 8
+        label.layer.masksToBounds = true
+        label.text = "Время раунда"
+        label.backgroundColor = .black
+        return label
+    }()
+    
     lazy var levelLable: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -99,6 +121,18 @@ final class SettingsViewController: UIViewController {
         stepper.addTarget(self, action: #selector(levelStepperPressed), for: .valueChanged)
         return stepper
     }()
+    
+    lazy var timeStepper: UIStepper = {
+        let stepper = UIStepper()
+        stepper.maximumValue = 190
+        stepper.minimumValue = 10
+        stepper.value = Double(defaultsStorage.fetchObject(type: Int.self, for: .timeStepperValue) ?? 0)
+        stepper.stepValue = 10
+        stepper.backgroundColor = .black
+        stepper.layer.cornerRadius = 8
+        stepper.addTarget(self, action: #selector(timeStepperPressed), for: .valueChanged)
+        return stepper
+    }()
    
     private lazy var vibrationSwitcher: UISwitch = {
         let switcher = UISwitch()
@@ -130,6 +164,14 @@ final class SettingsViewController: UIViewController {
         return switcher
     }()
     
+    private lazy var timeStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 2
+        stackView.alignment = .fill
+        stackView.distribution = .equalSpacing
+        return stackView
+    }()
+    
     private lazy var musicStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 12
@@ -158,7 +200,7 @@ final class SettingsViewController: UIViewController {
         let stackView = UIStackView()
         stackView.spacing = 12
         stackView.alignment = .fill
-        stackView.distribution = .fill
+        stackView.distribution = .equalSpacing
         return stackView
     }()
     
@@ -175,6 +217,17 @@ final class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSettingsViewController()
+    }
+
+    @objc func timeStepperPressed(_ sender: UIStepper) {
+        //TODO: Работает но что то мне не нравится...)
+        let timeStepperValue = Int(timeStepper.value)
+        let seconds = timeStepperValue % 60
+        let minutes = (timeStepperValue / 60) % 60
+        let result = String(format: "%02d:%02d", minutes, seconds)
+        timeLable.text = result
+        defaultsStorage.saveObject(timeStepper.value, for: .timeStepperValue)
+        defaultsStorage.saveObject(timeLable.text ?? "", for: .timeLabelText)
     }
     
     @objc func vibrationSwitcherChange(_ sender: UISwitch) {
@@ -194,7 +247,7 @@ final class SettingsViewController: UIViewController {
         self.performSegue(withIdentifier: "quitSettingsScreen", sender: nil)
     }
     
-    @objc func levelStepperPressed(_ sender: UIButton) {
+    @objc func levelStepperPressed(_ sender: UIStepper) {
         levelLable.text = "\(Int(levelStepper.value))"
         defaultsStorage.saveObject(levelStepper.value, for: .levelStepper)
     }
@@ -214,10 +267,17 @@ final class SettingsViewController: UIViewController {
         soundEffectsSwitcher.isOn = valueSoundEffectsSwitcher
         
         let valuelevelStepper = defaultsStorage.fetchObject(type: Int.self, for: .levelStepper)
-        levelStepper.value = Double(valuelevelStepper ?? 0) 
+        levelStepper.value = Double(valuelevelStepper ?? 0)
+        
+        let valueTimeStepper = defaultsStorage.fetchObject(type: Int.self, for: .timeStepperValue) ?? 0
+        timeStepper.value = Double(valueTimeStepper)
+        
+        let timeLabelText = defaultsStorage.fetchObject(type: String.self, for: .timeLabelText)
+        timeLable.text = timeLabelText
     }
     
     private func addSubviews() {
+        view.addSubview(timeStackView)
         view.addSubview(imageViewBackgroundScreen)
         view.addSubview(levelStackView)
         view.addSubview(vibrationStackView)
@@ -225,6 +285,10 @@ final class SettingsViewController: UIViewController {
         view.addSubview(commonSettigStackView)
         view.addSubview(musicStackView)
         view.addSubview(quitSettingGameButton)
+        
+        timeStackView.addArrangedSubview(infoTimeLable)
+        timeStackView.addArrangedSubview(timeLable)
+        timeStackView.addArrangedSubview(timeStepper)
         
         levelStackView.addArrangedSubview(infoLevelLable)
         levelStackView.addArrangedSubview(levelLable)
@@ -239,6 +303,7 @@ final class SettingsViewController: UIViewController {
         musicStackView.addArrangedSubview(infoMusicLable)
         musicStackView.addArrangedSubview(musicSwitcher)
         
+        commonSettigStackView.addArrangedSubview(timeStackView)
         commonSettigStackView.addArrangedSubview(levelStackView)
         commonSettigStackView.addArrangedSubview(vibrationStackView)
         commonSettigStackView.addArrangedSubview(soundEffectsStackView)
@@ -247,11 +312,14 @@ final class SettingsViewController: UIViewController {
     
     private func setupLayout() {
         NSLayoutConstraint.activate([
-            infoLevelLable.widthAnchor.constraint(equalToConstant: 200),
+            infoLevelLable.widthAnchor.constraint(equalToConstant: 170),
             levelLable.widthAnchor.constraint(lessThanOrEqualToConstant: 30),
-            infoVibrationLable.widthAnchor.constraint(equalToConstant: 200),
-            infoSoundEffectsLable.widthAnchor.constraint(equalToConstant: 200),
-            infoMusicLable.widthAnchor.constraint(equalToConstant: 200),
+            infoVibrationLable.widthAnchor.constraint(equalToConstant: 170),
+            infoSoundEffectsLable.widthAnchor.constraint(equalToConstant: 170),
+            infoMusicLable.widthAnchor.constraint(equalToConstant: 170),
+            infoTimeLable.widthAnchor.constraint(equalToConstant: 170),
+            timeLable.widthAnchor.constraint(equalToConstant: 70),
+            levelLable.widthAnchor.constraint(equalToConstant: 30),
             
             commonSettigStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 70),
             commonSettigStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
@@ -264,4 +332,26 @@ final class SettingsViewController: UIViewController {
             
         ])
     }
+    
+//    var count = timeStepper.value
+//
+//    func timerCounter() {
+//        let time = secondsToHoursMinutesSeconds(seconds: count)
+//        let timeString = makeTimeString(minutes: time.0, seconds: time.1)
+//        timeLable.text = timeString
+//    }
+//
+//    func secondsToHoursMinutesSeconds(seconds: Int) -> (Int, Int) {
+//        return (((seconds % 3600) / 60), ((seconds % 3600) % 60))
+//    }
+//
+//    func makeTimeString(minutes: Int, seconds : Int) -> String {
+//        var timeString = ""
+//        timeString += String(format: "%02d", minutes)
+//        timeString += " : "
+//        timeString += String(format: "%02d", seconds)
+//        return timeString
+//    }
+    
+    
 }
