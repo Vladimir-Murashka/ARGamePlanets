@@ -11,7 +11,7 @@ import UIKit
 final class SettingsViewController: UIViewController {
     
      let defaultsStorage: DefaultsStoragable = DefaultsStorage()
-    
+
     private lazy var imageViewBackgroundScreen: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "settingBackground")
@@ -328,7 +328,6 @@ final class SettingsViewController: UIViewController {
             quitSettingGameButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             quitSettingGameButton.heightAnchor.constraint(equalToConstant: 30),
             quitSettingGameButton.widthAnchor.constraint(equalToConstant: 30)
-            
         ])
     }
 }

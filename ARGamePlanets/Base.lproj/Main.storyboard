@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Cwt-mk-Z3t">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wVA-Pv-dMi">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -8,10 +8,72 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Start View Controller-->
+        <scene sceneID="5bZ-t4-w1y">
+            <objects>
+                <viewController id="wVA-Pv-dMi" customClass="StartViewController" customModule="ARGamePlanets" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NbC-O0-d1a">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="TLg-xg-d0y"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <segue destination="yta-AR-CgA" kind="show" identifier="login" id="7id-wP-3wx"/>
+                        <segue destination="Cwt-mk-Z3t" kind="show" identifier="startGameWithoutRegister" id="6u0-7I-vZM"/>
+                        <segue destination="g6E-nu-9CN" kind="show" identifier="singUp" id="TC5-SQ-xXv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z2F-gp-RC2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2937" y="115"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="WUf-D1-J4g">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="yta-AR-CgA" customClass="LoginViewController" customModule="ARGamePlanets" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nzH-b8-J9K">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="hWC-Gf-dra"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="W02-dq-cSO"/>
+                    <connections>
+                        <segue destination="Cwt-mk-Z3t" kind="show" identifier="gameAfterLogin" id="Oty-2G-vQQ"/>
+                        <segue destination="XEh-BY-Afv" kind="unwind" identifier="quitLogin" unwindAction="unwindSegueToMainScreenWithSegue:" id="esL-sJ-tQv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wsk-al-ocK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="XEh-BY-Afv" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-2151" y="-233"/>
+        </scene>
+        <!--Sing Up View Controller-->
+        <scene sceneID="bgv-S3-dYF">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="g6E-nu-9CN" customClass="SingUpViewController" customModule="ARGamePlanets" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gYX-aV-KEY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Cil-9z-byY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="tVS-L2-zBg"/>
+                    <connections>
+                        <segue destination="Cwt-mk-Z3t" kind="show" identifier="gameAfterSingUp" id="GBj-J1-EoT"/>
+                        <segue destination="UcS-Wv-OyX" kind="unwind" identifier="quitSingUp" unwindAction="unwindSegueToMainScreenWithSegue:" id="yyW-xf-8FI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Vn-Xy-18g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="UcS-Wv-OyX" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-2151" y="493"/>
+        </scene>
         <!--First View Controller-->
         <scene sceneID="jSz-r2-YWN">
             <objects>
-                <viewController id="Cwt-mk-Z3t" customClass="FirstViewController" customModule="ARGamePlanets" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="Cwt-mk-Z3t" customClass="FirstViewController" customModule="ARGamePlanets" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TzK-HT-vBg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -35,11 +97,13 @@
                         <outlet property="videoLayer" destination="QpH-ov-u7R" id="bKj-9d-5e1"/>
                         <segue destination="BV1-FR-VrT" kind="show" identifier="startARGameSegue" id="u0B-tM-mAE"/>
                         <segue destination="JOn-KW-DG8" kind="show" identifier="settingsScreen" id="cTr-ka-evL"/>
+                        <segue destination="zVB-gl-6Zb" kind="unwind" identifier="quitToStartViewController" unwindAction="unwindSegueToMainScreenWithSegue:" id="BfK-7g-CY8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YHB-yk-XBI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="zVB-gl-6Zb" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-610" y="115"/>
+            <point key="canvasLocation" x="-1356" y="115"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="zw3-lh-bsv">
@@ -51,6 +115,7 @@
                         <viewLayoutGuide key="safeArea" id="HqG-Gk-tq0"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
+                    <navigationItem key="navigationItem" id="gwO-5W-x2f"/>
                     <connections>
                         <segue destination="Hgi-PD-Pxx" kind="unwind" identifier="quitSettingsScreen" unwindAction="unwindSegueToMainScreenWithSegue:" id="VVb-QU-xya"/>
                     </connections>
@@ -58,7 +123,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xlu-fA-4JB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="Hgi-PD-Pxx" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="176.80000000000001" y="-540.14778325123154"/>
+            <point key="canvasLocation" x="-564" y="-544"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tXr-a1-R10">
@@ -181,6 +246,7 @@
                             <constraint firstItem="CyP-Q4-IwL" firstAttribute="centerX" secondItem="U0K-SW-4ec" secondAttribute="centerX" id="yzv-Ij-LLP"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="pN3-Qe-uae"/>
                     <connections>
                         <outlet property="aimHor" destination="CyP-Q4-IwL" id="Ziq-nH-O2C"/>
                         <outlet property="aimVert" destination="oph-lD-bhO" id="K11-YL-e6h"/>
@@ -198,9 +264,12 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
                 <exit id="dtL-1I-c0r" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="177" y="115"/>
+            <point key="canvasLocation" x="-564" y="115"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="6u0-7I-vZM"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="earth" width="1000" height="500"/>
         <image name="earthUIImage" width="785" height="785"/>

@@ -16,7 +16,7 @@ final class FirstViewController: UIViewController {
         guard segue.identifier == "quitARGameSegue" else {
             return
         }
-        
+
         guard segue.identifier == "quitSettingsScreen" else {
             return
         }
@@ -25,6 +25,19 @@ final class FirstViewController: UIViewController {
     private var videoPlayer: AVPlayer?
     private var musicPlayer: AVAudioPlayer?
     private let valueMusicSwitcher = SettingsViewController().defaultsStorage.fetchObject(type: Bool.self, for: .isMusicOn) ?? true
+    
+    private lazy var quitLoginButton: UIButton = {
+        let button = UIButton()
+        let imageQuitGameButton = UIImage(systemName: "house.circle")
+        button.setBackgroundImage(imageQuitGameButton, for: .normal)
+        button.tintColor = .black
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 15
+        button.layer.masksToBounds = true
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(quitLoginButtonPressed), for: .touchUpInside)
+        return button
+    }()
     
     private lazy var startButton: UIButton = {
         let button = UIButton()
@@ -99,6 +112,10 @@ final class FirstViewController: UIViewController {
         performSegue(withIdentifier: "startARGameSegue", sender: nil)
     }
     
+    @objc func quitLoginButtonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "quitToStartViewController", sender: nil)
+    }
+    
     private func setupViewController() {
         addSubviews()
         setupLayout()
@@ -170,6 +187,7 @@ final class FirstViewController: UIViewController {
         view.addSubview(startButton)
         view.addSubview(settingsButton)
         view.addSubview(infolevelStackView)
+        view.addSubview(quitLoginButton)
         
         
         infolevelStackView.addArrangedSubview(infolevelLableText)
@@ -191,7 +209,12 @@ final class FirstViewController: UIViewController {
             infolevelStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             infolevelStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             infolevelStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100),
-            infolevelStackView.heightAnchor.constraint(equalToConstant: 30)
+            infolevelStackView.heightAnchor.constraint(equalToConstant: 30),
+            
+            quitLoginButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            quitLoginButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            quitLoginButton.heightAnchor.constraint(equalToConstant: 30),
+            quitLoginButton.widthAnchor.constraint(equalToConstant: 30)
         ])
     }
 }
