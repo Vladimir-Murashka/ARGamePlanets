@@ -22,11 +22,12 @@
                         <segue destination="yta-AR-CgA" kind="show" identifier="login" id="7id-wP-3wx"/>
                         <segue destination="Cwt-mk-Z3t" kind="show" identifier="startGameWithoutRegister" id="6u0-7I-vZM"/>
                         <segue destination="g6E-nu-9CN" kind="show" identifier="singUp" id="TC5-SQ-xXv"/>
+                        <segue destination="Cwt-mk-Z3t" kind="show" identifier="startGameCurrentUser" id="7Y4-8s-V5W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z2F-gp-RC2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2937" y="115"/>
+            <point key="canvasLocation" x="-2940" y="81"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="WUf-D1-J4g">
@@ -268,7 +269,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6u0-7I-vZM"/>
+        <segue reference="7Y4-8s-V5W"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="earth" width="1000" height="500"/>

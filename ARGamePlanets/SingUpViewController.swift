@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseCore
+import FirebaseAuth
 
 final class SingUpViewController: UIViewController {
     
@@ -166,12 +168,32 @@ final class SingUpViewController: UIViewController {
     
     @objc
     func singUpButtonPressed() {
-        performSegue(withIdentifier: "gameAfterSingUp", sender: nil)
+        if passwordTextField.text != retypePasswordTextField.text {
+            let alertController = UIAlertController(title: "Пароли не совпадают", message: "Попробуйте еще раз", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            
+            alertController.addAction(defaultAction)
+            self.present(alertController, animated: true, completion: nil)
+        } else {
+            Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
+                
+                if error == nil {
+                    self.performSegue(withIdentifier: "gameAfterSingUp", sender: self)
+                } else {
+                    let alertController = UIAlertController(title: "Ошибка", message: error?.localizedDescription, preferredStyle: .alert)
+                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    
+                    alertController.addAction(defaultAction)
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            }
+        }
     }
     
     @objc
     func quitButtonPressed() {
         performSegue(withIdentifier: "quitSingUp", sender: nil)
+        
     }
     
     //MARK: PrivateFunc

@@ -7,6 +7,8 @@
 
 import UIKit
 import AVFoundation
+import FirebaseCore
+import FirebaseAuth
 
 final class FirstViewController: UIViewController {
     
@@ -113,9 +115,26 @@ final class FirstViewController: UIViewController {
     }
     
     @objc func quitLoginButtonPressed(_ sender: UIButton) {
-        performSegue(withIdentifier: "quitToStartViewController", sender: nil)
+        if Auth.auth().currentUser != nil {
+            AlertManager().showAlert(fromViewController: self,
+                                     title: "Внимание",
+                                     message: "Выйти из аккаунта?",
+                                     firstButtonTitle: "Выйти",
+                                     firstActionBlock: {
+                do {
+                    try Auth.auth().signOut()
+                } catch {
+                    
+                }
+                self.performSegue(withIdentifier: "quitToStartViewController", sender: nil)
+            },
+                                     secondTitleButton: "Продолжить") {
+            }
+        } else {
+            self.performSegue(withIdentifier: "quitToStartViewController", sender: nil)
+        }
     }
-    
+
     private func setupViewController() {
         addSubviews()
         setupLayout()

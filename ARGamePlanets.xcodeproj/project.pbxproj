@@ -23,6 +23,10 @@
 		22DFF652288C98A20037EEF5 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DFF651288C98A20037EEF5 /* StartViewController.swift */; };
 		22DFF654288C9BF40037EEF5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DFF653288C9BF40037EEF5 /* LoginViewController.swift */; };
 		22DFF656288C9C250037EEF5 /* SingUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DFF655288C9C250037EEF5 /* SingUpViewController.swift */; };
+		22DFF658288D741C0037EEF5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22DFF657288D741B0037EEF5 /* GoogleService-Info.plist */; };
+		22DFF65B288D75D80037EEF5 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 22DFF65A288D75D80037EEF5 /* FirebaseAnalytics */; };
+		22DFF65D288D75D80037EEF5 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 22DFF65C288D75D80037EEF5 /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		22DFF660288D858B0037EEF5 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 22DFF65F288D858B0037EEF5 /* FirebaseAuth */; };
 		22E680582881DC5600FAB2E1 /* FirstViewControllerMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 22E680572881DC5600FAB2E1 /* FirstViewControllerMusic.mp3 */; };
 		22E6805A2882D60500FAB2E1 /* contactPlanetSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 22E680592882D60500FAB2E1 /* contactPlanetSound.mp3 */; };
 		22E6C6E4287CB6450006B53B /* PlanetEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E6C6E3287CB6450006B53B /* PlanetEnum.swift */; };
@@ -46,6 +50,7 @@
 		22DFF651288C98A20037EEF5 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		22DFF653288C9BF40037EEF5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		22DFF655288C9C250037EEF5 /* SingUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUpViewController.swift; sourceTree = "<group>"; };
+		22DFF657288D741B0037EEF5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		22E680572881DC5600FAB2E1 /* FirstViewControllerMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = FirstViewControllerMusic.mp3; path = Assets.xcassets/FirstViewControllerMusic.mp3; sourceTree = "<group>"; };
 		22E680592882D60500FAB2E1 /* contactPlanetSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = contactPlanetSound.mp3; path = ../../../contactPlanetSound.mp3; sourceTree = "<group>"; };
 		22E6C6E3287CB6450006B53B /* PlanetEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetEnum.swift; sourceTree = "<group>"; };
@@ -56,6 +61,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22DFF65B288D75D80037EEF5 /* FirebaseAnalytics in Frameworks */,
+				22DFF660288D858B0037EEF5 /* FirebaseAuth in Frameworks */,
+				22DFF65D288D75D80037EEF5 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +108,7 @@
 				221CF168285F6A6A003A7329 /* Assets.xcassets */,
 				22E680572881DC5600FAB2E1 /* FirstViewControllerMusic.mp3 */,
 				22E680592882D60500FAB2E1 /* contactPlanetSound.mp3 */,
+				22DFF657288D741B0037EEF5 /* GoogleService-Info.plist */,
 			);
 			path = ARGamePlanets;
 			sourceTree = "<group>";
@@ -120,6 +129,11 @@
 			dependencies = (
 			);
 			name = ARGamePlanets;
+			packageProductDependencies = (
+				22DFF65A288D75D80037EEF5 /* FirebaseAnalytics */,
+				22DFF65C288D75D80037EEF5 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				22DFF65F288D858B0037EEF5 /* FirebaseAuth */,
+			);
 			productName = ARGamePlanets;
 			productReference = 221CF142285E6385003A7329 /* ARGamePlanets.app */;
 			productType = "com.apple.product-type.application";
@@ -148,6 +162,10 @@
 				Base,
 			);
 			mainGroup = 221CF139285E6384003A7329;
+			packageReferences = (
+				22DFF659288D75D80037EEF5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				22DFF65E288D858B0037EEF5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 221CF143285E6385003A7329 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -163,6 +181,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				221CF148285E6385003A7329 /* art.scnassets in Resources */,
+				22DFF658288D741C0037EEF5 /* GoogleService-Info.plist in Resources */,
 				221CF15F285F4E84003A7329 /* Earth.mp4 in Resources */,
 				221CF152285E6389003A7329 /* LaunchScreen.storyboard in Resources */,
 				221CF14D285E6385003A7329 /* Main.storyboard in Resources */,
@@ -412,6 +431,43 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		22DFF659288D75D80037EEF5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+		22DFF65E288D858B0037EEF5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		22DFF65A288D75D80037EEF5 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 22DFF659288D75D80037EEF5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		22DFF65C288D75D80037EEF5 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 22DFF659288D75D80037EEF5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		22DFF65F288D858B0037EEF5 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 22DFF659288D75D80037EEF5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 221CF13A285E6384003A7329 /* Project object */;
 }

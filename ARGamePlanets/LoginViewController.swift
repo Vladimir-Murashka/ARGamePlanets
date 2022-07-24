@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseCore
+import FirebaseAuth
 
 final class LoginViewController: UIViewController {
     
@@ -133,7 +135,20 @@ final class LoginViewController: UIViewController {
     
     @objc
     func loginButtonPressed() {
-        performSegue(withIdentifier: "gameAfterLogin", sender: nil)
+        
+        Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
+            if error == nil{
+                self.performSegue(withIdentifier: "gameAfterLogin", sender: self)
+            }
+            else{
+                let alertController = UIAlertController(title: "Ошибка", message: error?.localizedDescription, preferredStyle: .alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                
+                alertController.addAction(defaultAction)
+                self.present(alertController, animated: true, completion: nil)
+            }
+        }
+        
     }
     
     @objc
