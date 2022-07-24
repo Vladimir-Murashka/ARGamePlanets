@@ -15,13 +15,13 @@ final class FirstViewController: UIViewController {
     @IBOutlet private weak var videoLayer: UIView!
 
     @IBAction func unwindSegueToMainScreen(segue: UIStoryboardSegue) {
-        guard segue.identifier == "quitARGameSegue" else {
-            return
-        }
-
-        guard segue.identifier == "quitSettingsScreen" else {
-            return
-        }
+//        guard segue.identifier == "quitARGameSegue" else {
+//            return
+//        }
+//
+//        guard segue.identifier == "quitSettingsScreen" else {
+//            return
+//        }
     }
     
     private var videoPlayer: AVPlayer?
@@ -33,7 +33,6 @@ final class FirstViewController: UIViewController {
         let imageQuitGameButton = UIImage(systemName: "house.circle")
         button.setBackgroundImage(imageQuitGameButton, for: .normal)
         button.tintColor = .black
-        button.backgroundColor = .white
         button.layer.cornerRadius = 15
         button.layer.masksToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -41,16 +40,28 @@ final class FirstViewController: UIViewController {
         return button
     }()
     
-    private lazy var startButton: UIButton = {
+    private lazy var startQuickGameButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Начать", for: .normal)
+        button.setTitle("Быстрая игра", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 30)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .black
         button.layer.cornerRadius = 12
         button.layer.masksToBounds = true
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(startButtonPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(startQuickGameButtonPressed), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var missionStartGameButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Миссия", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 30)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .black
+        button.layer.cornerRadius = 12
+        button.layer.masksToBounds = true
+        //button.alpha = 0.5
+        button.addTarget(self, action: #selector(missionStartGameButtonPressed), for: .touchUpInside)
         return button
     }()
     
@@ -99,10 +110,19 @@ final class FirstViewController: UIViewController {
         return stackView
     }()
     
+    private lazy var commonButtonsStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 12
+        stackView.alignment = .fill
+        stackView.distribution = .equalSpacing
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewController()
-        
     }
     
     @objc func settingsButtonPressed(_ sender: UIButton) {
@@ -110,7 +130,7 @@ final class FirstViewController: UIViewController {
         
     }
     
-    @objc func startButtonPressed(_ sender: UIButton) {
+    @objc func startQuickGameButtonPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "startARGameSegue", sender: nil)
     }
     
@@ -134,6 +154,10 @@ final class FirstViewController: UIViewController {
             self.performSegue(withIdentifier: "quitToStartViewController", sender: nil)
         }
     }
+    
+    @objc func missionStartGameButtonPressed(_ sender: UIButton) {
+        
+    }
 
     private func setupViewController() {
         addSubviews()
@@ -141,12 +165,23 @@ final class FirstViewController: UIViewController {
         makePlayerLayer()
         videoPlayer?.play()
         playSound()
+        changeBackgroundColorQuitLoginButton()
         
         //TODO - Наблюдатель или что-то подобное. Настройки музыки принимаются после перезапуска View что логично...
         if valueMusicSwitcher == true {
             musicPlayer?.play()
         } else {
             musicPlayer?.pause()
+        }
+    }
+    
+    private func changeBackgroundColorQuitLoginButton() {
+        if Auth.auth().currentUser != nil {
+            missionStartGameButton.alpha = 1
+            quitLoginButton.backgroundColor = .green
+        } else {
+            missionStartGameButton.alpha = 0.5
+            quitLoginButton.backgroundColor = .white
         }
     }
     
@@ -203,11 +238,15 @@ final class FirstViewController: UIViewController {
     }
     
     private func addSubviews() {
-        view.addSubview(startButton)
+        view.addSubview(startQuickGameButton)
+        view.addSubview(missionStartGameButton)
         view.addSubview(settingsButton)
         view.addSubview(infolevelStackView)
         view.addSubview(quitLoginButton)
+        view.addSubview(commonButtonsStackView)
         
+        commonButtonsStackView.addArrangedSubview(missionStartGameButton)
+        commonButtonsStackView.addArrangedSubview(startQuickGameButton)
         
         infolevelStackView.addArrangedSubview(infolevelLableText)
         infolevelStackView.addArrangedSubview(infolevelLableValue)
@@ -218,16 +257,16 @@ final class FirstViewController: UIViewController {
             infolevelLableText.widthAnchor.constraint(greaterThanOrEqualToConstant: 200),
             infolevelLableValue.widthAnchor.constraint(greaterThanOrEqualToConstant: 30),
             
-            startButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            startButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            startButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
+            commonButtonsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            commonButtonsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            commonButtonsStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
             
             settingsButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             settingsButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             
             infolevelStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             infolevelStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            infolevelStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100),
+            infolevelStackView.bottomAnchor.constraint(equalTo: commonButtonsStackView.topAnchor, constant: -20),
             infolevelStackView.heightAnchor.constraint(equalToConstant: 30),
             
             quitLoginButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),

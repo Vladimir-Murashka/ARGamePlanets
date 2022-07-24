@@ -231,7 +231,6 @@ final class SettingsViewController: UIViewController {
     
     @objc func vibrationSwitcherChange(_ sender: UISwitch) {
         defaultsStorage.saveObject(sender.isOn, for: .isVibrationOn)
-        
     }
     
     @objc func soundEffectsSwitcherChenge(_ sender: UISwitch) {

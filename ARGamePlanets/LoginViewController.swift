@@ -188,8 +188,8 @@ final class LoginViewController: UIViewController {
             imageViewBackgroundScreen.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             imageViewBackgroundScreen.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
             
-            emailTextField.heightAnchor.constraint(equalToConstant: 25),
-            passwordTextField.heightAnchor.constraint(equalToConstant: 25),
+            emailTextField.heightAnchor.constraint(equalToConstant: 30),
+            passwordTextField.heightAnchor.constraint(equalToConstant: 30),
             
             loginButton.widthAnchor.constraint(equalToConstant: 100),
             loginButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor, constant: 0),

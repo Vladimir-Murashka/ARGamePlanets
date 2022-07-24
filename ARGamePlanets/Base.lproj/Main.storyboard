@@ -27,7 +27,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z2F-gp-RC2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2940" y="81"/>
+            <point key="canvasLocation" x="-2937" y="81"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="WUf-D1-J4g">
@@ -48,7 +48,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wsk-al-ocK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="XEh-BY-Afv" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-2151" y="-233"/>
+            <point key="canvasLocation" x="-2151" y="-274"/>
         </scene>
         <!--Sing Up View Controller-->
         <scene sceneID="bgv-S3-dYF">
@@ -69,7 +69,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Vn-Xy-18g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="UcS-Wv-OyX" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-2151" y="493"/>
+            <point key="canvasLocation" x="-2151" y="455"/>
         </scene>
         <!--First View Controller-->
         <scene sceneID="jSz-r2-YWN">
@@ -104,7 +104,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YHB-yk-XBI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="zVB-gl-6Zb" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-1356" y="115"/>
+            <point key="canvasLocation" x="-1362" y="115"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="zw3-lh-bsv">
@@ -269,7 +269,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="7Y4-8s-V5W"/>
+        <segue reference="Oty-2G-vQQ"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="earth" width="1000" height="500"/>
