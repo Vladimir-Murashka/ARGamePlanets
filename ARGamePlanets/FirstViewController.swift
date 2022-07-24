@@ -15,6 +15,12 @@ final class FirstViewController: UIViewController {
     @IBOutlet private weak var videoLayer: UIView!
 
     @IBAction func unwindSegueToMainScreen(segue: UIStoryboardSegue) {
+        
+        guard let sourseFirstViewController = segue.source as? SettingsViewController else {
+            return
+        }
+        self.infolevelLableValue.text = sourseFirstViewController.levelLable.text
+        self.timeLable.text = sourseFirstViewController.timeLable.text
 //        guard segue.identifier == "quitARGameSegue" else {
 //            return
 //        }
@@ -78,6 +84,28 @@ final class FirstViewController: UIViewController {
         return button
     }()
     
+    private lazy var infoTimeLable: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .white
+        label.layer.cornerRadius = 8
+        label.layer.masksToBounds = true
+        label.text = "Время раунда"
+        label.backgroundColor = .black
+        return label
+    }()
+    
+    lazy var timeLable: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .white
+        label.layer.cornerRadius = 8
+        label.layer.masksToBounds = true
+        label.text = SettingsViewController().timeLable.text
+        label.backgroundColor = .black
+        return label
+    }()
+    
     lazy var infolevelLableText: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -106,6 +134,23 @@ final class FirstViewController: UIViewController {
         stackView.spacing = 12
         stackView.alignment = .fill
         stackView.distribution = .equalSpacing
+        return stackView
+    }()
+    
+    private lazy var timeStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 2
+        stackView.alignment = .fill
+        stackView.distribution = .equalSpacing
+        return stackView
+    }()
+    
+    private lazy var commonInfoStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 12
+        stackView.alignment = .fill
+        stackView.distribution = .equalSpacing
+        stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -244,12 +289,23 @@ final class FirstViewController: UIViewController {
         view.addSubview(infolevelStackView)
         view.addSubview(quitLoginButton)
         view.addSubview(commonButtonsStackView)
+        view.addSubview(infoTimeLable)
+        view.addSubview(timeLable)
+        view.addSubview(timeStackView)
+        view.addSubview(commonInfoStackView)
+        
+        timeStackView.addArrangedSubview(infoTimeLable)
+        timeStackView.addArrangedSubview(timeLable)
+        
+        infolevelStackView.addArrangedSubview(infolevelLableText)
+        infolevelStackView.addArrangedSubview(infolevelLableValue)
+        
+        commonInfoStackView.addArrangedSubview(timeStackView)
+        commonInfoStackView.addArrangedSubview(infolevelStackView)
         
         commonButtonsStackView.addArrangedSubview(missionStartGameButton)
         commonButtonsStackView.addArrangedSubview(startQuickGameButton)
         
-        infolevelStackView.addArrangedSubview(infolevelLableText)
-        infolevelStackView.addArrangedSubview(infolevelLableValue)
     }
     
     private func setupLayout() {
@@ -257,17 +313,23 @@ final class FirstViewController: UIViewController {
             infolevelLableText.widthAnchor.constraint(greaterThanOrEqualToConstant: 200),
             infolevelLableValue.widthAnchor.constraint(greaterThanOrEqualToConstant: 30),
             
+            infoTimeLable.widthAnchor.constraint(greaterThanOrEqualToConstant: 200),
+            timeLable.widthAnchor.constraint(greaterThanOrEqualToConstant: 60),
+            
             commonButtonsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             commonButtonsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             commonButtonsStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
             
             settingsButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             settingsButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+        
+            timeStackView.heightAnchor.constraint(equalToConstant: 30),
             
-            infolevelStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            infolevelStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            infolevelStackView.bottomAnchor.constraint(equalTo: commonButtonsStackView.topAnchor, constant: -20),
             infolevelStackView.heightAnchor.constraint(equalToConstant: 30),
+            
+            commonInfoStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            commonInfoStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            commonInfoStackView.bottomAnchor.constraint(equalTo: commonButtonsStackView.topAnchor, constant: -20),
             
             quitLoginButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             quitLoginButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
