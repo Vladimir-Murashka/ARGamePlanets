@@ -14,9 +14,7 @@ protocol DefaultsStoragable {
 }
 
 final class DefaultsStorage {
-    
     private let defaults = UserDefaults.standard
-    
 }
 
 extension DefaultsStorage: DefaultsStoragable {
