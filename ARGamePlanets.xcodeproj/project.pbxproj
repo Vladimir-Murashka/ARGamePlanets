@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		221CF146285E6385003A7329 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221CF145285E6385003A7329 /* AppDelegate.swift */; };
 		221CF148285E6385003A7329 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 221CF147285E6385003A7329 /* art.scnassets */; };
 		221CF14A285E6385003A7329 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221CF149285E6385003A7329 /* ViewController.swift */; };
 		221CF14D285E6385003A7329 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 221CF14B285E6385003A7329 /* Main.storyboard */; };
@@ -27,6 +26,7 @@
 		22DFF65B288D75D80037EEF5 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 22DFF65A288D75D80037EEF5 /* FirebaseAnalytics */; };
 		22DFF65D288D75D80037EEF5 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 22DFF65C288D75D80037EEF5 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		22DFF660288D858B0037EEF5 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 22DFF65F288D858B0037EEF5 /* FirebaseAuth */; };
+		22DFF662288F4AE80037EEF5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DFF661288F4AE80037EEF5 /* AppDelegate.swift */; };
 		22E680582881DC5600FAB2E1 /* FirstViewControllerMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 22E680572881DC5600FAB2E1 /* FirstViewControllerMusic.mp3 */; };
 		22E6805A2882D60500FAB2E1 /* contactPlanetSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 22E680592882D60500FAB2E1 /* contactPlanetSound.mp3 */; };
 		22E6C6E4287CB6450006B53B /* PlanetEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E6C6E3287CB6450006B53B /* PlanetEnum.swift */; };
@@ -34,7 +34,6 @@
 
 /* Begin PBXFileReference section */
 		221CF142285E6385003A7329 /* ARGamePlanets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARGamePlanets.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		221CF145285E6385003A7329 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		221CF147285E6385003A7329 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		221CF149285E6385003A7329 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		221CF14C285E6385003A7329 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -51,6 +50,7 @@
 		22DFF653288C9BF40037EEF5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		22DFF655288C9C250037EEF5 /* SingUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUpViewController.swift; sourceTree = "<group>"; };
 		22DFF657288D741B0037EEF5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		22DFF661288F4AE80037EEF5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22E680572881DC5600FAB2E1 /* FirstViewControllerMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = FirstViewControllerMusic.mp3; path = Assets.xcassets/FirstViewControllerMusic.mp3; sourceTree = "<group>"; };
 		22E680592882D60500FAB2E1 /* contactPlanetSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = contactPlanetSound.mp3; path = ../../../contactPlanetSound.mp3; sourceTree = "<group>"; };
 		22E6C6E3287CB6450006B53B /* PlanetEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetEnum.swift; sourceTree = "<group>"; };
@@ -89,8 +89,8 @@
 		221CF144285E6385003A7329 /* ARGamePlanets */ = {
 			isa = PBXGroup;
 			children = (
-				221CF145285E6385003A7329 /* AppDelegate.swift */,
 				221CF147285E6385003A7329 /* art.scnassets */,
+				22DFF661288F4AE80037EEF5 /* AppDelegate.swift */,
 				22DFF651288C98A20037EEF5 /* StartViewController.swift */,
 				22DFF653288C9BF40037EEF5 /* LoginViewController.swift */,
 				22DFF655288C9C250037EEF5 /* SingUpViewController.swift */,
@@ -198,6 +198,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22DFF662288F4AE80037EEF5 /* AppDelegate.swift in Sources */,
 				22E6C6E4287CB6450006B53B /* PlanetEnum.swift in Sources */,
 				22DFF652288C98A20037EEF5 /* StartViewController.swift in Sources */,
 				223C8E35286E501900A2782A /* SettingsViewController.swift in Sources */,
@@ -206,7 +207,6 @@
 				223C8E37286F0D7600A2782A /* AlertManager.swift in Sources */,
 				221CF14A285E6385003A7329 /* ViewController.swift in Sources */,
 				22DFF64E288AF9E50037EEF5 /* TimerManager.swift in Sources */,
-				221CF146285E6385003A7329 /* AppDelegate.swift in Sources */,
 				22DFF64A2889A4410037EEF5 /* DefaultsStorageManager.swift in Sources */,
 				22DFF656288C9C250037EEF5 /* SingUpViewController.swift in Sources */,
 				22DFF654288C9BF40037EEF5 /* LoginViewController.swift in Sources */,

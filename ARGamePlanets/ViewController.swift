@@ -160,6 +160,7 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
             message: "Время истекло",
             firstButtonTitle: "Попробовать еще раз",
             firstActionBlock: {
+                
             //TODO: - обновить ViewConroller
             },
             secondTitleButton: "Выйти") {

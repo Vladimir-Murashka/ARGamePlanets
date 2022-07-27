@@ -324,12 +324,12 @@ final class FirstViewController: UIViewController {
             settingsButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
         
             timeStackView.heightAnchor.constraint(equalToConstant: 30),
-            
             infolevelStackView.heightAnchor.constraint(equalToConstant: 30),
             
             commonInfoStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             commonInfoStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             commonInfoStackView.bottomAnchor.constraint(equalTo: commonButtonsStackView.topAnchor, constant: -20),
+            
             
             quitLoginButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             quitLoginButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
