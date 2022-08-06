@@ -160,7 +160,15 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
             message: "Время истекло",
             firstButtonTitle: "Попробовать еще раз",
             firstActionBlock: {
-                
+                self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+                    node.removeFromParentNode() }
+                self.addPlanets()
+                self.timerLable.text = SettingsViewController().timeLable.text
+                self.reloadTimer()
+                self.startStopTimer()
+                self.startStopTimer()
+                self.counter = 0
+                self.numberOfPlanetsOflabel.text = "\(self.counter)"
             //TODO: - обновить ViewConroller
             },
             secondTitleButton: "Выйти") {
@@ -336,6 +344,10 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
     private var count = SettingsViewController().timeStepper.value
     private var timerCounting = false
 
+    private func reloadTimer() {
+        count = SettingsViewController().timeStepper.value
+    }
+    
     private func startStopTimer() {
         if(timerCounting)
         {

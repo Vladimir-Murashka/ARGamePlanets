@@ -27,7 +27,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z2F-gp-RC2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2937" y="81"/>
+            <point key="canvasLocation" x="-2932" y="86"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="WUf-D1-J4g">
@@ -69,7 +69,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Vn-Xy-18g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="UcS-Wv-OyX" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-2151" y="455"/>
+            <point key="canvasLocation" x="-2151" y="517"/>
         </scene>
         <!--First View Controller-->
         <scene sceneID="jSz-r2-YWN">
@@ -269,7 +269,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Oty-2G-vQQ"/>
+        <segue reference="6u0-7I-vZM"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="earth" width="1000" height="500"/>

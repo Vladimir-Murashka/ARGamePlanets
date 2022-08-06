@@ -80,17 +80,6 @@ final class StartViewController: UIViewController {
     
     @IBAction func unwindSegueToMainScreen(segue: UIStoryboardSegue) {
         
-        guard segue.identifier == "quitLogin" else {
-            return
-        }
-        
-        guard segue.identifier == "quitSingUp" else {
-            return
-        }
-        
-        guard segue.identifier == "quitToStartViewController" else {
-            return
-        }
     }
 
     //MARK: @objcFunc
