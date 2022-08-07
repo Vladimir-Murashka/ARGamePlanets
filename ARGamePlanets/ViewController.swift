@@ -169,7 +169,6 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
                 self.startStopTimer()
                 self.counter = 0
                 self.numberOfPlanetsOflabel.text = "\(self.counter)"
-            //TODO: - обновить ViewConroller
             },
             secondTitleButton: "Выйти") {
                 self.performSegue(withIdentifier: "quitARGameSegue", sender: nil)
