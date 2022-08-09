@@ -11,6 +11,7 @@ import ARKit
 
 final class ViewController: UIViewController, ARSCNViewDelegate {
     
+    //MARK: IBOutlets
     @IBOutlet private weak var sceneView: ARSCNView!
     @IBOutlet private weak var aimVert: UIView!
     @IBOutlet private weak var aimHor: UIView!
@@ -23,14 +24,7 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet private weak var moonButton: UIButton!
     @IBOutlet private weak var neptuneButton: UIButton!
     
-    private let valueSoundEffectsSwitcher = SettingsViewController().defaultsStorage.fetchObject(type: Bool.self, for: .isSoundEffect) ?? true
-    private let valueVibrationSwitcher = SettingsViewController().defaultsStorage.fetchObject(type: Bool.self, for: .isVibrationOn) ?? true
-    private var audioPlayer = AVAudioPlayer()
-    private var selectPlanet: Planet = .earth
-    private var numberOfPlanets = Int(SettingsViewController().levelStepper.value)
-    private let numberOfPlanetsTypes = 6
-    private var counter = 0
-    
+    //MARK: SubViews
     private lazy var timerLable: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -106,7 +100,19 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
         return button
     }()
 
-    // Базовые функции
+    //MARK: PrivateProperties
+    private let valueSoundEffectsSwitcher = SettingsViewController().defaultsStorage.fetchObject(type: Bool.self, for: .isSoundEffect) ?? true
+    private let valueVibrationSwitcher = SettingsViewController().defaultsStorage.fetchObject(type: Bool.self, for: .isVibrationOn) ?? true
+    private var audioPlayer = AVAudioPlayer()
+    private var selectPlanet: Planet = .earth
+    private var numberOfPlanets = Int(SettingsViewController().levelStepper.value)
+    private let numberOfPlanetsTypes = 6
+    private var counter = 0
+    private var timer = Timer()
+    private var count = SettingsViewController().timeStepper.value
+    private var timerCounting = false
+
+    //MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewController()
@@ -123,6 +129,13 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.pause()
     }
     
+    //MARK: OverrideMethods
+    // запуск при косании к экрану
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        fire(planet: selectPlanet)
+    }
+    
+    //MARK: IBActions
     @IBAction func didTapPlanetButton(_ sender: UIButton) {
         let planetButtons = [
             earthButton,
@@ -153,6 +166,39 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
         }
     }
     
+    //MARK: @objcFunc
+    @objc func quitGameButtonPressed(_ sender: UIButton) {
+        sceneView.session.pause()
+        startStopTimer()
+        AlertManager().showAlert(
+            fromViewController: self,
+            title: "Вы хотите выйти?",
+            message: "Прогресс не будет сохранен!",
+            firstButtonTitle: "Покинуть игру",
+            firstActionBlock: {
+                self.performSegue(withIdentifier: "quitARGameSegue", sender: nil)
+                
+            },
+            secondTitleButton: "Продолжить") { [weak self] in
+                let configuration = ARWorldTrackingConfiguration()
+                self?.sceneView.session.run(configuration)
+                self?.startStopTimer()
+            }
+    }
+    
+    @objc func timerCounter() {
+        count -=  1
+        let time = secondsToHoursMinutesSeconds(seconds: Int(count))
+        let timeString = makeTimeString(minutes: time.0, seconds: time.1)
+        timerLable.text = timeString
+        
+        if count == 0 {
+            timer.invalidate()
+            delayedAction()
+        }
+    }
+    
+    //MARK: PrivateFunc
     private func delayedAction() {
         AlertManager().showAlert(
             fromViewController: self,
@@ -174,64 +220,9 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
                 self.performSegue(withIdentifier: "quitARGameSegue", sender: nil)
             }
     }
-    
-    @objc func quitGameButtonPressed(_ sender: UIButton) {
-        sceneView.session.pause()
-        startStopTimer()
-        AlertManager().showAlert(
-            fromViewController: self,
-            title: "Вы хотите выйти?",
-            message: "Прогресс не будет сохранен!",
-            firstButtonTitle: "Покинуть игру",
-            firstActionBlock: {
-                self.performSegue(withIdentifier: "quitARGameSegue", sender: nil)
-                
-            },
-            secondTitleButton: "Продолжить") { [weak self] in
-                let configuration = ARWorldTrackingConfiguration()
-                self?.sceneView.session.run(configuration)
-                self?.startStopTimer()
-            }
-    }
-    
-    private func setupViewController() {
-        sceneView.delegate = self
-        sceneView.scene.physicsWorld.contactDelegate = self
-        startStopTimer()
-        addPlanets()
-        
-        view.addSubview(commonTopStackView)
-        view.addSubview(timerLable)
-        view.addSubview(quitGameButton)
-        view.addSubview(numbersOfPlanetsStackView)
-        
-        numbersOfPlanetsStackView.addArrangedSubview(numberOfPlanetsOflabel)
-        numbersOfPlanetsStackView.addArrangedSubview(separatorNumbersOfPlanetsLabel)
-        numbersOfPlanetsStackView.addArrangedSubview(totalNumberOfPlanetsLabel)
-        
-        commonTopStackView.addArrangedSubview(quitGameButton)
-        commonTopStackView.addArrangedSubview(timerLable)
-        commonTopStackView.addArrangedSubview(numbersOfPlanetsStackView)
-        
-        NSLayoutConstraint.activate([
-            quitGameButton.heightAnchor.constraint(equalToConstant: 30),
-            quitGameButton.widthAnchor.constraint(equalToConstant: 30),
-            
-            numbersOfPlanetsStackView.heightAnchor.constraint(equalToConstant: 30),
-            numberOfPlanetsOflabel.widthAnchor.constraint(equalToConstant: 30),
-            totalNumberOfPlanetsLabel.widthAnchor.constraint(equalToConstant: 30),
-    
-            timerLable.widthAnchor.constraint(equalToConstant: 80),
-            timerLable.heightAnchor.constraint(equalToConstant: 30),
-            
-            commonTopStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            commonTopStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            commonTopStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16)
-        ])
-    }
+
     // Добавление планет каждого типа.
     private func addPlanets() {
-        
         let planets = Planet.allCases
         for planet in planets {
             addRandomPisitionPlanet(number: numberOfPlanets, planet: planet)
@@ -309,18 +300,14 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
         }
         return (SCNVector3(0, 0, -1), SCNVector3(0, 0, -0.2))
     }
-    // запуск при косании к экрану
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        fire(planet: selectPlanet)
-    }
     
     private func playEffects(named: String) {
+        //TODO: Извлечение опционала, с упорством идиота не пойму.
         let pianoSound = URL(fileURLWithPath: Bundle.main.path(forResource: named, ofType: "mp3")!)
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: pianoSound)
             audioPlayer.play()
         } catch {
-            
         }
     }
     
@@ -339,10 +326,6 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     // TODO: - Таймер вынести в менеджер, пока не пойму как передать label в @objc метод.
-    private var timer = Timer()
-    private var count = SettingsViewController().timeStepper.value
-    private var timerCounting = false
-
     private func reloadTimer() {
         count = SettingsViewController().timeStepper.value
     }
@@ -359,19 +342,7 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerCounter), userInfo: nil, repeats: true)
         }
     }
-    
-    @objc func timerCounter() {
-        count -=  1
-        let time = secondsToHoursMinutesSeconds(seconds: Int(count))
-        let timeString = makeTimeString(minutes: time.0, seconds: time.1)
-        timerLable.text = timeString
-        
-        if count == 0 {
-            timer.invalidate()
-            delayedAction()
-        }
-    }
-    
+
     private func secondsToHoursMinutesSeconds(seconds: Int) -> (Int, Int) {
         return (((seconds % 3600) / 60), ((seconds % 3600) % 60))
     }
@@ -383,6 +354,49 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
         timeString += String(format: "%02d", seconds)
         return timeString
     }
+
+    private func setupViewController() {
+        sceneView.delegate = self
+        sceneView.scene.physicsWorld.contactDelegate = self
+        addSubviews()
+        setupLayout()
+        startStopTimer()
+        addPlanets()
+    }
+    
+    private func addSubviews() {
+        view.addSubview(commonTopStackView)
+        view.addSubview(timerLable)
+        view.addSubview(quitGameButton)
+        view.addSubview(numbersOfPlanetsStackView)
+        
+        numbersOfPlanetsStackView.addArrangedSubview(numberOfPlanetsOflabel)
+        numbersOfPlanetsStackView.addArrangedSubview(separatorNumbersOfPlanetsLabel)
+        numbersOfPlanetsStackView.addArrangedSubview(totalNumberOfPlanetsLabel)
+        
+        commonTopStackView.addArrangedSubview(quitGameButton)
+        commonTopStackView.addArrangedSubview(timerLable)
+        commonTopStackView.addArrangedSubview(numbersOfPlanetsStackView)
+    }
+    
+    private func setupLayout() {
+        NSLayoutConstraint.activate([
+            quitGameButton.heightAnchor.constraint(equalToConstant: 30),
+            quitGameButton.widthAnchor.constraint(equalToConstant: 30),
+            
+            numbersOfPlanetsStackView.heightAnchor.constraint(equalToConstant: 30),
+            numberOfPlanetsOflabel.widthAnchor.constraint(equalToConstant: 30),
+            totalNumberOfPlanetsLabel.widthAnchor.constraint(equalToConstant: 30),
+    
+            timerLable.widthAnchor.constraint(equalToConstant: 80),
+            timerLable.heightAnchor.constraint(equalToConstant: 30),
+            
+            commonTopStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            commonTopStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            commonTopStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16)
+        ])
+    }
+    
 }
 
 // обработка столкновений
@@ -392,7 +406,7 @@ extension ViewController: SCNPhysicsContactDelegate{
             DispatchQueue.main.async {
                 contact.nodeA.removeFromParentNode()
                 contact.nodeB.removeFromParentNode()
-                //TODO: - переодически счетчик +2... как то связано с муз. эффектами, без них работает.
+                //TODO: - переодически счетчик +2... как то связано с муз. эффектами, без них работает исправно.
                 self.counter += 1
                 self.numberOfPlanetsOflabel.text = "\(self.counter)"
                 if self.counter == self.numberOfPlanets * self.numberOfPlanetsTypes {

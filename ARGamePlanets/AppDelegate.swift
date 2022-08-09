@@ -4,6 +4,27 @@
 //
 //  Created by Swift Learning on 18.06.2022.
 //
+//MARK: IBOutlets
+
+//MARK: SubViews
+
+//MARK: PublicProperties
+
+//MARK: PrivateProperties
+
+//MARK: Initializers
+
+//MARK: LifeCycle
+
+//MARK: OverrideMethods
+
+//MARK: IBActions
+
+//MARK: @objcFunc
+
+//MARK: PublicFunc
+
+//MARK: PrivateFunc
 
 import UIKit
 import FirebaseCore

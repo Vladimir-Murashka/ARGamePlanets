@@ -27,7 +27,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z2F-gp-RC2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2932" y="86"/>
+            <point key="canvasLocation" x="-2934" y="150"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="WUf-D1-J4g">
@@ -69,7 +69,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Vn-Xy-18g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="UcS-Wv-OyX" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-2151" y="517"/>
+            <point key="canvasLocation" x="-2151" y="574"/>
         </scene>
         <!--First View Controller-->
         <scene sceneID="jSz-r2-YWN">
@@ -124,7 +124,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xlu-fA-4JB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="Hgi-PD-Pxx" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-564" y="-544"/>
+            <point key="canvasLocation" x="-578" y="-547"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tXr-a1-R10">
@@ -265,11 +265,11 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
                 <exit id="dtL-1I-c0r" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-564" y="115"/>
+            <point key="canvasLocation" x="646" y="115"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6u0-7I-vZM"/>
+        <segue reference="7Y4-8s-V5W"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="earth" width="1000" height="500"/>

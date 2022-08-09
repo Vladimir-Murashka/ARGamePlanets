@@ -15,7 +15,6 @@ enum Planet: String, CaseIterable {
     case moon
     case neptune
     
-    
     var image: UIImage? {
         switch self {
         case .earth:

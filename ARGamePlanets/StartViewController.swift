@@ -77,13 +77,11 @@ final class StartViewController: UIViewController {
     }
     
     //MARK: @IBAction
-    
+    //TODO: Перепроверить, необходимо ли оставлять пустой Action.
     @IBAction func unwindSegueToMainScreen(segue: UIStoryboardSegue) {
-        
     }
-
-    //MARK: @objcFunc
     
+    //MARK: @objcFunc
     @objc
     func startButtonWithoutRegisterPressed() {
         performSegue(withIdentifier: "startGameWithoutRegister", sender: nil)
@@ -115,7 +113,6 @@ final class StartViewController: UIViewController {
     }
     
     private func setupLayout() {
-        
         NSLayoutConstraint.activate([
             imageViewBackgroundScreen.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
             imageViewBackgroundScreen.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
