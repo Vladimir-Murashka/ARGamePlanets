@@ -27,7 +27,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z2F-gp-RC2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2937" y="81"/>
+            <point key="canvasLocation" x="-2940" y="115"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="WUf-D1-J4g">
@@ -69,7 +69,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Vn-Xy-18g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="UcS-Wv-OyX" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-2151" y="455"/>
+            <point key="canvasLocation" x="-2151" y="574"/>
         </scene>
         <!--First View Controller-->
         <scene sceneID="jSz-r2-YWN">
@@ -96,15 +96,36 @@
                     <navigationItem key="navigationItem" id="HUQ-ys-ZlQ"/>
                     <connections>
                         <outlet property="videoLayer" destination="QpH-ov-u7R" id="bKj-9d-5e1"/>
-                        <segue destination="BV1-FR-VrT" kind="show" identifier="startARGameSegue" id="u0B-tM-mAE"/>
                         <segue destination="JOn-KW-DG8" kind="show" identifier="settingsScreen" id="cTr-ka-evL"/>
                         <segue destination="zVB-gl-6Zb" kind="unwind" identifier="quitToStartViewController" unwindAction="unwindSegueToMainScreenWithSegue:" id="BfK-7g-CY8"/>
+                        <segue destination="7JD-Oa-iDM" kind="show" identifier="startQuickARGameSegue" id="twY-HO-Ypj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YHB-yk-XBI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="zVB-gl-6Zb" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-1362" y="115"/>
+        </scene>
+        <!--Quick Game Settings View Controller-->
+        <scene sceneID="dPg-5Q-DGz">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="7JD-Oa-iDM" customClass="QuickGameSettingsViewController" customModule="ARGamePlanets" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="c7y-05-a6I">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="I3a-du-dLh"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="You-Nw-Asd"/>
+                    <connections>
+                        <segue destination="BV1-FR-VrT" kind="show" identifier="startARGameSegue" id="jyK-2Y-Bbf"/>
+                        <segue destination="axI-xr-3nX" kind="unwind" identifier="quitStartQuickARGameSegue" unwindAction="unwindSegueToMainScreenWithSegue:" id="Sq0-zK-COc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9IP-c0-DDa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="axI-xr-3nX" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-578" y="115"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="zw3-lh-bsv">
@@ -124,7 +145,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xlu-fA-4JB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="Hgi-PD-Pxx" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-564" y="-544"/>
+            <point key="canvasLocation" x="-578" y="-547"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tXr-a1-R10">
@@ -151,13 +172,6 @@
                                     <constraint firstAttribute="height" constant="1" id="qeE-Kn-YOE"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="earth" translatesAutoresizingMaskIntoConstraints="NO" id="TRs-fj-8PQ" userLabel="changeFlag">
-                                <rect key="frame" x="335" y="44" width="1" height="1"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="1" id="E2X-Kx-mRX"/>
-                                    <constraint firstAttribute="height" constant="1" id="nM2-th-lhx"/>
-                                </constraints>
-                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="MFH-4V-VNn">
                                 <rect key="frame" x="16" y="727.66666666666663" width="343" height="50.333333333333371"/>
                                 <subviews>
@@ -239,11 +253,9 @@
                             <constraint firstAttribute="bottom" secondItem="BrB-h1-WRS" secondAttribute="bottom" id="be5-WO-Fge"/>
                             <constraint firstItem="MFH-4V-VNn" firstAttribute="bottom" secondItem="fQZ-KI-GVf" secondAttribute="bottom" id="dWH-uk-pjj"/>
                             <constraint firstItem="CyP-Q4-IwL" firstAttribute="centerY" secondItem="U0K-SW-4ec" secondAttribute="centerY" constant="-2" id="jF1-0R-vsh"/>
-                            <constraint firstItem="fQZ-KI-GVf" firstAttribute="trailing" secondItem="TRs-fj-8PQ" secondAttribute="trailing" constant="39" id="kcW-lm-gWV"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="nY8-O9-Oe7"/>
                             <constraint firstItem="MFH-4V-VNn" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="16" id="ohz-H2-hIV"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="top" secondItem="U0K-SW-4ec" secondAttribute="top" id="q3l-je-vV5"/>
-                            <constraint firstItem="TRs-fj-8PQ" firstAttribute="top" secondItem="fQZ-KI-GVf" secondAttribute="top" id="xXh-LX-rYn"/>
                             <constraint firstItem="CyP-Q4-IwL" firstAttribute="centerX" secondItem="U0K-SW-4ec" secondAttribute="centerX" id="yzv-Ij-LLP"/>
                         </constraints>
                     </view>
@@ -251,7 +263,6 @@
                     <connections>
                         <outlet property="aimHor" destination="CyP-Q4-IwL" id="Ziq-nH-O2C"/>
                         <outlet property="aimVert" destination="oph-lD-bhO" id="K11-YL-e6h"/>
-                        <outlet property="changeFlag" destination="TRs-fj-8PQ" id="i0A-Qr-fVa"/>
                         <outlet property="earthButton" destination="fsj-DD-N7J" id="yA7-j1-W45"/>
                         <outlet property="jupiterButton" destination="605-ci-53E" id="fiN-my-jgH"/>
                         <outlet property="marsButton" destination="uQA-xq-dhO" id="a4D-3Y-NwX"/>
@@ -265,14 +276,13 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
                 <exit id="dtL-1I-c0r" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-564" y="115"/>
+            <point key="canvasLocation" x="214" y="115"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Oty-2G-vQQ"/>
+        <segue reference="6u0-7I-vZM"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="earth" width="1000" height="500"/>
         <image name="earthUIImage" width="785" height="785"/>
         <image name="jupiterUIImage" width="589" height="589"/>
         <image name="marsUIImage" width="1257" height="1257"/>

@@ -12,28 +12,10 @@ import FirebaseAuth
 
 final class FirstViewController: UIViewController {
     
+    //MARK: IBOutlets
     @IBOutlet private weak var videoLayer: UIView!
-
-    @IBAction func unwindSegueToMainScreen(segue: UIStoryboardSegue) {
-        
-        guard let sourseFirstViewController = segue.source as? SettingsViewController else {
-            return
-        }
-        self.infolevelLableValue.text = sourseFirstViewController.levelLable.text
-        self.timeLable.text = sourseFirstViewController.timeLable.text
-//        guard segue.identifier == "quitARGameSegue" else {
-//            return
-//        }
-//
-//        guard segue.identifier == "quitSettingsScreen" else {
-//            return
-//        }
-    }
     
-    private var videoPlayer: AVPlayer?
-    private var musicPlayer: AVAudioPlayer?
-    private let valueMusicSwitcher = SettingsViewController().defaultsStorage.fetchObject(type: Bool.self, for: .isMusicOn) ?? true
-    
+    //MARK: SubViews
     private lazy var quitLoginButton: UIButton = {
         let button = UIButton()
         let imageQuitGameButton = UIImage(systemName: "house.circle")
@@ -60,7 +42,7 @@ final class FirstViewController: UIViewController {
     
     private lazy var missionStartGameButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Миссия", for: .normal)
+        button.setTitle("Компания", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 30)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .black
@@ -95,18 +77,18 @@ final class FirstViewController: UIViewController {
         return label
     }()
     
-    lazy var timeLable: UILabel = {
+    private lazy var timeLable: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .white
         label.layer.cornerRadius = 8
         label.layer.masksToBounds = true
-        label.text = SettingsViewController().timeLable.text
+        label.text = QuickGameSettingsViewController().timeLable.text
         label.backgroundColor = .black
         return label
     }()
     
-    lazy var infolevelLableText: UILabel = {
+    private lazy var infolevelLableText: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .white
@@ -117,14 +99,13 @@ final class FirstViewController: UIViewController {
         return label
     }()
     
-    //TODO - Наблюдатель или что-то подобное. Настройки label.text принимаются после перезапуска View что логично...
-    lazy var infolevelLableValue: UILabel = {
+    private lazy var infolevelLableValue: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .white
         label.layer.cornerRadius = 8
         label.layer.masksToBounds = true
-        label.text = "\(Int(SettingsViewController().levelStepper.value))"
+        label.text = "\(Int(QuickGameSettingsViewController().levelStepper.value))"
         label.backgroundColor = .black
         return label
     }()
@@ -165,18 +146,34 @@ final class FirstViewController: UIViewController {
         return stackView
     }()
     
+    //MARK: PrivateProperties
+    private var videoPlayer: AVPlayer?
+    private var musicPlayer: AVAudioPlayer?
+    private let valueMusicSwitcher = SettingsViewController().defaultsStorage.fetchObject(type: Bool.self, for: .isMusicOn) ?? true
+    
+    //MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewController()
     }
     
+    //MARK: IBActions
+    @IBAction func unwindSegueToMainScreen(segue: UIStoryboardSegue) {
+        guard let sourseFirstViewController = segue.source as? QuickGameSettingsViewController else {
+            return
+        }
+        self.infolevelLableValue.text = sourseFirstViewController.levelLable.text
+        self.timeLable.text = sourseFirstViewController.timeLable.text
+    }
+    
+    //MARK: @objcFunc
     @objc func settingsButtonPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "settingsScreen", sender: nil)
         
     }
     
     @objc func startQuickGameButtonPressed(_ sender: UIButton) {
-        performSegue(withIdentifier: "startARGameSegue", sender: nil)
+        performSegue(withIdentifier: "startQuickARGameSegue", sender: nil)
     }
     
     @objc func quitLoginButtonPressed(_ sender: UIButton) {
@@ -201,9 +198,16 @@ final class FirstViewController: UIViewController {
     }
     
     @objc func missionStartGameButtonPressed(_ sender: UIButton) {
-        
+    }
+    
+    @objc
+    func playerItemDidReachEnd(notification: Notification) {
+        if let playerItem = notification.object as? AVPlayerItem {
+            playerItem.seek(to: CMTime.zero, completionHandler: nil)
+        }
     }
 
+    //MARK: PrivateFunc
     private func setupViewController() {
         addSubviews()
         setupLayout()
@@ -246,21 +250,12 @@ final class FirstViewController: UIViewController {
         
         videoLayer.layer.addSublayer(playerLayer)
         videoLayer.layer.repeatCount = 2
-        
-        
         videoPlayer?.actionAtItemEnd = .none
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(playerItemDidReachEnd(notification:)),
                                                name: .AVPlayerItemDidPlayToEndTime,
                                                object: videoPlayer?.currentItem)
-    }
-    
-    @objc
-    func playerItemDidReachEnd(notification: Notification) {
-        if let playerItem = notification.object as? AVPlayerItem {
-            playerItem.seek(to: CMTime.zero, completionHandler: nil)
-        }
     }
     
     private func playSound() {

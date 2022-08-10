@@ -90,7 +90,7 @@ final class LoginViewController: UIViewController {
         textField.isSecureTextEntry = true
         return textField
     }()
-   
+    
     private lazy var emailStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 2
@@ -127,12 +127,12 @@ final class LoginViewController: UIViewController {
         setupViewController()
     }
     
+    //MARK: OverrideMethods
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     
     //MARK: @objcFunc
-    
     @objc
     func loginButtonPressed() {
         
@@ -181,7 +181,6 @@ final class LoginViewController: UIViewController {
     }
     
     private func setupLayout() {
-        
         NSLayoutConstraint.activate([
             imageViewBackgroundScreen.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
             imageViewBackgroundScreen.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),

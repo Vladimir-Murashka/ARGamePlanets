@@ -113,7 +113,7 @@ final class SingUpViewController: UIViewController {
         textField.isSecureTextEntry = true
         return textField
     }()
-   
+    
     private lazy var emailStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 2
@@ -160,12 +160,12 @@ final class SingUpViewController: UIViewController {
         setupViewController()
     }
     
+    //MARK: OverrideMethods
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     
     //MARK: @objcFunc
-    
     @objc
     func singUpButtonPressed() {
         if passwordTextField.text != retypePasswordTextField.text {
@@ -193,7 +193,6 @@ final class SingUpViewController: UIViewController {
     @objc
     func quitButtonPressed() {
         performSegue(withIdentifier: "quitSingUp", sender: nil)
-        
     }
     
     //MARK: PrivateFunc
@@ -226,7 +225,6 @@ final class SingUpViewController: UIViewController {
     }
     
     private func setupLayout() {
-        
         NSLayoutConstraint.activate([
             imageViewBackgroundScreen.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
             imageViewBackgroundScreen.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
