@@ -173,7 +173,7 @@ final class FirstViewController: UIViewController {
     }
     
     @objc func startQuickGameButtonPressed(_ sender: UIButton) {
-        performSegue(withIdentifier: "startARGameSegue", sender: nil)
+        performSegue(withIdentifier: "startQuickARGameSegue", sender: nil)
     }
     
     @objc func quitLoginButtonPressed(_ sender: UIButton) {

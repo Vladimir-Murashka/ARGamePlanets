@@ -16,6 +16,7 @@
 		223C8E33286CE48E00A2782A /* CollisionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C8E32286CE48E00A2782A /* CollisionCategory.swift */; };
 		223C8E35286E501900A2782A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C8E34286E501800A2782A /* SettingsViewController.swift */; };
 		223C8E37286F0D7600A2782A /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C8E36286F0D7500A2782A /* AlertManager.swift */; };
+		226C11BA28A2EB7A008CF989 /* QuickGameSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226C11B928A2EB7A008CF989 /* QuickGameSettingsViewController.swift */; };
 		22CE79E2289ED077006B4122 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22CE79E1289ED077006B4122 /* GoogleService-Info.plist */; };
 		22DFF64A2889A4410037EEF5 /* DefaultsStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DFF6492889A4410037EEF5 /* DefaultsStorageManager.swift */; };
 		22DFF64C2889CD050037EEF5 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DFF64B2889CD050037EEF5 /* FirstViewController.swift */; };
@@ -42,6 +43,7 @@
 		223C8E32286CE48E00A2782A /* CollisionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionCategory.swift; sourceTree = "<group>"; };
 		223C8E34286E501800A2782A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		223C8E36286F0D7500A2782A /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
+		226C11B928A2EB7A008CF989 /* QuickGameSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickGameSettingsViewController.swift; sourceTree = "<group>"; };
 		22CE79E1289ED077006B4122 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		22DFF6492889A4410037EEF5 /* DefaultsStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsStorageManager.swift; sourceTree = "<group>"; };
 		22DFF64B2889CD050037EEF5 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -93,8 +95,9 @@
 				22DFF653288C9BF40037EEF5 /* LoginViewController.swift */,
 				22DFF655288C9C250037EEF5 /* SingUpViewController.swift */,
 				22DFF64B2889CD050037EEF5 /* FirstViewController.swift */,
-				221CF149285E6385003A7329 /* ViewController.swift */,
+				226C11B928A2EB7A008CF989 /* QuickGameSettingsViewController.swift */,
 				223C8E34286E501800A2782A /* SettingsViewController.swift */,
+				221CF149285E6385003A7329 /* ViewController.swift */,
 				223C8E36286F0D7500A2782A /* AlertManager.swift */,
 				22DFF6492889A4410037EEF5 /* DefaultsStorageManager.swift */,
 				22DFF64D288AF9E50037EEF5 /* TimerManager.swift */,
@@ -199,6 +202,7 @@
 				22DFF652288C98A20037EEF5 /* StartViewController.swift in Sources */,
 				223C8E35286E501900A2782A /* SettingsViewController.swift in Sources */,
 				223C8E33286CE48E00A2782A /* CollisionCategory.swift in Sources */,
+				226C11BA28A2EB7A008CF989 /* QuickGameSettingsViewController.swift in Sources */,
 				22DFF64C2889CD050037EEF5 /* FirstViewController.swift in Sources */,
 				223C8E37286F0D7600A2782A /* AlertManager.swift in Sources */,
 				221CF14A285E6385003A7329 /* ViewController.swift in Sources */,

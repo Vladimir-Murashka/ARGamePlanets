@@ -96,15 +96,36 @@
                     <navigationItem key="navigationItem" id="HUQ-ys-ZlQ"/>
                     <connections>
                         <outlet property="videoLayer" destination="QpH-ov-u7R" id="bKj-9d-5e1"/>
-                        <segue destination="BV1-FR-VrT" kind="show" identifier="startARGameSegue" id="u0B-tM-mAE"/>
                         <segue destination="JOn-KW-DG8" kind="show" identifier="settingsScreen" id="cTr-ka-evL"/>
                         <segue destination="zVB-gl-6Zb" kind="unwind" identifier="quitToStartViewController" unwindAction="unwindSegueToMainScreenWithSegue:" id="BfK-7g-CY8"/>
+                        <segue destination="7JD-Oa-iDM" kind="show" identifier="startQuickARGameSegue" id="twY-HO-Ypj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YHB-yk-XBI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="zVB-gl-6Zb" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-1362" y="115"/>
+        </scene>
+        <!--Quick Game Settings View Controller-->
+        <scene sceneID="dPg-5Q-DGz">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="7JD-Oa-iDM" customClass="QuickGameSettingsViewController" customModule="ARGamePlanets" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="c7y-05-a6I">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="I3a-du-dLh"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="You-Nw-Asd"/>
+                    <connections>
+                        <segue destination="BV1-FR-VrT" kind="show" identifier="startARGameSegue" id="jyK-2Y-Bbf"/>
+                        <segue destination="axI-xr-3nX" kind="unwind" identifier="quitStartQuickARGameSegue" unwindAction="unwindSegueToMainScreenWithSegue:" id="Sq0-zK-COc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9IP-c0-DDa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="axI-xr-3nX" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-578" y="115"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="zw3-lh-bsv">
@@ -265,11 +286,11 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
                 <exit id="dtL-1I-c0r" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="646" y="115"/>
+            <point key="canvasLocation" x="214" y="115"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="7Y4-8s-V5W"/>
+        <segue reference="Oty-2G-vQQ"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="earth" width="1000" height="500"/>

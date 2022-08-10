@@ -318,7 +318,7 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
             message: "Уровень пройден",
             firstButtonTitle: "Следующий уровень",
             firstActionBlock: {
-                //TODO: - обновить ViewConroller с новыми настройками numberOfPlanets
+                //TODO: - обновить ViewConroller с новыми настройками numberOfPlanets и таймера
             },
             secondTitleButton: "Выйти") {
                 self.performSegue(withIdentifier: "quitARGameSegue", sender: nil)
