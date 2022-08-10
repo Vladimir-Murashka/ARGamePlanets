@@ -27,7 +27,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z2F-gp-RC2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2934" y="150"/>
+            <point key="canvasLocation" x="-2940" y="115"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="WUf-D1-J4g">
@@ -172,13 +172,6 @@
                                     <constraint firstAttribute="height" constant="1" id="qeE-Kn-YOE"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="earth" translatesAutoresizingMaskIntoConstraints="NO" id="TRs-fj-8PQ" userLabel="changeFlag">
-                                <rect key="frame" x="335" y="44" width="1" height="1"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="1" id="E2X-Kx-mRX"/>
-                                    <constraint firstAttribute="height" constant="1" id="nM2-th-lhx"/>
-                                </constraints>
-                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="MFH-4V-VNn">
                                 <rect key="frame" x="16" y="727.66666666666663" width="343" height="50.333333333333371"/>
                                 <subviews>
@@ -260,11 +253,9 @@
                             <constraint firstAttribute="bottom" secondItem="BrB-h1-WRS" secondAttribute="bottom" id="be5-WO-Fge"/>
                             <constraint firstItem="MFH-4V-VNn" firstAttribute="bottom" secondItem="fQZ-KI-GVf" secondAttribute="bottom" id="dWH-uk-pjj"/>
                             <constraint firstItem="CyP-Q4-IwL" firstAttribute="centerY" secondItem="U0K-SW-4ec" secondAttribute="centerY" constant="-2" id="jF1-0R-vsh"/>
-                            <constraint firstItem="fQZ-KI-GVf" firstAttribute="trailing" secondItem="TRs-fj-8PQ" secondAttribute="trailing" constant="39" id="kcW-lm-gWV"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="nY8-O9-Oe7"/>
                             <constraint firstItem="MFH-4V-VNn" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="16" id="ohz-H2-hIV"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="top" secondItem="U0K-SW-4ec" secondAttribute="top" id="q3l-je-vV5"/>
-                            <constraint firstItem="TRs-fj-8PQ" firstAttribute="top" secondItem="fQZ-KI-GVf" secondAttribute="top" id="xXh-LX-rYn"/>
                             <constraint firstItem="CyP-Q4-IwL" firstAttribute="centerX" secondItem="U0K-SW-4ec" secondAttribute="centerX" id="yzv-Ij-LLP"/>
                         </constraints>
                     </view>
@@ -272,7 +263,6 @@
                     <connections>
                         <outlet property="aimHor" destination="CyP-Q4-IwL" id="Ziq-nH-O2C"/>
                         <outlet property="aimVert" destination="oph-lD-bhO" id="K11-YL-e6h"/>
-                        <outlet property="changeFlag" destination="TRs-fj-8PQ" id="i0A-Qr-fVa"/>
                         <outlet property="earthButton" destination="fsj-DD-N7J" id="yA7-j1-W45"/>
                         <outlet property="jupiterButton" destination="605-ci-53E" id="fiN-my-jgH"/>
                         <outlet property="marsButton" destination="uQA-xq-dhO" id="a4D-3Y-NwX"/>
@@ -290,10 +280,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Oty-2G-vQQ"/>
+        <segue reference="6u0-7I-vZM"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="earth" width="1000" height="500"/>
         <image name="earthUIImage" width="785" height="785"/>
         <image name="jupiterUIImage" width="589" height="589"/>
         <image name="marsUIImage" width="1257" height="1257"/>

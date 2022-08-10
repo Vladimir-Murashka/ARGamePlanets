@@ -17,6 +17,7 @@
 		223C8E35286E501900A2782A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C8E34286E501800A2782A /* SettingsViewController.swift */; };
 		223C8E37286F0D7600A2782A /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C8E36286F0D7500A2782A /* AlertManager.swift */; };
 		226C11BA28A2EB7A008CF989 /* QuickGameSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226C11B928A2EB7A008CF989 /* QuickGameSettingsViewController.swift */; };
+		229E645C28A3F619009679C5 /* BallEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229E645B28A3F618009679C5 /* BallEnum.swift */; };
 		22CE79E2289ED077006B4122 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22CE79E1289ED077006B4122 /* GoogleService-Info.plist */; };
 		22DFF64A2889A4410037EEF5 /* DefaultsStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DFF6492889A4410037EEF5 /* DefaultsStorageManager.swift */; };
 		22DFF64C2889CD050037EEF5 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DFF64B2889CD050037EEF5 /* FirstViewController.swift */; };
@@ -44,6 +45,7 @@
 		223C8E34286E501800A2782A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		223C8E36286F0D7500A2782A /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		226C11B928A2EB7A008CF989 /* QuickGameSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickGameSettingsViewController.swift; sourceTree = "<group>"; };
+		229E645B28A3F618009679C5 /* BallEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallEnum.swift; sourceTree = "<group>"; };
 		22CE79E1289ED077006B4122 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		22DFF6492889A4410037EEF5 /* DefaultsStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsStorageManager.swift; sourceTree = "<group>"; };
 		22DFF64B2889CD050037EEF5 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				22DFF6492889A4410037EEF5 /* DefaultsStorageManager.swift */,
 				22DFF64D288AF9E50037EEF5 /* TimerManager.swift */,
 				22E6C6E3287CB6450006B53B /* PlanetEnum.swift */,
+				229E645B28A3F618009679C5 /* BallEnum.swift */,
 				223C8E32286CE48E00A2782A /* CollisionCategory.swift */,
 				221CF14B285E6385003A7329 /* Main.storyboard */,
 				221CF150285E6389003A7329 /* LaunchScreen.storyboard */,
@@ -198,6 +201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22DFF662288F4AE80037EEF5 /* AppDelegate.swift in Sources */,
+				229E645C28A3F619009679C5 /* BallEnum.swift in Sources */,
 				22E6C6E4287CB6450006B53B /* PlanetEnum.swift in Sources */,
 				22DFF652288C98A20037EEF5 /* StartViewController.swift in Sources */,
 				223C8E35286E501900A2782A /* SettingsViewController.swift in Sources */,

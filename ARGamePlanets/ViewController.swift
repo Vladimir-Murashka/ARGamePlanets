@@ -15,7 +15,6 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet private weak var sceneView: ARSCNView!
     @IBOutlet private weak var aimVert: UIView!
     @IBOutlet private weak var aimHor: UIView!
-    @IBOutlet private weak var changeFlag: UIImageView!
     
     @IBOutlet private weak var earthButton: UIButton!
     @IBOutlet private weak var jupiterButton: UIButton!
@@ -31,7 +30,7 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
         label.textColor = .white
         label.layer.cornerRadius = 8
         label.layer.masksToBounds = true
-        label.text = SettingsViewController().timeLable.text
+        label.text = QuickGameSettingsViewController().timeLable.text
         label.backgroundColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -105,11 +104,11 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
     private let valueVibrationSwitcher = SettingsViewController().defaultsStorage.fetchObject(type: Bool.self, for: .isVibrationOn) ?? true
     private var audioPlayer = AVAudioPlayer()
     private var selectPlanet: Planet = .earth
-    private var numberOfPlanets = Int(SettingsViewController().levelStepper.value)
+    private var numberOfPlanets = Int(QuickGameSettingsViewController().levelStepper.value)
     private let numberOfPlanetsTypes = 6
     private var counter = 0
     private var timer = Timer()
-    private var count = SettingsViewController().timeStepper.value
+    private var count = QuickGameSettingsViewController().timeStepper.value
     private var timerCounting = false
 
     //MARK: LifeCycle
@@ -206,21 +205,24 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
             message: "Время истекло",
             firstButtonTitle: "Попробовать еще раз",
             firstActionBlock: {
-                self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-                    node.removeFromParentNode() }
-                self.addPlanets()
-                self.timerLable.text = SettingsViewController().timeLable.text
-                self.reloadTimer()
-                self.startStopTimer()
-                self.startStopTimer()
-                self.counter = 0
-                self.numberOfPlanetsOflabel.text = "\(self.counter)"
+                self.reloadGame()
             },
             secondTitleButton: "Выйти") {
                 self.performSegue(withIdentifier: "quitARGameSegue", sender: nil)
             }
     }
 
+    private func reloadGame() {
+        self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+            node.removeFromParentNode() }
+        self.addPlanets()
+        self.timerLable.text = QuickGameSettingsViewController().timeLable.text
+        self.reloadTimer()
+        self.startStopTimer()
+        self.startStopTimer()
+        self.counter = 0
+        self.numberOfPlanetsOflabel.text = "\(self.counter)"
+    }
     // Добавление планет каждого типа.
     private func addPlanets() {
         let planets = Planet.allCases
@@ -316,9 +318,9 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
             fromViewController: self,
             title: "Поздравляем",
             message: "Уровень пройден",
-            firstButtonTitle: "Следующий уровень",
+            firstButtonTitle: "Перезапустить уровень",
             firstActionBlock: {
-                //TODO: - обновить ViewConroller с новыми настройками numberOfPlanets и таймера
+                self.reloadGame()
             },
             secondTitleButton: "Выйти") {
                 self.performSegue(withIdentifier: "quitARGameSegue", sender: nil)
@@ -327,7 +329,7 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
     
     // TODO: - Таймер вынести в менеджер, пока не пойму как передать label в @objc метод.
     private func reloadTimer() {
-        count = SettingsViewController().timeStepper.value
+        count = QuickGameSettingsViewController().timeStepper.value
     }
     
     private func startStopTimer() {
@@ -396,7 +398,6 @@ final class ViewController: UIViewController, ARSCNViewDelegate {
             commonTopStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16)
         ])
     }
-    
 }
 
 // обработка столкновений

@@ -42,7 +42,7 @@ final class FirstViewController: UIViewController {
     
     private lazy var missionStartGameButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Миссия", for: .normal)
+        button.setTitle("Компания", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 30)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .black
@@ -83,7 +83,7 @@ final class FirstViewController: UIViewController {
         label.textColor = .white
         label.layer.cornerRadius = 8
         label.layer.masksToBounds = true
-        label.text = SettingsViewController().timeLable.text
+        label.text = QuickGameSettingsViewController().timeLable.text
         label.backgroundColor = .black
         return label
     }()
@@ -105,7 +105,7 @@ final class FirstViewController: UIViewController {
         label.textColor = .white
         label.layer.cornerRadius = 8
         label.layer.masksToBounds = true
-        label.text = "\(Int(SettingsViewController().levelStepper.value))"
+        label.text = "\(Int(QuickGameSettingsViewController().levelStepper.value))"
         label.backgroundColor = .black
         return label
     }()
@@ -159,7 +159,7 @@ final class FirstViewController: UIViewController {
     
     //MARK: IBActions
     @IBAction func unwindSegueToMainScreen(segue: UIStoryboardSegue) {
-        guard let sourseFirstViewController = segue.source as? SettingsViewController else {
+        guard let sourseFirstViewController = segue.source as? QuickGameSettingsViewController else {
             return
         }
         self.infolevelLableValue.text = sourseFirstViewController.levelLable.text
